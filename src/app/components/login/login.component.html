@@ -1,1 +1,33 @@
-<p>login works!</p>
+<!-- This is the login page, uses a login form. When submitted the onClickSubmit class will run in app.component.ts.  -->
+<!-- <mat-card class="background" fullscreen> -->
+<div style="text-align:center">
+
+  <h1>  {{title}} </h1>
+    <br/><br/>
+  <h2> Please Login </h2>
+    <br/><br/>
+
+    <!-- Forms are used to handle user input. This form will take the users login credentials to be processed in the submitCredentials function.-->
+<form #login = "ngForm" (ngSubmit) = "onClickSubmit(login.value)">
+    <!-- Username textbox is labeled and added. -->
+    <mat-icon for="username">account_circle</mat-icon>
+    <input type = "text" name = "email" id="username" placeholder = "email" ngModel>
+    <br/><br/>
+    <!-- <mat-icon for="pwd">lock_icon</mat-icon> -->
+    <!-- Password textbox is labeled and added. -->
+    <input type = "password" name = "pwd" id="password" placeholder = "password" ngModel>
+    <br/><br/>
+    <a href="">Forgot password?</a>
+    <!-- Link to forgot password prompt is added. Link currently does nothing, but will lead to another form in the future. -->
+    <br/><br/>
+    <!-- Submit button is added. -->
+    <button mat-raised-button type = "submit" color="primary" value = "submit">submit</button>
+</form>
+<!-- Default form login -->
+<!-- Material form login -->
+<!-- Material form login -->
+
+
+<!-- end of form group -->
+</div>
+<!-- </mat-card> -->
