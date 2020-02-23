@@ -3,7 +3,13 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>
+      <div>
+        <button type="button" class="button">
+          Menu
+        </button>
+      </div>
+    </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="create-survey">Create a Survey</a>
       <a mat-list-item href="my-surveys">My Surveys</a>
@@ -18,16 +24,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-          PMAP 2020 Administration Page
-
+      PMAP 2020 Administration Page
     </mat-toolbar>
     Content of the tabs will be displayed here
     <button type="button">

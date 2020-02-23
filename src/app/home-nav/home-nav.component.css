@@ -53,3 +53,13 @@
     {
     align-self: flex-end;
     }
+
+  button
+    {
+    display: inline-block;
+    align-self: center;
+    background: grey;
+    border-color: #8a213a;
+    width: 300%;
+    height: 400%;
+    }

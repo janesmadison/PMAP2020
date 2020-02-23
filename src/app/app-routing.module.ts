@@ -5,7 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', component:HomeNavComponent},
+  {path: 'home', component:HomeNavComponent },
   {path: 'create-survey', component:CreateSurveyComponent },
 ];
 
