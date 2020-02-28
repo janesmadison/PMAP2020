@@ -1,33 +1,28 @@
-<!-- This is the login page, uses a login form. When submitted the onClickSubmit class will run in app.component.ts.  -->
-<!-- <mat-card class="background" fullscreen> -->
-<div style="text-align:center">
+<div class="login-parent">
+  <form *ngIf="loginForm" novalidate [formGroup]="loginForm" (ngSubmit)="doLogin()">
+    <mat-card class="login-form">
 
-  <h1>  {{title}} </h1>
-    <br/><br/>
-  <h2> Please Login </h2>
-    <br/><br/>
+      <mat-card-header>
+        <div mat-card-avatar class="login-icon"></div>
+        <mat-card-title>PMAP</mat-card-title>
+        <mat-card-subtitle>Please login to continue.</mat-card-subtitle>
+      </mat-card-header>
 
-    <!-- Forms are used to handle user input. This form will take the users login credentials to be processed in the submitCredentials function.-->
-<form #login = "ngForm" (ngSubmit) = "onClickSubmit(login.value)">
-    <!-- Username textbox is labeled and added. -->
-    <mat-icon for="username">account_circle</mat-icon>
-    <input type = "text" name = "email" id="username" placeholder = "email" ngModel>
-    <br/><br/>
-    <!-- <mat-icon for="pwd">lock_icon</mat-icon> -->
-    <!-- Password textbox is labeled and added. -->
-    <input type = "password" name = "pwd" id="password" placeholder = "password" ngModel>
-    <br/><br/>
-    <a href="">Forgot password?</a>
-    <!-- Link to forgot password prompt is added. Link currently does nothing, but will lead to another form in the future. -->
-    <br/><br/>
-    <!-- Submit button is added. -->
-    <button mat-raised-button type = "submit" color="primary" value = "submit">submit</button>
-</form>
-<!-- Default form login -->
-<!-- Material form login -->
-<!-- Material form login -->
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput autofocus type="text" placeholder="email" formControlName="username" name="username">
+        </mat-form-field>
 
+        <mat-form-field>
+          <input matInput type="password" placeholder="password" formControlName="password" name="password">
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" name="login">
+          <span>login</span>
+        </button>
+      </mat-card-actions>
 
-<!-- end of form group -->
+    </mat-card>
+  </form>
 </div>
-<!-- </mat-card> -->
