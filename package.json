@@ -11,26 +11,66 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~8.1.2",
+    "@angular/animations": "~9.0.2",
     "@angular/cdk": "~8.2.3",
-    "@angular/common": "~8.1.2",
-    "@angular/compiler": "~8.1.2",
-    "@angular/core": "~8.1.2",
-    "@angular/forms": "~8.1.2",
+    "@angular/common": "~9.0.2",
+    "@angular/compiler": "~9.0.2",
+    "@angular/core": "~9.0.2",
+    "@angular/forms": "~9.0.2",
     "@angular/material": "^8.2.3",
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
     "rxjs": "~6.4.0",
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+    "@angular/platform-browser": "~9.0.2",
+    "@angular/platform-browser-dynamic": "~9.0.2",
+    "@angular/router": "~9.0.2",
+    "hammerjs": "^2.0.8",
+    "rxjs": "~6.5.4",
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "xlsx": "^0.15.5",
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "@angular-devkit/build-angular": "~0.801.2",
     "@angular/cli": "~8.1.2",
     "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.1.2",
     "@types/node": "~8.9.4",
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+    "@angular-devkit/build-angular": "^0.900.3",
+    "@angular/cli": "^9.0.3",
+    "@angular/compiler-cli": "~9.0.2",
+    "@angular/language-service": "~9.0.2",
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^5.0.0",
@@ -44,6 +84,6 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "typescript": "~3.7.5"
   }
 }
