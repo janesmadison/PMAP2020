@@ -21,6 +21,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
+import { AddAdministratorComponent } from './add-administrator/add-administrator.component';
+import { MySurveysComponent } from './my-surveys/my-surveys.component';
+import { SurveyResultsComponent } from './survey-results/survey-results.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { CreateSurveyComponent } from './create-survey/create-survey.component';
     HomeComponent,
     LoginComponent,
     HomeNavComponent,
-    CreateSurveyComponent
+    CreateSurveyComponent,
+    AddAdministratorComponent,
+    MySurveysComponent,
+    SurveyResultsComponent
   ],
   imports: [
     BrowserModule,
