@@ -7,7 +7,8 @@ import {
   MatButtonModule,
   MatProgressSpinnerModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatRadioModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,13 +19,15 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { CreatesurveyComponent } from './components/createsurvey/createsurvey.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    CreatesurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { LoginComponent } from './components/login/login.component';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
