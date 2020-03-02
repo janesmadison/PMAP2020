@@ -45,19 +45,10 @@ export class CreatesurveyComponent implements OnInit {
     this.questionsArr.removeAt(index);
   }
 
-  // addQuestion(){
-    // console.log(this.form.value);
+  // export class RadioNgModelExample {
+  // answer: string;
+  // options: string[] = ['Agree', 'Slightly Agree', 'Slightly Disagree', 'Disagree'];
+// }
 
-  // }
-
-  // finishSurvey(){}
-
-
-
-  // createGroup() {
-    // const group = this.fb.group({});
-    // this.config.forEach(control =&gt; group.addControl(control.name, this.fb.control()));
-    // return group;
-  // }
 
 }
