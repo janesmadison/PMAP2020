@@ -1,6 +1,6 @@
 export class Survey {
     name: string
-    questions: Questions[]
+    questions: Question[]
 }
 
 export class Question {

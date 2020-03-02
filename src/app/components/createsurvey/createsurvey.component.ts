@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 
-import { Survey, Question } from '../survey'
+import { Survey, Question } from '../../services/survey'
 
 import { Subscription } from 'rxjs';
 
@@ -31,18 +31,18 @@ export class CreatesurveyComponent implements OnInit {
     })
   }
 
-  get Questions(){
+  get questionsArr(){
     return this.questionForm.get('questions') as FormArray;
   }
 
   // this function will push another question that the user inputs into the array
   addQuestion() {
-    this.questions.push(this.fb.group({point:''}));
+    this.questionsArr.push(this.fb.group({point:''}));
   }
 
 // this function will take the most recently added question and delete it
   deleteQuestion(index) {
-    this.questions.removeAt(index);
+    this.questionsArr.removeAt(index);
   }
 
   // addQuestion(){
