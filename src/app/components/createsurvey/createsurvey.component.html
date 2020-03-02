@@ -1,21 +1,49 @@
 <div class="question-parent">
 
-<mat-form-field>
-  <label>Question 1</label>
+<mat-form-field >
+  <label>Class ID: </label>
   <input matInput placeholder="">
+</mat-form-field>
 
-  <br>
-  <!-- Default button group for now -->
-  <mat-radio-group aria-label="Select">
-  <mat-radio-button value="1">Agree</mat-radio-button>
-  <mat-radio-button value="2">Slightly Agree</mat-radio-button>
-  <mat-radio-button value="3">Slightly Disagree</mat-radio-button>
-  <mat-radio-button value="4">Disagree</mat-radio-button>
-  </mat-radio-group>
+</div>
+<div class="question-parent">
 
-  </mat-form-field>
-  <br>
-  <button mat-raised-button color="primary" >Add Question</button>
+<mat-form-field [formGroup]="questionForm"">
+
+    <label>
+    Class ID: <input formControlName="title" />
+    </label>
+
+  <div formArrayName="questions">
+   <div *ngFor="let item of questions.controls; let pointIndex=index" [formGroupName]="pointIndex">
+    <label>
+    Question: <input matInput formControlName="question" />
+    </label>
+    </div>
+    <button mat-raised-button color="primary" (click)="addQuestion()">Add Question</button>
+  <div>
+  <button mat-raised-button color="primary" (click)="deleteQuestion()">Delete Question</button>
+
+</mat-form-field>
+
+    <!-- <br> -->
+    <!-- Default button group for now -->
+    <!-- <mat-radio-group formControlName="answer" aria-label="Select"> -->
+      <!-- <mat-radio-button value="1">Agree</mat-radio-button> -->
+      <!-- <mat-radio-button value="2">Slightly Agree</mat-radio-button> -->
+      <!-- <mat-radio-button value="3">Slightly Disagree</mat-radio-button> -->
+      <!-- <mat-radio-button value="4">Disagree</mat-radio-button> -->
+    <!-- </mat-radio-group> -->
+<!-- </mat-form-field> -->
+
+</div>
+<div class="question-parent">
+
+  <button mat-raised-button color="primary" (click)="addQuestion()">Add Question</button>
+
+
+  <button mat-raised-button color="primary" (click)="finishSurvey()" >Finish Survey</button>
+
 
 
 </div>
