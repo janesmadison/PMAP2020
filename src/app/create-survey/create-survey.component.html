@@ -1,4 +1,19 @@
-<p>create
-  -survey
-   works
-   !</p>
+<mat-card>
+  <input type="file" (change)="onFileChange($event)" id="file"/>
+
+  <mat-selection-list>
+    <mat-list-option selected>
+      test!
+    </mat-list-option>
+  </mat-selection-list>
+  <button mat-button> Add selected roster </button>
+</mat-card>
+<div id="output"></div>
+
+{{testNum}}
+<br>
+<ul>
+  <li *ngFor="let element of emailArr" >
+    {{emailArr}}
+  </li>
+</ul>

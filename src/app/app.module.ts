@@ -1,17 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import {
   MatToolbarModule,
   MatIconModule,
   MatCardModule,
   MatButtonModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatInputModule
 } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +27,7 @@ import { CreateSurveyComponent } from './create-survey/create-survey.component';
 import { AddAdministratorComponent } from './add-administrator/add-administrator.component';
 import { MySurveysComponent } from './my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './survey-results/survey-results.component';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +42,8 @@ import { SurveyResultsComponent } from './survey-results/survey-results.componen
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -46,10 +52,12 @@ import { SurveyResultsComponent } from './survey-results/survey-results.componen
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
     LayoutModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
