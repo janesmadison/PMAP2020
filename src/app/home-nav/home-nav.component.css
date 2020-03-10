@@ -54,12 +54,28 @@
     align-self: flex-end;
     }
 
-  button
+  .mat-button
     {
     display: center;
     align-self: center;
     background: grey;
     border-color: #8a213a;
-    width: 165px;
-    height: 50px;
+    border-style:outset;
+    width: 98%;
+    height: 100%;
     }
+
+.home-button
+  {
+  display: center;
+  align-self: center;
+  background: grey;
+  border-color: #8a213a;
+  border-style: ridge;
+  width: 220%;
+  height: 150%;
+  }
+.mat-sidenav-content
+  {
+
+  }

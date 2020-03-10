@@ -5,17 +5,14 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
       <div>
-        <button type="button" class="button" routerLink="/home">
-          Menu
-        </button>
+        <button mat-button (click)="changePage('/home');" class="home-button">Home</button>
       </div>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="create-survey">Create a Survey</a>
-      <a mat-list-item href="my-surveys">My Surveys</a>
-      <a mat-list-item href="survey-results">Survey Results</a>
-      <a mat-list-item href="add-administrator">Add an Administrator</a>
-
+      <button mat-button (click)="changePage('/create-survey');">Create Survey</button>
+      <button mat-button (click)="changePage('/my-surveys');">My Surveys</button>
+      <button mat-button (click)="changePage('/survey-results');">Survey Results</button>
+      <button mat-button (click)="changePage('/add-administrator');">add administrator</button>
           <div style="position: absolute; bottom: 0px; background-color: grey; width: 193px">
             <a mat-list-item href="sign-out">Sign out</a>
           </div>

@@ -1,19 +1,20 @@
 <mat-card>
   <input type="file" (change)="onFileChange($event)" id="file"/>
 
-  <mat-selection-list>
-    <mat-list-option selected>
-      test!
+  <mat-selection-list #students>
+    <mat-list-option selected *ngFor="let student of emailArr; let i = index">
+      {{emailArr[i]}}
     </mat-list-option>
   </mat-selection-list>
   <button mat-button> Add selected roster </button>
-</mat-card>
-<div id="output"></div>
+  <div id="output"></div>
 
-{{testNum}}
-<br>
-<ul>
-  <li *ngFor="let element of emailArr" >
-    {{emailArr}}
-  </li>
-</ul>
+  {{testNum}}
+  <br>
+<!-->  <ul>
+    <li *ngFor="let element of emailArr; let i = index" >
+      {{emailArr[i]}}
+    </li>
+  </ul>
+<!-->
+</mat-card>

@@ -12,8 +12,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./create-survey.component.css']
 })
 
-
-
 export class CreateSurveyComponent implements OnInit
 {
   emailList = "Before"
@@ -33,6 +31,7 @@ onFileChange(ev)
   let jsonData = null;
   const reader = new FileReader();
   const file = ev.target.files[0];
+
   reader.onload = (event) =>
   {
     const data = reader.result;
@@ -43,18 +42,25 @@ onFileChange(ev)
       initial[name] = XLSX.utils.sheet_to_json(sheet);
       return initial;
     }, {});//end of .reduce
+
     const dataString = JSON.stringify(jsonData);
     document.getElementById('output').innerHTML = dataString.slice(0, 30000).concat("...");
     this.emailList = dataString;
 
-    this.emailArr = this.emailList.split("\""); //splits the array into pieces
+    this.emailArr = dataString.split("\"",50); //splits the array into pieces
+    console.log(this.emailArr);
 
+    //this.emailArr.splice(1,1);//removes the element from the array
+    for(var i=0;i<this.emailArr.length;i++)
+      {
+      if(this.emailArr[i]=='}'||this.emailArr[i]==':'||this.emailArr[i]==','||this.emailArr[i]=='},{'||this.emailArr[i]==':[{'||this.emailArr[i]=='}]}'||this.emailArr[i]=='{') //removes the junk that comes with the excel file
+        {
+        this.emailArr.splice(i,1);
+        }
+      }
 
     this.testNum = this.emailArr.length;
-
-
   }//end of onload
   reader.readAsBinaryString(file);
   }//end of onFileChange
-
 }//end of class
