@@ -22,12 +22,22 @@ export class CreatesurveyComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   questionForm: FormGroup;
+  public count: number=1;
+
+  optionForm: FormGroup;
+  public opCount: number=2;
 
 // Outline question form to be used multiple times
   ngOnInit() {
+    // a reactive form for the questions under a certain title/survey name
     this.questionForm = this.fb.group({
       title: [],
       questions: this.fb.array([this.fb.group({point:''})])
+    })
+    // a reactive form for the user specified answer bubbles
+    this.optionForm = this.fb.group({
+      // titleQuestion: [],
+      options: this.fb.array([this.fb.group({point:''})])
     })
   }
 
@@ -37,12 +47,28 @@ export class CreatesurveyComponent implements OnInit {
 
   // this function will push another question that the user inputs into the array
   addQuestion() {
+    this.count += 1;
     this.questionsArr.push(this.fb.group({point:''}));
   }
 
 // this function will take the most recently added question and delete it
   deleteQuestion(index) {
+    this.count -= 1;
     this.questionsArr.removeAt(index);
+  }
+
+  get optionsArr(){
+    return this.optionForm.get('options') as FormArray;
+  }
+
+  addRadioButton(){
+    this.opCount +=1;
+    this.optionsArr.push(this.fb.group({point:''}))
+  }
+
+  deleteRadioButton(index){
+    this.opCount -+ 1;
+    this.optionsArr.removeAt(index);
   }
 
   // export class RadioNgModelExample {
