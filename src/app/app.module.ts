@@ -22,18 +22,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeNavComponent } from './home-nav/home-nav.component';
-import { CreateSurveyComponent } from './create-survey/create-survey.component';
-import { AddAdministratorComponent } from './add-administrator/add-administrator.component';
-import { MySurveysComponent } from './my-surveys/my-surveys.component';
-import { SurveyResultsComponent } from './survey-results/survey-results.component';
+import { CreateSurveyComponent } from './components/create-survey/create-survey.component';
+import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
+import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
+import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    HomeNavComponent,
     CreateSurveyComponent,
     AddAdministratorComponent,
     MySurveysComponent,

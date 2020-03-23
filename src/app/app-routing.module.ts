@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeNavComponent } from './home-nav/home-nav.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { CreateSurveyComponent } from './create-survey/create-survey.component';
-import { AddAdministratorComponent } from './add-administrator/add-administrator.component';
-import { MySurveysComponent } from './my-surveys/my-surveys.component';
-import { SurveyResultsComponent } from './survey-results/survey-results.component';
+import { CreateSurveyComponent } from './components/create-survey/create-survey.component';
+import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
+import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
+import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
 
 const routes: Routes = [
+<<<<<<< HEAD
   {path: 'login', component: LoginComponent },
   {path: 'home', component:HomeNavComponent },
   {path: 'create-survey', component:CreateSurveyComponent },
@@ -16,6 +17,24 @@ const routes: Routes = [
   {path: 'my-surveys',component:MySurveysComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
   //{path: '**', redirectTo: '/login' }
+=======
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    children: [
+      //need an empty elements component
+      {path: 'create-survey', component: CreateSurveyComponent },
+      {path: 'add-administrator', component: AddAdministratorComponent },
+      {path: 'survey-results', component: SurveyResultsComponent },
+      {path: 'my-surveys',component: MySurveysComponent },
+    ]
+  },
+
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+>>>>>>> master
 ];
 
 @NgModule({
