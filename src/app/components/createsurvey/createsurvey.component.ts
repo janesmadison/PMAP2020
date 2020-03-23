@@ -23,6 +23,8 @@ export class CreatesurveyComponent implements OnInit {
 
   questionForm: FormGroup;
   public count: number=1;
+  public sample: string;
+
 
   optionForm: FormGroup;
   public opCount: number=2;
@@ -34,11 +36,17 @@ export class CreatesurveyComponent implements OnInit {
       title: [],
       questions: this.fb.array([this.fb.group({point:''})])
     })
-    // a reactive form for the user specified answer bubbles
-    this.optionForm = this.fb.group({
-      // titleQuestion: [],
+    optionForm: this.fb.group({
       options: this.fb.array([this.fb.group({point:''})])
     })
+     let sampleQuestions: Array<string> = ["Overall, how would you rate this course?",
+                                          "How usefull were the course materials?",
+                                          "How clearly did your instructor explain the course material?",
+                                          "Was the speed with which your instructor presented the course material too fast, too slow, or about right?",
+                                          "How well did your instructor answer students' questions?",
+                                          "How comfortable did you feel voicing your opinions in class?",
+                                          "How helpful were the homework assignments to your understanding of the material?"
+                                          ]
   }
 
   get questionsArr(){
@@ -49,6 +57,7 @@ export class CreatesurveyComponent implements OnInit {
   addQuestion() {
     this.count += 1;
     this.questionsArr.push(this.fb.group({point:''}));
+    // this.sample = " ";
   }
 
 // this function will take the most recently added question and delete it
@@ -56,6 +65,12 @@ export class CreatesurveyComponent implements OnInit {
     this.count -= 1;
     this.questionsArr.removeAt(index);
   }
+
+  // addSample(item: sampleQuestions[]){
+    // this.count += 1;
+    // this.questionsArr.push(this.fb.group({point:''}));
+    // this.sample = this.sampleQuestions(index);
+  // }
 
   get optionsArr(){
     return this.optionForm.get('options') as FormArray;
@@ -71,10 +86,10 @@ export class CreatesurveyComponent implements OnInit {
     this.optionsArr.removeAt(index);
   }
 
-  // export class RadioNgModelExample {
-  // answer: string;
-  // options: string[] = ['Agree', 'Slightly Agree', 'Slightly Disagree', 'Disagree'];
-// }
+  export class RadioNgModelExample {
+  answer: string;
+  options: string[] = ['Agree', 'Slightly Agree', 'Slightly Disagree', 'Disagree'];
+}
 
 
 }
