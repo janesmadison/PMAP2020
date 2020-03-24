@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './change-pass.component.html',
   styleUrls: ['./change-pass.component.css']
 })
-export class ChangePassComponent implements OnInit {
+export class ChangePassComponent implements OnInit, OnDestroy {
 
   private subscription = new Subscription();
 
