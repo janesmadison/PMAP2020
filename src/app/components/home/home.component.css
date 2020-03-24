@@ -1,6 +1,9 @@
 .sidenav-container
   {
+  position: relative;
   height: 100%;
+  display: block;
+  transform: inherit;
   }
 
 .sidenav
@@ -17,7 +20,7 @@
   {
   background: #8a213a;
   position: sticky;
-  top: 0;
+  /* top: 0; */
   z-index: 1;
   }
 
@@ -58,15 +61,31 @@
     {
     display: center;
     align-self: center;
-    background: grey;
-    border-color: #8a213a;
+    /* background: grey; */
+    border-color: #8a213a;;
     width: 165px;
     height: 50px;
     }
+
 
   .main-body {
     padding-left: 0.8rem;
     padding-right: 0;
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .mat-toolbar-cl{
+    position: fixed;
+    top: 0;
+    z-index:10;
+    height: 80px;
+  }
+
+  .mat-spacer{
+    flex: 1 1 auto;
+  }
+
+  .content {
+    margin-top: 58px
   }

@@ -1,0 +1,26 @@
+<mat-sidenav-container class="sidenav-container">
+<mat-toolbar class="mat-toolbar-cl" color="primary" >
+  <mat-toolbar-row>
+
+    <h1>PMAP</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button routerLink="/home">Menu</a>
+      <a mat-button routerLink="/change-pass"> Change Password </a>
+      <a mat-button routerLink="/my-surveys">My Surveys</a>
+
+    </div>
+  </mat-toolbar-row>
+  <div class="main-body">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-toolbar>
+
+<!-- <mat-sidenav-content> -->
+  <div class="main-body">
+    <router-outlet></router-outlet>
+  </div>
+<!-- </mat-sidenav-content> -->
+
+</mat-sidenav-container>
