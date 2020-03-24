@@ -20,22 +20,22 @@
 
           <!-- Default button group for now -->
           <mat-radio-group formControlName="answer" aria-label="Select">
-            <form [formGroup]="optionForm">
-              <div class="questionForm">
-                <div formArrayName="options">
-                  <div *ngFor="let item of optionsArr.controls; let pointIndex=index" [formGroupName]="pointIndex">
+            <!-- <form [formGroup]="optionForm"> -->
+              <!-- <div class="questionForm"> -->
+                <!-- <div formArrayName="options"> -->
+                  <!-- <div *ngFor="let item of optionsArr.controls; let pointIndex=index" [formGroupName]="pointIndex"> -->
 
                     <mat-radio-button value="1" > <input matInput placeholder="value" formControlName="option"> </mat-radio-button>
-                    <!-- <mat-radio-button value="2"> <input matInput type="value2" placeholder="value"> </mat-radio-button> -->
-                    <!-- <mat-radio-button value="3"> <input matInput type="value3" placeholder="value"> </mat-radio-button> -->
-                    <!-- <mat-radio-button value="4"> <input matInput type="value4" placeholder="value"> </mat-radio-button> -->
+                    <mat-radio-button value="2"> <input matInput type="value2" placeholder="value"> </mat-radio-button>
+                    <mat-radio-button value="3"> <input matInput type="value3" placeholder="value"> </mat-radio-button>
+                    <mat-radio-button value="4"> <input matInput type="value4" placeholder="value"> </mat-radio-button>
                     <!-- <button type="button" mat-raised-button color="primary" (click)="addRadioButton()">Add Option</button> -->
-                    <button type="button" mat-raised-button color="primary" (click)="deleteRadioButton()">Delete Option</button>
-                  </div>
-                  <button type="button" mat-raised-button color="primary" (click)="addRadioButton()">Add Option</button>
-                </div>
-              </div>
-            </form>
+                    <!-- <button type="button" mat-raised-button color="primary" (click)="deleteRadioButton()">Delete Option</button> -->
+                  <!-- </div> -->
+                  <!-- <button type="button" mat-raised-button color="primary" (click)="addRadioButton()">Add Option</button> -->
+                <!-- </div> -->
+              <!-- </div> -->
+            <!-- </form> -->
           </mat-radio-group>
           </label>
           <button type="button" mat-raised-button color="primary" (click)="deleteQuestion(pointIndex)">Delete Question</button>

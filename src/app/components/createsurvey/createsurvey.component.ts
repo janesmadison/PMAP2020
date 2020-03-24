@@ -26,8 +26,8 @@ export class CreatesurveyComponent implements OnInit {
   public sample: string;
 
 
-  optionForm: FormGroup;
-  public opCount: number=2;
+  // optionForm: FormGroup;
+  // public opCount: number=2;
 
 // Outline question form to be used multiple times
   ngOnInit() {
@@ -36,17 +36,17 @@ export class CreatesurveyComponent implements OnInit {
       title: [],
       questions: this.fb.array([this.fb.group({point:''})])
     })
-    optionForm: this.fb.group({
-      options: this.fb.array([this.fb.group({point:''})])
-    })
-     let sampleQuestions: Array<string> = ["Overall, how would you rate this course?",
-                                          "How usefull were the course materials?",
-                                          "How clearly did your instructor explain the course material?",
-                                          "Was the speed with which your instructor presented the course material too fast, too slow, or about right?",
-                                          "How well did your instructor answer students' questions?",
-                                          "How comfortable did you feel voicing your opinions in class?",
-                                          "How helpful were the homework assignments to your understanding of the material?"
-                                          ]
+    // optionForm: this.fb.group({
+      // options: this.fb.array([this.fb.group({point:''})])
+    // })
+     // let sampleQuestions: Array<string> = ["Overall, how would you rate this course?",
+                                          // "How usefull were the course materials?",
+                                          // "How clearly did your instructor explain the course material?",
+                                          // "Was the speed with which your instructor presented the course material too fast, too slow, or about right?",
+                                          // "How well did your instructor answer students' questions?",
+                                          // "How comfortable did you feel voicing your opinions in class?",
+                                          // "How helpful were the homework assignments to your understanding of the material?"
+                                          // ]
   }
 
   get questionsArr(){
@@ -72,24 +72,24 @@ export class CreatesurveyComponent implements OnInit {
     // this.sample = this.sampleQuestions(index);
   // }
 
-  get optionsArr(){
-    return this.optionForm.get('options') as FormArray;
-  }
+  // get optionsArr(){
+    // return this.optionForm.get('options') as FormArray;
+  // }
 
-  addRadioButton(){
-    this.opCount +=1;
-    this.optionsArr.push(this.fb.group({point:''}))
-  }
+  // addRadioButton(){
+    // this.opCount +=1;
+    // this.optionsArr.push(this.fb.group({point:''}))
+  // }
 
-  deleteRadioButton(index){
-    this.opCount -+ 1;
-    this.optionsArr.removeAt(index);
-  }
+  // deleteRadioButton(index){
+    // this.opCount -+ 1;
+    // this.optionsArr.removeAt(index);
+  // }
 
-  export class RadioNgModelExample {
-  answer: string;
-  options: string[] = ['Agree', 'Slightly Agree', 'Slightly Disagree', 'Disagree'];
-}
+  // export class RadioNgModelExample {
+  // answer: string;
+  // options: string[] = ['Agree', 'Slightly Agree', 'Slightly Disagree', 'Disagree'];
+// }
 
 
 }
