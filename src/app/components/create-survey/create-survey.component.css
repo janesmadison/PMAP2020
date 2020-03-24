@@ -1,22 +1,22 @@
 .question-parent {
   display: flex;
+  height: 25%;
   justify-content: center;
   width: 100%;
-  height: 25%;
 }
 
-mat-form-field {
+.mat-form-field {
+  height: 25%;
   width: 75%;
-  height: 25%
 }
 
 .question-form {
-  min-width: 400px;
-  margin: auto;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  min-width: 400px;
 }
 
 .question-form > mat-card-content > * {
