@@ -36,6 +36,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   doLogin() {
       const obj = this.loginForm.value;
-      this.loginService.login(obj.username, obj.password);
+      this.loginService.login(obj.username, obj.password).subscribe(
+    (res: any) => {
+
+    },
+    (err: HttpErrorResponse) => {
+      console.log(err.message);
+    }
+  );
   }
 }
