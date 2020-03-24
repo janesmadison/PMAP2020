@@ -18,11 +18,11 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
-      //need an empty elements component
+      // need an empty elements component
       {path: 'create-survey', component: CreateSurveyComponent },
       {path: 'add-administrator', component: AddAdministratorComponent },
       {path: 'survey-results', component: SurveyResultsComponent },
-      {path: 'my-surveys',component: MySurveysComponent },
+      {path: 'my-surveys', component: MySurveysComponent },
       {path: 'change-pass', component: ChangePassComponent },
     ]
   },
