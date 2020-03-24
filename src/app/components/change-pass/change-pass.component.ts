@@ -18,7 +18,6 @@ export class ChangePassComponent implements OnInit {
 
   constructor(
     private router: Router,
-    // private loginService: LoginService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -35,7 +34,7 @@ export class ChangePassComponent implements OnInit {
 
   changePass() {
       const obj = this.changePassForm.value;
-      // this.loginService.login(obj.username, obj.password);
+
   }
 
 }

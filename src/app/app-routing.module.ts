@@ -6,8 +6,7 @@ import { CreateSurveyComponent } from './components/create-survey/create-survey.
 import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
 import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { ChangePassComponent } from './change-pass/change-pass.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
 
 
 const routes: Routes = [
