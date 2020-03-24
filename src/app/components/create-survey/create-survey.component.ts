@@ -10,9 +10,9 @@ import { Survey, Question } from '../../services/survey';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-createsurvey',
-  templateUrl: './createsurvey.component.html',
-  styleUrls: ['./createsurvey.component.css']
+  selector: 'app-create-survey',
+  templateUrl: './create-survey.component.html',
+  styleUrls: ['./create-survey.component.css']
 })
 export class CreateSurveyComponent implements OnInit {
   // form = new FormGroup({
