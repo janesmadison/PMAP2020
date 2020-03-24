@@ -11,23 +11,42 @@ import {
   MatRadioModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { LayoutModule } from '@angular/cdk/layout';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { CreatesurveyComponent } from './components/createsurvey/createsurvey.component';
-
+import { CreateSurveyComponent } from './components/create-survey/create-survey.component';
+import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
+import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
+import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    CreatesurveyComponent
+    CreateSurveyComponent,
+    AddAdministratorComponent,
+    MySurveysComponent,
+    SurveyResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,12 +55,15 @@ import { CreatesurveyComponent } from './components/createsurvey/createsurvey.co
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    LayoutModule,
 
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatListModule,
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule

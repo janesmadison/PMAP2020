@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 
-import { Survey, Question } from '../../services/survey'
+import { Survey, Question } from '../../services/survey';
 
 import { Subscription } from 'rxjs';
 
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './createsurvey.component.html',
   styleUrls: ['./createsurvey.component.css']
 })
-export class CreatesurveyComponent implements OnInit {
+export class CreateSurveyComponent implements OnInit {
   // form = new FormGroup({
     // question: new FormControl(''),
     // answer: new FormControl('')'
@@ -22,8 +22,8 @@ export class CreatesurveyComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   questionForm: FormGroup;
-  public count: number=1;
-  public sample: string;
+  count = 1;
+  sample: string;
 
 
   // optionForm: FormGroup;
@@ -34,29 +34,30 @@ export class CreatesurveyComponent implements OnInit {
     // a reactive form for the questions under a certain title/survey name
     this.questionForm = this.fb.group({
       title: [],
-      questions: this.fb.array([this.fb.group({point:''})])
-    })
+      questions: this.fb.array([this.fb.group({point: ''})])
+    });
     // optionForm: this.fb.group({
       // options: this.fb.array([this.fb.group({point:''})])
     // })
      // let sampleQuestions: Array<string> = ["Overall, how would you rate this course?",
                                           // "How usefull were the course materials?",
                                           // "How clearly did your instructor explain the course material?",
-                                          // "Was the speed with which your instructor presented the course material too fast, too slow, or about right?",
+                                          // "Was the speed with which your instructor presented the course
+                                          // material too fast, too slow, or about right?",
                                           // "How well did your instructor answer students' questions?",
                                           // "How comfortable did you feel voicing your opinions in class?",
                                           // "How helpful were the homework assignments to your understanding of the material?"
                                           // ]
   }
 
-  get questionsArr(){
+  get questionsArr() {
     return this.questionForm.get('questions') as FormArray;
   }
 
   // this function will push another question that the user inputs into the array
   addQuestion() {
     this.count += 1;
-    this.questionsArr.push(this.fb.group({point:''}));
+    this.questionsArr.push(this.fb.group({point: ''}));
     // this.sample = " ";
   }
 
