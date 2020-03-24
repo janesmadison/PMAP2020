@@ -27,6 +27,7 @@ import { AddAdministratorComponent } from './components/add-administrator/add-ad
 import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
     AddAdministratorComponent,
     MySurveysComponent,
     SurveyResultsComponent,
-    ChangePassComponent
+    ChangePassComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
