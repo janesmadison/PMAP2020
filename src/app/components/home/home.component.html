@@ -1,8 +1,15 @@
+<mat-toolbar class="mat-toolbar-cl" color="primary" >
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
 
+  <span class="mat-spacer"></span>
+  <span>PMAP</span>
+  </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"  [opened]="false">
-    <mat-toolbar >Menu</mat-toolbar>
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" opened="true" disableClose="true">
+    <mat-toolbar >Home</mat-toolbar>
       <!-- [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" -->
       <!-- [mode]="(isHandset$ | async) ? 'over' : 'side'" -->
       <!-- [opened]="(isHandset$ | async) === false"> -->
@@ -21,14 +28,6 @@
   </mat-sidenav>
 
 <mat-sidenav-content>
-  <mat-toolbar class="mat-toolbar-cl" color="primary" >
-    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
-
-    <span class="mat-spacer"></span>
-    <span>PMAP</span>
-    </mat-toolbar>
 
   <mat-sidenav-content>
     <div class="main-body">
