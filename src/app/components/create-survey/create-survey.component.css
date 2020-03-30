@@ -1,0 +1,28 @@
+.question-parent {
+  display: flex;
+  height: 25%;
+  justify-content: center;
+  width: 100%;
+}
+
+.mat-form-field {
+  height: 25%;
+  width: 75%;
+}
+
+.question-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  min-width: 400px;
+}
+
+.question-form > mat-card-content > * {
+  width: 100%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
