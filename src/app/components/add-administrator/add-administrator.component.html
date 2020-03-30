@@ -1,1 +1,13 @@
-<p>Add Administrator!</p>
+<form id="adminEmailForm" post="backend/backendMailer.php">
+<mat-card>
+  <mat-card class="administration-card">Add administrator</mat-card>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter administrators email</mat-label>
+    <input matInput [formControl]="email" required ng-model="newAdminEmail">
+    <mat-error *ngIf="email.invalid"> {{getErrorMessage()}} </mat-error>
+  </mat-form-field>
+  <br>
+  <button mat-button (click)="resetForm()">Send Administration Invite</button>
+</mat-card>
+</form>
