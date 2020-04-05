@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,12 @@ import { CreateSurveyComponent } from './components/create-survey/create-survey.
 import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
 import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
+import { TextFieldQuestionComponent } from './text-field-question/text-field-question.component';
+import { TwoButtonQuestionComponent } from './components/two-button-question/two-button-question.component';
+import { ThreeButtonQuestionComponent } from './components/three-button-question/three-button-question.component';
+import { FourButtonQuestionComponent } from './components/four-button-question/four-button-question.component';
+import { FiveButtonQuestionComponent } from './components/five-button-question/five-button-question.component';
+import { SliderQuestionComponent } from './components/slider-question/slider-question.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +44,13 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
     CreateSurveyComponent,
     AddAdministratorComponent,
     MySurveysComponent,
-    SurveyResultsComponent
+    SurveyResultsComponent,
+    TextFieldQuestionComponent,
+    TwoButtonQuestionComponent,
+    ThreeButtonQuestionComponent,
+    FourButtonQuestionComponent,
+    FiveButtonQuestionComponent,
+    SliderQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +70,9 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSliderModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

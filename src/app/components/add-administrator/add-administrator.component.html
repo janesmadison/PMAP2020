@@ -1,1 +1,20 @@
 <p>Add Administrator!</p>
+<app-text-field-question></app-text-field-question>
+<br>
+<app-text-field-question></app-text-field-question>
+<br>
+<app-five-button-question></app-five-button-question>
+<br>
+<app-three-button-question></app-three-button-question>
+<br>
+<app-slider-question></app-slider-question>
+<br>
+<button mat-button [matMenuTriggerFor]="menu"> Add question </button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item > 2 button question </button>
+  <button mat-menu-item > 3 button question </button>
+  <button mat-menu-item > 4 button question </button>
+  <button mat-menu-item > 5 button question </button>
+  <button mat-menu-item > text box question </button>
+  <button mat-menu-item > slider question   </button>
+</mat-menu>
