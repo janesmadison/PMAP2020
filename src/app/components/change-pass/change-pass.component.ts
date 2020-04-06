@@ -14,7 +14,8 @@ import { Subscription } from 'rxjs';
 export class ChangePassComponent {
 
   changePassForm: FormGroup;
-  oldPass = new FormControl('', [Validators.required, Validators.minLength(6),  Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9]*')]);
+  oldPass = new FormControl('', [Validators.required, Validators.minLength(6),
+    Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9]*')]);
   newPass = new FormControl('', [Validators.required, Validators.minLength(6)]);
   confirmPass = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
@@ -22,16 +23,18 @@ export class ChangePassComponent {
     private router: Router,
     private fb: FormBuilder) {
 
-      this.changePassForm = this.fb.group({oldPass: this.oldPass,
-                                            newPass: this.newPass,
-                                            confirmPass: this.confirmPass},
-                                            {
-                                              validator: this.passwordMatchValidator
-                                            });}
+      this.changePassForm =
+      this.fb.group({oldPass: this.oldPass,
+          newPass: this.newPass,
+          confirmPass: this.confirmPass},
+          {
+            validator: this.passwordMatchValidator
+          });
+        }
 
         passwordMatchValidator(g: FormGroup) {
          return g.get('newPass').value === g.get('confirmPass').value
-            ? null : { 'mismatch': true };
+            ? null : { mismatch: true };
             // throwError('Passwords do not match!');
         }
         setOldPass() {
@@ -46,6 +49,6 @@ export class ChangePassComponent {
         }
 
         changePass() {
-          //database stuff and error handling
+          // database stuff and error handling
         }
       }
