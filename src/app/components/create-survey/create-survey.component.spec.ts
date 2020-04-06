@@ -6,6 +6,12 @@ describe('CreateSurveyComponent', () => {
   let component: CreateSurveyComponent;
   let fixture: ComponentFixture<CreateSurveyComponent>;
 
+  const mockRoute = {
+    params: [
+      {}
+    ]
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CreateSurveyComponent ]

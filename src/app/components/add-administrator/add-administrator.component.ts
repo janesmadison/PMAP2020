@@ -11,13 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddAdministratorComponent implements OnInit {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
 
-  constructor(private route:ActivatedRoute ,private breakpointObserver: BreakpointObserver) {}
+  constructor() {}
 
   ngOnInit(): void {
   }
