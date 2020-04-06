@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Observable, throwError } from 'rxjs';
 
 import { Subscription } from 'rxjs';
 
@@ -10,31 +11,41 @@ import { Subscription } from 'rxjs';
   templateUrl: './change-pass.component.html',
   styleUrls: ['./change-pass.component.css']
 })
-export class ChangePassComponent implements OnInit {
-
-  private subscription = new Subscription();
+export class ChangePassComponent {
 
   changePassForm: FormGroup;
+  oldPass = new FormControl('', [Validators.required, Validators.minLength(6),  Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9]*')]);
+  newPass = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  confirmPass = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
   constructor(
     private router: Router,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder) {
 
-  ngOnInit() {
-      this.changePassForm = this.fb.group({
-        oldPass: ['', Validators.required],
-        newPass: ['', Validators.required],
-        confirmPass: ['', Validators.required]
-  });
-}
+      this.changePassForm = this.fb.group({oldPass: this.oldPass,
+                                            newPass: this.newPass,
+                                            confirmPass: this.confirmPass},
+                                            {
+                                              validator: this.passwordMatchValidator
+                                            });}
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+        passwordMatchValidator(g: FormGroup) {
+         return g.get('newPass').value === g.get('confirmPass').value
+            ? null : { 'mismatch': true };
+            // throwError('Passwords do not match!');
+        }
+        setOldPass() {
+          return { 'has-danger': !this.oldPass.pristine && !this.oldPass.valid };
+        }
+        setNewPass() {
+          return { 'has-danger': !this.newPass.pristine && !this.newPass.valid };
+        }
+        setConfirmPass() {
+          return { 'has-danger': !this.confirmPass.pristine && !this.confirmPass.valid ||
+           !this.confirmPass.pristine && this.changePassForm.errors && this.changePassForm.errors.mismatch};
+        }
 
-  changePass() {
-      const obj = this.changePassForm.value;
-
-  }
-
-}
+        changePass() {
+          //database stuff and error handling
+        }
+      }
