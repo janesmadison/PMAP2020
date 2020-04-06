@@ -8,10 +8,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateSurveyComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+// private route: ActivatedRoute in constructor eventually
+  constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
 }
