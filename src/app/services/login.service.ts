@@ -17,9 +17,9 @@ export class LoginService {
     private http: HttpClient
   ) { }
 
-  login(username: string, password: string) {
-    const credentials = JSON.stringify({ username, password });
-    console.log('usr: ', username, 'pwd: ', password);
+  login(email: string, password: string) {
+    const credentials = JSON.stringify({ email, password });
+    console.log('usr: ', email, 'pwd: ', password);
     return this.http
     .post(`${this.baseUrl}/api/login`, credentials).pipe(
       tap(
