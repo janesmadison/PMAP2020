@@ -1,0 +1,21 @@
+/* holds all of the question forms on the same card and centers them */
+.card-parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* each form is a question. this class tells each question how to act and position itsself */
+.card-form {
+  min-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* this ensures that each form takes up all the horizontal room it can so the questions arent too long vertically */
+.card-form > mat-card-content > * {
+  width: 100%;
+}
