@@ -1,12 +1,42 @@
 <mat-card>
-  <input type="file" (change)="onFileChange($event)" id="file"/>
+  <mat-card>
+    <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+      <input type="file" (change)="onFileChange($event)" id="file"/>
 
-  <mat-selection-list #students>
-    <mat-list-option selected *ngFor="let student of emailArr; let i = index">
-      {{nameArr[i] + ' - ' +emailArr[i]}}
-    </mat-list-option>
-  </mat-selection-list>
-  <button mat-button> Add selected roster </button>
-  <!--><div id="output"></div><!-->
+      <br>
+      <br>
+
+      <input matInput placeholder="Class roster name" #box (keyup)="onKey(box.value)" type="text" formControlName="classRosterName" required>
+
+      <mat-selection-list #studentList (selectionChange)="onGroupsChange(studentList.selectedOptions.selected)">
+        <mat-list-option selected *ngFor="let student of students" [value]="student">
+        {{ student.name + ' : ' + student.email }}
+        </mat-list-option>
+      </mat-selection-list>
+      <button mat-button type="submit" [disabled]="!classForm.valid"> Add selected roster </button>
+
+    </form>
+    <br>
+
+    <button mat-button (click)="selectAll()">Select All</button>
+  </mat-card>
+
   <br>
+
+  <div>
+    <mat-card>
+      <label>
+        Previous Rosters
+      </label>
+      <mat-selection-list>
+        <mat-list-option *ngFor = "let ClassRoster of rosters">
+          {{ClassRoster.className + ' : '}}
+          <div *ngFor ="let obj of ClassRoster.studentData">
+            {{ClassRoster.studentData}}
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-card>
+  </div>
+
 </mat-card>
