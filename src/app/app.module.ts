@@ -35,6 +35,8 @@ import { ThreeButtonQuestionComponent } from './components/three-button-question
 import { FourButtonQuestionComponent } from './components/four-button-question/four-button-question.component';
 import { FiveButtonQuestionComponent } from './components/five-button-question/five-button-question.component';
 import { SliderQuestionComponent } from './components/slider-question/slider-question.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { SliderQuestionComponent } from './components/slider-question/slider-que
     FourButtonQuestionComponent,
     FiveButtonQuestionComponent,
     SliderQuestionComponent
+    ChangePassComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
