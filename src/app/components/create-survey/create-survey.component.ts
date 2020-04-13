@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import {MatRadioModule} from '@angular/material/radio';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -19,42 +19,27 @@ export class CreateSurveyComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   surveyForm: FormGroup;
-/* count = 1;
-  sample: string; */
-  questionArr: string[] = [];
+  questionArr: string[][] = [];
 
 
   ngOnInit() {
-    // a reactive form for the questions under a certain title/survey name
-  /*  this.questionForm = this.fb.group({
-      title: [],
-      questions: this.fb.array([this.fb.group({point: ''})])
-    }); */
     this.surveyForm = this.fb.group({
       title: []
     });
   }
 
-/*  get questionsArr() {
-    return this.questionForm.get('questions') as FormArray;
-  } */
-
   // this function will push another question that the user inputs into the array
   addQuestion(questionType) {
   this.questionArr.push(questionType);
   console.log(questionType);
-  /*  this.count += 1;
-    this.questionsArr.push(this.fb.group({point: ''})); // ask about the {{point: ''}} */
   }
 
-// this function will take the most recently added question and delete it
-  deleteQuestion(index) {
-  /*  this.count -= 1;
-    this.questionsArr.removeAt(index); */
+  deleteQuestion(i: number) {
+  this.questionArr.splice(i);
   }
 
   isTextFieldQuestion(index) {
-  if (this.questionArr[index] === 'textFieldQuestion') {
+  if (this.questionArr[index].includes('textFieldQuestion')) {
     return true;
     } else {
     return false;
@@ -62,7 +47,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isTwoButtonQuestion(index) {
-  if (this.questionArr[index] === 'twoButtonQuestion') {
+  if (this.questionArr[index].includes('twoButtonQuestion')) {
     return true;
     } else {
     return false;
@@ -70,7 +55,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isThreeButtonQuestion(index) {
-  if (this.questionArr[index] === 'threeButtonQuestion') {
+  if (this.questionArr[index].includes('threeButtonQuestion')) {
     return true;
     } else {
     return false;
@@ -78,7 +63,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isFourButtonQuestion(index) {
-  if (this.questionArr[index] === 'fourButtonQuestion') {
+  if (this.questionArr[index].includes('fourButtonQuestion')) {
     return true;
     } else {
     return false;
@@ -86,7 +71,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isFiveButtonQuestion(index) {
-  if (this.questionArr[index] === 'fiveButtonQuestion') {
+  if (this.questionArr[index].includes('fiveButtonQuestion')) {
     return true;
     } else {
     return false;
@@ -94,7 +79,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isSliderQuestion(index) {
-  if (this.questionArr[index] === 'sliderQuestion') {
+  if (this.questionArr[index].includes('sliderQuestion')) {
     return true;
     } else {
     return false;

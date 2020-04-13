@@ -1,39 +1,3 @@
-<!-- <div class="question-parent">
-
-  <form [formGroup]="questionForm">
-    <div class="questionForm">
-
-      <mat-form-field>
-        <label>
-          Survey Name: <input matInput formControlName="title" />
-        </label>
-      </mat-form-field>
-    </div>
-
-<!-- Two div wrappers for accessing and keeping index of array -->
-  <!--  <div formArrayName="questions">
-      <div *ngFor="let item of questionsArr.controls; let pointIndex=index" [formGroupName]="pointIndex">
-        <label>
-          Question: <input matInput formControlName="question" />
-
-          <!-- Default button group for now -->
-        <!--  <mat-radio-group formControlName="answer" aria-label="Select">
-            <mat-radio-button value="1" > <input matInput placeholder="value" formControlName="option"> </mat-radio-button>
-            <mat-radio-button value="2"> <input matInput type="value2" placeholder="value"> </mat-radio-button>
-            <mat-radio-button value="3"> <input matInput type="value3" placeholder="value"> </mat-radio-button>
-            <mat-radio-button value="4"> <input matInput type="value4" placeholder="value"> </mat-radio-button>
-          </mat-radio-group>
-          </label>
-          <button type="button" mat-raised-button color="primary" (click)="deleteQuestion(pointIndex)">Delete Question</button>
-        </div>
-        <button type="button" mat-raised-button color="primary" (click)="addQuestion()">Add Question</button>
-      </div>
-    </form>
-</div>
-<div class="question-parent">
-
-</div>   ss !-->
-
 <form [formGroup]="surveyForm">
   <div class="surveyForm">
     <mat-form-field>
@@ -43,15 +7,16 @@
     </mat-form-field>
   </div>
 
-  <div *ngFor="let item of questionArr; let i = index">
-    <app-text-field-question *ngIf="isTextFieldQuestion(i)"> </app-text-field-question>
-    <app-two-button-question *ngIf="isTwoButtonQuestion(i)"> </app-two-button-question>
-    <app-three-button-question *ngIf="isThreeButtonQuestion(i)"> </app-three-button-question>
-    <app-four-button-question *ngIf="isFourButtonQuestion(i)"> </app-four-button-question>
-    <app-five-button-question *ngIf="isFiveButtonQuestion(i)"> </app-five-button-question>
-    <app-slider-question *ngIf="isSliderQuestion(i)"> </app-slider-question>
+  <div *ngFor="let item of questionArr; let i = index" class="buttonForm">
+    <app-text-field-question *ngIf="isTextFieldQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-text-field-question>
+    <app-two-button-question *ngIf="isTwoButtonQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-two-button-question>
+    <app-three-button-question *ngIf="isThreeButtonQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-three-button-question>
+    <app-four-button-question *ngIf="isFourButtonQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-four-button-question>
+    <app-five-button-question *ngIf="isFiveButtonQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-five-button-question>
+    <app-slider-question *ngIf="isSliderQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-slider-question>
   </div>
 
+<!-- <div *ngFor="let item of questionArr; let i = index"> -->
   <button mat-button [matMenuTriggerFor]="menu"> Add question </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="addQuestion('twoButtonQuestion')"> 2 button question </button>
@@ -61,5 +26,6 @@
     <button mat-menu-item (click)="addQuestion('textFieldQuestion')"> text box question </button>
     <button mat-menu-item (click)="addQuestion('sliderQuestion')"> slider question   </button>
   </mat-menu>
+  <!-- </div> -->
 
 </form>
