@@ -23,7 +23,7 @@ const routes: Routes = [
       {path: 'create-survey', component: CreateSurveyComponent },
       {path: 'add-administrator', component: AddAdministratorComponent },
       {path: 'survey-results', component: SurveyResultsComponent },
-      {path: 'my-surveys', component: MySurveysComponent
+      {path: 'my-surveys', component: MySurveysComponent },
       {path: 'my-surveys', component: MySurveysComponent },
       {path: 'change-pass', component: ChangePassComponent },
     ]

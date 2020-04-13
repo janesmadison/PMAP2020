@@ -19,7 +19,7 @@ export class CreateSurveyComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   surveyForm: FormGroup;
-  questionArr: string[][] = [];
+  questionArr: string[] = [];
 
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isTwoButtonQuestion(index) {
-  if (this.questionArr[index].includes('twoButtonQuestion')) {
+  if (this.questionArr[index] === 'twoButtonQuestion') {
     return true;
     } else {
     return false;
@@ -55,7 +55,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isThreeButtonQuestion(index) {
-  if (this.questionArr[index].includes('threeButtonQuestion')) {
+  if (this.questionArr[index] === 'threeButtonQuestion') {
     return true;
     } else {
     return false;
@@ -63,7 +63,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isFourButtonQuestion(index) {
-  if (this.questionArr[index].includes('fourButtonQuestion')) {
+  if (this.questionArr[index] === 'fourButtonQuestion') {
     return true;
     } else {
     return false;
@@ -71,7 +71,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isFiveButtonQuestion(index) {
-  if (this.questionArr[index].includes('fiveButtonQuestion')) {
+  if (this.questionArr[index] === 'fiveButtonQuestion') {
     return true;
     } else {
     return false;
@@ -79,7 +79,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   isSliderQuestion(index) {
-  if (this.questionArr[index].includes('sliderQuestion')) {
+  if (this.questionArr[index] === 'sliderQuestion') {
     return true;
     } else {
     return false;

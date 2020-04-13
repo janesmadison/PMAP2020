@@ -17,7 +17,7 @@
   </div>
 
 <!-- <div *ngFor="let item of questionArr; let i = index"> -->
-  <button mat-button [matMenuTriggerFor]="menu"> Add question </button>
+<button mat-button [matMenuTriggerFor]="menu"> Add question </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="addQuestion('twoButtonQuestion')"> 2 button question </button>
     <button mat-menu-item (click)="addQuestion('threeButtonQuestion')"> 3 button question </button>

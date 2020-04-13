@@ -52,7 +52,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ThreeButtonQuestionComponent,
     FourButtonQuestionComponent,
     FiveButtonQuestionComponent,
-    SliderQuestionComponent
+    SliderQuestionComponent,
     ChangePassComponent,
     ToolbarComponent
   ],
