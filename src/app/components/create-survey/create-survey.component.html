@@ -13,12 +13,12 @@
         {{ student.name + ' : ' + student.email }}
         </mat-list-option>
       </mat-selection-list>
-      <button mat-button type="submit" [disabled]="!classForm.valid"> Add selected roster </button>
+
+      <button mat-raised-button type="submit" [disabled]="!classForm.valid"> Add selected roster </button>
 
     </form>
-    <br>
+    <button mat-raised-button (click)="selectAll()">Select All</button>
 
-    <button mat-button (click)="selectAll()">Select All</button>
   </mat-card>
 
   <br>
@@ -26,14 +26,18 @@
   <div>
     <mat-card>
       <label>
-        Previous Rosters
+        <div id="HASH" >
+        <span>Previous Rosters </span>
+
+        <span> <button mat-raised-button> edit rosters </button>
+        </span>
+        </div>
       </label>
+
       <mat-selection-list>
         <mat-list-option *ngFor = "let ClassRoster of rosters">
-          {{ClassRoster.className + ' : '}}
-          <div *ngFor ="let obj of ClassRoster.studentData">
-            {{ClassRoster.studentData}}
-          </div>
+          {{ClassRoster.className }}
+
         </mat-list-option>
       </mat-selection-list>
     </mat-card>
