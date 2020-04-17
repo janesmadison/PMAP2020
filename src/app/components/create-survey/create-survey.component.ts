@@ -13,6 +13,8 @@ import { MatListOption } from '@angular/material/list';
 import { MatSelectionListChange } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSelectionList } from '@angular/material/list';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 
@@ -32,10 +34,13 @@ export class CreateSurveyComponent implements OnInit {
   classForm = this.fb.group({ classRosterName: ['', Validators.required], });
   rosters: ClassRoster[] = [];
   inputValue;
+  baseUrl = 'http://localhost/';
+
+
 // ============= DATA MEMBERS ============================================================================
    @ViewChild('studentList') studentList: MatSelectionList;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {}// end of constructor
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private http: HttpClient) {}// end of constructor
 
   ngOnInit(): void {}// end of ngOnInit
 
@@ -43,8 +48,8 @@ export class CreateSurveyComponent implements OnInit {
 ===================== ON FILE CHANGE =====================================================================
 ========================================================================================================*/
 onFileChange(ev) {
-  const cellIndex = 'C2'; // this begins at cell C2 because that is the starting row of the students names
-                        // the excel sheet is going to be in a desired format
+  const cellIndex = 'C2'; // this begins at cell C2 because that is the starting row of the student name
+                                                                                // the excel sheet is going to be in a desired format
   let workBook = null;
 
   const reader = new FileReader();
@@ -90,22 +95,22 @@ parseNameColumn(cellIndex) {
       const cell = this.workSheet[cellIndex];
       const cellData = (cell ? cell.v : undefined);
 
-      nameString = nameString + '*' + cellData; // gives a separator for the names
+      nameString = nameString + '*' + cellData;                                 // gives a separator for the names
       numBlankSpaces = 0;
     }
     cellIndex = this.IncrementCellRow(cellIndex);
   }
 
-  this.nameArr = nameString.split('*'); // splits by the separator to get an array of the names
-  this.nameArr.splice(0, 1); // removes the null element from the beginning
+  this.nameArr = nameString.split('*');                                         // splits by the separator to get an array of the names
+  this.nameArr.splice(0, 1);                                                    // removes the null element from the beginning
 } // end of parse name column
 
 /*========================================================================================================
 ===================== PARSE EMAIL CELL ===================================================================
 ========================================================================================================*/
 ParseEmailCell() {
-  const cell = this.workSheet['L1']; // the cell that the emails will be placed in
-  const cellData = (cell ? cell.v : undefined); // gets the text data of the cell
+  const cell = this.workSheet['L1'];                                            // the cell that the emails will be placed in
+  const cellData = (cell ? cell.v : undefined);                                 // gets the text data of the cell
   this.emailArr = cellData;
   this.emailArr = this.emailArr.split(',');
 }// end of Parse Email Cell
@@ -129,15 +134,25 @@ onKey(value: string) {
 /*========================================================================================================
 ==================== ON SUBMIT ===========================================================================
 ========================================================================================================*/
-onSubmit() {
+onSubmit(options: MatListOption[]) {
   console.log('submit');
   const nameAndEmailArr: string[] = [];
 
-  for(const i in this.emailArr) {
+  for (const i in this.emailArr) {
     nameAndEmailArr.push(this.nameArr[i] + ':' + this.emailArr[i]);
     }
 
-  this.rosters.push(new ClassRoster(this.inputValue, nameAndEmailArr));
+  this.students = [];
+
+// sets the students array based off of the selected values in the list
+  for (const i in options.map(o => o.value)) {
+  this.students.push(new Student( options.map(o => o.value.name)[i], options.map(o => o.value.email)[i] ) );
+  }
+
+  this.rosters.push(new ClassRoster(this.inputValue, this.students));
+
+  this.postClassRoster();
+
   this.students = [];
   this.classForm.reset();
   }// end of on submit
@@ -145,7 +160,7 @@ onSubmit() {
 ==================== ON SUBMIT ===========================================================================
 ========================================================================================================*/
 onGroupsChange(options: MatListOption[]) {
-  console.log(options.map(o => o.value));
+
 }// end of on groups CHANGE
 /*========================================================================================================
 ==================== SELECT ALL ==========================================================================
@@ -153,5 +168,26 @@ onGroupsChange(options: MatListOption[]) {
 selectAll() {
   this.studentList.selectAll();
 }// end of select all
+/*========================================================================================================
+==================== POST CLASS ROSTER ===================================================================
+========================================================================================================*/
+postClassRoster() {
+  for (const i in this.students) {
+    this.http.post(this.baseUrl+'backendMailer.php', this.students[i]).subscribe((data) => {
+                                                                                // posts the data to the url which the php app is hosted
+      console.log('Got some data from backend', data);
+    }, (error) => {                                                             // gets the errors from the php app
+      console.log('Error! ', error);
+    });
+
+  } // runs the php script for each individual in the class roster
+}// end of post class roster
+/*========================================================================================================
+==================== POST CLASS ROSTER ===================================================================
+========================================================================================================*/
+readClassRoster(): Observable<Student[]> {
+  return this.http.get<Student[]>(this.baseUrl + 'backendRosterRetriever.php');
+  // calls the php app that gets and returns all of the rosters from the database
+}
 // =======================================================================================================
 }// end of class

@@ -17,7 +17,7 @@ export class AddAdministratorComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private route:ActivatedRoute ,private breakpointObserver: BreakpointObserver) {}
+  constructor(private route: ActivatedRoute , private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
   }

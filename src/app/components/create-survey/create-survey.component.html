@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card>
-    <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="classForm" (ngSubmit)="onSubmit(studentList.selectedOptions.selected)">
       <input type="file" (change)="onFileChange($event)" id="file"/>
 
       <br>
@@ -8,17 +8,16 @@
 
       <input matInput placeholder="Class roster name" #box (keyup)="onKey(box.value)" type="text" formControlName="classRosterName" required>
 
-      <mat-selection-list #studentList (selectionChange)="onGroupsChange(studentList.selectedOptions.selected)">
+      <mat-selection-list #studentList>
         <mat-list-option selected *ngFor="let student of students" [value]="student">
         {{ student.name + ' : ' + student.email }}
         </mat-list-option>
       </mat-selection-list>
 
-      <button mat-raised-button type="submit" [disabled]="!classForm.valid"> Add selected roster </button>
+      <button mat-raised-button type="submit" [disabled]="!classForm.valid" > Add selected roster </button>
 
     </form>
     <button mat-raised-button (click)="selectAll()">Select All</button>
-
   </mat-card>
 
   <br>
@@ -36,7 +35,7 @@
 
       <mat-selection-list>
         <mat-list-option *ngFor = "let ClassRoster of rosters">
-          {{ClassRoster.className }}
+          {{ ClassRoster.className }}
 
         </mat-list-option>
       </mat-selection-list>
