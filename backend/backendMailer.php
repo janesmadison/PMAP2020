@@ -9,3 +9,4 @@ if (mail($scope.newAdminEmail, $subject, $body, $headers)) {
 } else {
     echo "Email sending failed...";
 }
+?>

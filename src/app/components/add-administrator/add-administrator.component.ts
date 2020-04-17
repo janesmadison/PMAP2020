@@ -6,7 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-
+import { EmailService } from 'src/app/services/email.service';
+import { Admin } from './admin';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-administrator',
@@ -15,7 +17,10 @@ import { Validators } from '@angular/forms';
 })
 // ===========================================================================================================================
 export class AddAdministratorComponent implements OnInit {
+
   email = new FormControl('', [Validators.required, Validators.email]);
+  baseUrl = 'http://localhost/backendMailer.php';
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -23,7 +28,7 @@ export class AddAdministratorComponent implements OnInit {
       shareReplay()
     );
 // ============================================ CONSTRUCTOR =================================================================
-  constructor(private route: ActivatedRoute, private breakpointObserver: BreakpointObserver) {}
+  constructor(private route: ActivatedRoute, private breakpointObserver: BreakpointObserver, private http: HttpClient) {}
 
   ngOnInit(): void {
   }
@@ -31,6 +36,7 @@ export class AddAdministratorComponent implements OnInit {
 ============================================= GET ERROR MESSAGE =============================================================
 ===========================================================================================================================*/
 getErrorMessage() {
+// error message for invalid formatted input
 if (this.email.hasError('required')) {
   return 'You must enter a value';
   }
@@ -45,4 +51,19 @@ resetForm() {
   this.email.reset();
     }
   }
-}
+/*============================================================================================================================
+========================================== SEND ADMINISTRATION INVITE ========================================================
+============================================================================================================================*/
+sendAdministrationInvite() {
+  const dataTest = new Admin('tfleming1@students.fairmontstate.edu'); // this is created to have the email data in JSON format
+
+  if (!this.email.invalid) {
+    this.http.post(this.baseUrl, dataTest).subscribe((data) => {      // posts the data to the url which the php app is hosted
+      console.log('Got some data from backend', data);
+    }, (error) => {                                                   // gets the errors from the php app
+      console.log('Error! ', error);
+    });
+    this.resetForm();                                                 // resets the email form
+  }
+  }// end of Send Administration Invite
+} // end of Add Administration
