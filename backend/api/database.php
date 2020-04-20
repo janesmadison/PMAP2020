@@ -22,3 +22,9 @@ function connect()
 }
 
 $con = connect();
+
+if ($con) {
+  echo 'connected';
+} else {
+  echo 'not connected';
+}
