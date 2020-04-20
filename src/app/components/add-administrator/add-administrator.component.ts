@@ -19,8 +19,7 @@ import { HttpClient } from '@angular/common/http';
 export class AddAdministratorComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  baseUrl = 'http://localhost/backendMailer.php';
-
+  baseUrl = 'http://localhost/backendAdminMailer.php';
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -55,10 +54,14 @@ resetForm() {
 ========================================== SEND ADMINISTRATION INVITE ========================================================
 ============================================================================================================================*/
 sendAdministrationInvite() {
-  const dataTest = new Admin('tfleming1@students.fairmontstate.edu'); // this is created to have the email data in JSON format
+  console.log(this.email.value);
+
+  let postVars = {                                                              // this is created to have the email data in JSON format
+  AdminEmail : this.email.value
+  };
 
   if (!this.email.invalid) {
-    this.http.post(this.baseUrl, dataTest).subscribe((data) => {      // posts the data to the url which the php app is hosted
+    this.http.post(this.baseUrl, postVars).subscribe((data) => {      // posts the data to the url which the php app is hosted
       console.log('Got some data from backend', data);
     }, (error) => {                                                   // gets the errors from the php app
       console.log('Error! ', error);

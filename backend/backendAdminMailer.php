@@ -12,15 +12,15 @@ switch($_SERVER['REQUEST_METHOD']){
         $json = file_get_contents('php://input');
 
         $params = json_decode($json);
-        $email = $params->email;
-        $name = $params->name;
+        $AdminEmail = $params->AdminEmail;
+        //$name = $params->name;
 
         //$recipient = 'tfleming1@students.fairmontstate.edu';
         $subject = 'PMAP2020 Administration invite';
-        $headers = "From: $name <$email>";
+        $headers = "From: <$AdminEmail>";
         $message = 'You have been invited to join the PMAP2020 survey websites administration group! please follow the link to join! (LINK)';
 
-        mail($email, $subject, $message, $headers);
+        mail($AdminEmail, $subject, $message, $headers);
         break;
     default: //Reject any non POST or OPTIONS requests.
         header("Allow: POST", true, 405);
