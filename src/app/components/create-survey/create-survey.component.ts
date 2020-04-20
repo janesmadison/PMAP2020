@@ -36,13 +36,19 @@ export class CreateSurveyComponent implements OnInit {
   inputValue;
   baseUrl = 'http://localhost/';
 
+  email: string;
+  name: string;
+
 
 // ============= DATA MEMBERS ============================================================================
    @ViewChild('studentList') studentList: MatSelectionList;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private http: HttpClient) {}// end of constructor
 
-  ngOnInit(): void {}// end of ngOnInit
+  ngOnInit(): void {
+  this.email = 'tfleming1@students.fairmontstate.edu';
+  this.name = 'Tavarius Fleming';
+  }// end of ngOnInit
 
 /*========================================================================================================
 ===================== ON FILE CHANGE =====================================================================
@@ -172,8 +178,13 @@ selectAll() {
 ==================== POST CLASS ROSTER ===================================================================
 ========================================================================================================*/
 postClassRoster() {
+  let postVars = {
+    email : this.email,
+    name : this.name
+  };
+
   for (const i in this.students) {
-    this.http.post(this.baseUrl+'backendMailer.php', this.students[i]).subscribe((data) => {
+    this.http.post(this.baseUrl+'backendMailer.php', postVars).subscribe((data) => {
                                                                                 // posts the data to the url which the php app is hosted
       console.log('Got some data from backend', data);
     }, (error) => {                                                             // gets the errors from the php app
