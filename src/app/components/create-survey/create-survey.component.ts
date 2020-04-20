@@ -153,11 +153,12 @@ onSubmit(options: MatListOption[]) {
 // sets the students array based off of the selected values in the list
   for (const i in options.map(o => o.value)) {
   this.students.push(new Student( options.map(o => o.value.name)[i], options.map(o => o.value.email)[i] ) );
+  this.postClassRoster(options.map(o => o.value.name)[i], options.map(o => o.value.email)[i]);
   }
 
   this.rosters.push(new ClassRoster(this.inputValue, this.students));
 
-  this.postClassRoster();
+
 
   this.students = [];
   this.classForm.reset();
@@ -177,21 +178,19 @@ selectAll() {
 /*========================================================================================================
 ==================== POST CLASS ROSTER ===================================================================
 ========================================================================================================*/
-postClassRoster() {
+postClassRoster(studentEmail: string, studentName: string) {
+
   let postVars = {
-    email : this.email,
-    name : this.name
+    email : studentEmail,
+    name : studentName
   };
 
-  for (const i in this.students) {
-    this.http.post(this.baseUrl+'backendMailer.php', postVars).subscribe((data) => {
-                                                                                // posts the data to the url which the php app is hosted
-      console.log('Got some data from backend', data);
-    }, (error) => {                                                             // gets the errors from the php app
-      console.log('Error! ', error);
-    });
-
-  } // runs the php script for each individual in the class roster
+  this.http.post(this.baseUrl + 'backendMailer.php', postVars).subscribe((data) => {
+                                                                              // posts the data to the url which the php app is hosted
+    console.log('Got some data from backend', data);
+  }, (error) => {                                                             // gets the errors from the php app
+    console.log('Error! ', error);
+  });
 }// end of post class roster
 /*========================================================================================================
 ==================== POST CLASS ROSTER ===================================================================
