@@ -16,9 +16,6 @@ import { MatSelectionList } from '@angular/material/list';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
-
-
 @Component({
   selector: 'app-create-survey',
   templateUrl: './create-survey.component.html',
@@ -34,12 +31,10 @@ export class CreateSurveyComponent implements OnInit {
   classForm = this.fb.group({ classRosterName: ['', Validators.required], });
   rosters: ClassRoster[] = [];
   inputValue;
-  baseUrl = 'http://localhost/';
+  baseUrl = 'http://localhost/';                                                // base URL of the php script
 
   email: string;
   name: string;
-
-
 // ============= DATA MEMBERS ============================================================================
    @ViewChild('studentList') studentList: MatSelectionList;
 
@@ -49,7 +44,6 @@ export class CreateSurveyComponent implements OnInit {
   this.email = 'tfleming1@students.fairmontstate.edu';
   this.name = 'Tavarius Fleming';
   }// end of ngOnInit
-
 /*========================================================================================================
 ===================== ON FILE CHANGE =====================================================================
 ========================================================================================================*/
@@ -62,12 +56,11 @@ onFileChange(ev) {
   const file = ev.target.files[0];
 
   reader.onload = (event) => {
-    const data = reader.result;
+    const data = reader.result;                                                 // gets the raw data from the excel file
     workBook = XLSX.read(data, { type: 'binary' });
 
-    const firstSheetName = workBook.SheetNames[0];
-    this.workSheet = workBook.Sheets[firstSheetName];
-    console.log(this.workSheet);
+    const firstSheetName = workBook.SheetNames[0];                              // gets the first sheets name from the workbook
+    this.workSheet = workBook.Sheets[firstSheetName];                           // gets the workSheet data from the sheet studentName
 
     this.parseNameColumn(cellIndex);
     this.ParseEmailCell();
@@ -76,17 +69,16 @@ onFileChange(ev) {
     }; // end of onload
   reader.readAsBinaryString(file);
   }// end of onFileChange
-
 /*========================================================================================================
 ===================== INCREMENT CELL ROW  ================================================================
 ========================================================================================================*/
 IncrementCellRow(cellIndex) {
-  const count = cellIndex.match(/\d*$/);
+// increments the cellIndex by it's row value
+  const count = cellIndex.match(/\d*$/);                                        // finds the first numeric value in the string
 
-  cellIndex = cellIndex.substr(0, count.index) + (++count[0]);
+  cellIndex = cellIndex.substr(0, count.index) + (++count[0]);                  // incremnts new value and replaces old value
   return cellIndex;
   }// end of Increment Cell Row
-
 /*========================================================================================================
 ===================== PARSE NAME COLUMN ==================================================================
 ========================================================================================================*/
@@ -94,8 +86,9 @@ parseNameColumn(cellIndex) {
   let numBlankSpaces = 0;
   let nameString;
 
-  while (numBlankSpaces < 8) {
-    if (this.workSheet[cellIndex] === undefined) {
+  while (numBlankSpaces < 8) {                                                  // if you run into 8 or more blanks in a row
+                                                                                // then there's no more data to parse
+    if (this.workSheet[cellIndex] === undefined) {                              // checks if the cells are empty
       numBlankSpaces++;
     } else {
       const cell = this.workSheet[cellIndex];
@@ -110,7 +103,6 @@ parseNameColumn(cellIndex) {
   this.nameArr = nameString.split('*');                                         // splits by the separator to get an array of the names
   this.nameArr.splice(0, 1);                                                    // removes the null element from the beginning
 } // end of parse name column
-
 /*========================================================================================================
 ===================== PARSE EMAIL CELL ===================================================================
 ========================================================================================================*/
@@ -120,7 +112,6 @@ ParseEmailCell() {
   this.emailArr = cellData;
   this.emailArr = this.emailArr.split(',');
 }// end of Parse Email Cell
-
 /*========================================================================================================
 ===================== FILL CLASS ROSTER ==================================================================
 ========================================================================================================*/
@@ -129,66 +120,54 @@ FillClassRoster() {
   this.students.push( (new Student(this.nameArr[i], this.emailArr[i])) );
     }
   }// end of fill class roster
-
 /*========================================================================================================
 ===================== GET INPUT ==========================================================================
 ========================================================================================================*/
 onKey(value: string) {
-  this.inputValue = value;
+  this.inputValue = value;                                                      // keeps the input value of class name updated
 }
-
 /*========================================================================================================
 ==================== ON SUBMIT ===========================================================================
 ========================================================================================================*/
 onSubmit(options: MatListOption[]) {
-  console.log('submit');
-  const nameAndEmailArr: string[] = [];
-
-  for (const i in this.emailArr) {
-    nameAndEmailArr.push(this.nameArr[i] + ':' + this.emailArr[i]);
-    }
-
   this.students = [];
 
 // sets the students array based off of the selected values in the list
   for (const i in options.map(o => o.value)) {
   this.students.push(new Student( options.map(o => o.value.name)[i], options.map(o => o.value.email)[i] ) );
+
   this.postClassRoster(options.map(o => o.value.name)[i], options.map(o => o.value.email)[i]);
   }
-
+                                                                                /* NOTE: options.map(o => o.value)
+                                                                                gets the value from the selected options
+                                                                                of the mat selection list
+                                                                                */
   this.rosters.push(new ClassRoster(this.inputValue, this.students));
 
 
-
-  this.students = [];
+  this.students = [];                                                           // resets array of students and class form
   this.classForm.reset();
   }// end of on submit
-/*========================================================================================================
-==================== ON SUBMIT ===========================================================================
-========================================================================================================*/
-onGroupsChange(options: MatListOption[]) {
-
-}// end of on groups CHANGE
 /*========================================================================================================
 ==================== SELECT ALL ==========================================================================
 ========================================================================================================*/
 selectAll() {
-  this.studentList.selectAll();
+  this.studentList.selectAll();                                                 // sets all options in the mat selection list to selected
 }// end of select all
 /*========================================================================================================
 ==================== POST CLASS ROSTER ===================================================================
 ========================================================================================================*/
 postClassRoster(studentEmail: string, studentName: string) {
 
-  let postVars = {
+  let postVars = {                                                              // places name and email values in JSON format for the post
     email : studentEmail,
     name : studentName
   };
 
   this.http.post(this.baseUrl + 'backendMailer.php', postVars).subscribe((data) => {
-                                                                              // posts the data to the url which the php app is hosted
+                                                                                // posts the data to the url which the php app is hosted
     console.log('Got some data from backend', data);
-  }, (error) => {                                                             // gets the errors from the php app
+  }, (error) => {                                                               // gets the errors from the php app
     console.log('Error! ', error);
   });
 }// end of post class roster
