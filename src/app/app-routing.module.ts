@@ -31,8 +31,9 @@ const routes: Routes = [
   },
 
   {path: 'student-home',
-  component: StudentHomeComponent,
+  component: ToolbarComponent,
   children: [
+    {path: 'student-welcome', component: StudentHomeComponent},
     {path: 'student-survey', component: StudentSurveyPageComponent},
   ]},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
