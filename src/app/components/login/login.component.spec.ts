@@ -30,4 +30,15 @@ describe('LoginComponent', () => {
   it('should exist', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('doLogin', () => {
+    it('should call loginService', () => {
+      mockLoginService.login.calls.reset();
+      component.ngOnInit();
+      component.loginForm.controls['username'].setValue('jack');
+      component.loginForm.controls['password'].setValue('jill');
+      component.doLogin();
+      expect(mockLoginService.login).toHaveBeenCalledWith('jack', 'jill');
+    });
+  });
 });
