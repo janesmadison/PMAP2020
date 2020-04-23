@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +30,12 @@ import { MySurveysComponent } from './components/my-surveys/my-surveys.component
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
 import { StudentHomeComponent } from './components/student-home/student-home.component';
 import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
+import { UserTwoButtonQuestionComponent } from './components/user-two-button-question/user-two-button-question.component';
+import { UserThreeButtonQuestionComponent } from './components/user-three-button-question/user-three-button-question.component';
+import { UserFourButtonQuestionComponent } from './components/user-four-button-question/user-four-button-question.component';
+import { UserFiveButtonQuestionComponent } from './components/user-five-button-question/user-five-button-question.component';
+import { UserSliderQuestionComponent } from './components/user-slider-question/user-slider-question.component';
+import { UserTextFieldQuestionComponent } from './components/user-text-field-question/user-text-field-question.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +47,13 @@ import { StudentSurveyPageComponent } from './components/student-survey-page/stu
     MySurveysComponent,
     SurveyResultsComponent,
     StudentHomeComponent,
-    StudentSurveyPageComponent
+    StudentSurveyPageComponent,
+    UserTwoButtonQuestionComponent,
+    UserThreeButtonQuestionComponent,
+    UserFourButtonQuestionComponent,
+    UserFiveButtonQuestionComponent,
+    UserSliderQuestionComponent,
+    UserTextFieldQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +72,9 @@ import { StudentSurveyPageComponent } from './components/student-survey-page/stu
     MatSidenavModule,
     MatListModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSliderModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
