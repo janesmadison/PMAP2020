@@ -28,10 +28,8 @@
     <button mat-menu-item (click)="addQuestion('sliderQuestion')"> slider question   </button>
   </mat-menu>
   <!-- </div> -->
-  <div *ngFor="let item of questionArr; let i = index" class="buttonForm">
 
     <button mat-raised-button color="primary" (click)="saveSurvey(questionArr)">Save Survey</button>
-  </div>
 
 </form>
 <app-excel-parser></app-excel-parser>

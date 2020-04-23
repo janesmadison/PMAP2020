@@ -34,7 +34,7 @@ export class FiveButtonQuestionComponent implements OnInit {
     // var x = questionArr;
     // var i = +x;
     // questionArr = 'question';
-    alert( 'Hello "' + questionArr + '"\nWelcome to C# Corner \nFunction in First Component');
+    alert( 'Saving: "' + questionArr + '"\n');
   }
 
 }
