@@ -6,6 +6,8 @@ import { CreateSurveyComponent } from './components/create-survey/create-survey.
 import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
 import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
+import { StudentHomeComponent } from './components/student-home/student-home.component';
+import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
 
 const routes: Routes = [
   {
@@ -15,14 +17,15 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
-      //need an empty elements component
+      // need an empty elements component
       {path: 'create-survey', component: CreateSurveyComponent },
       {path: 'add-administrator', component: AddAdministratorComponent },
       {path: 'survey-results', component: SurveyResultsComponent },
-      {path: 'my-surveys',component: MySurveysComponent },
+      {path: 'my-surveys', component: MySurveysComponent },
     ]
   },
-
+  {path: 'student-home', component: StudentHomeComponent},
+  {path: 'student-survey', component: StudentSurveyPageComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
 ];
 

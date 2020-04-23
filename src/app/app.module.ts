@@ -26,6 +26,8 @@ import { CreateSurveyComponent } from './components/create-survey/create-survey.
 import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
 import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
+import { StudentHomeComponent } from './components/student-home/student-home.component';
+import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
     CreateSurveyComponent,
     AddAdministratorComponent,
     MySurveysComponent,
-    SurveyResultsComponent
+    SurveyResultsComponent,
+    StudentHomeComponent,
+    StudentSurveyPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+.mat-button {
+text-align: left;
+width: 100%;
+}
+.welcome {
+  font-size: 200%;
+}
+.surveyCard {
+  background-color: maroon;
+}
+
+.listCard{
+  background-color: grey;
+}
