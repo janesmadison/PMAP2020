@@ -10,8 +10,6 @@ import { EventEmitterService } from '../event-emitter.service';
 })
 export class FiveButtonQuestionComponent implements OnInit {
 
-  @Output() passQuestion = new EventEmitter<string>();
-
   constructor(private eventEmitterService: EventEmitterService) { }
 
   fiveButtonForm = new FormGroup({question: new FormControl('', Validators.required), answer: new FormControl(''), });
@@ -24,19 +22,9 @@ export class FiveButtonQuestionComponent implements OnInit {
     }
   }
 
-  deleteMe(i) {
-    // this.delete.emit(i);
-  }
-
   saveSurvey(questionString: string){
-    // this.eventEmitterService.onSurveySaveButtonClick();
-    // var x = questionArr;
-    // var i = +x;
-    // questionArr = ['question'];
-    // alert( 'Hello "' + questionArr + '"\nWelcome to C# Corner \nFunction in First Component');
-    questionString = 'hello';
-    // return questionString;
-    this.passQuestion.emit(questionString);
+    questionString = 'this will be the question string';
+    alert(questionString);
   }
 
 }

@@ -17,7 +17,6 @@
     <button mat-raised-button color="warn" (click)="deleteQuestion(i)">Delete Question</button>
   </div>
 
-<!-- <div *ngFor="let item of questionArr; let i = index"> -->
   <button mat-button [matMenuTriggerFor]="menu"> Add question </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="addQuestion('twoButtonQuestion')"> 2 button question </button>
@@ -27,7 +26,6 @@
     <button mat-menu-item (click)="addQuestion('textFieldQuestion')"> text box question </button>
     <button mat-menu-item (click)="addQuestion('sliderQuestion')"> slider question   </button>
   </mat-menu>
-  <!-- </div> -->
 
     <button mat-raised-button color="primary" (click)="saveSurvey(' ')">Save Survey</button>
 

@@ -4,7 +4,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
-import { FiveButtonQuestionComponent } from '../five-button-question.component';
+
 
 
 import { Survey, Question } from '../../services/survey';
@@ -24,7 +24,6 @@ export class CreateSurveyComponent implements OnInit {
   surveyForm: FormGroup;
   questionArr: string[] = [];
   questionString: string;
-  public fiveButtonQuestion: FiveButtonQuestionComponent;
 
 
   ngOnInit() {
@@ -35,14 +34,6 @@ export class CreateSurveyComponent implements OnInit {
 
   saveSurvey(questionString: string){
     this.eventEmitterService.onSurveySaveButtonClick(questionString);
-    // alert( 'Hello "' + questionString + '"\nWelcome to C# Corner \nFunction in First Component');
-  }
-
-  recievedFiveButtonQuestion($event){
-    // this.questionString = $event;
-    this.fiveButtonQuestion = FiveButtonQuestionComponent;
-    alert( 'Hello "' + this.questionString + '"\nWelcome to C# Corner \nFunction in First Component');
-
   }
 
   // this function will push another question that the user inputs into the array
