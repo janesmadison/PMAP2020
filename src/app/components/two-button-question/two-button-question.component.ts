@@ -22,7 +22,7 @@ export class TwoButtonQuestionComponent implements OnInit {
   }
 
   deleteMe(i) {
-    this.delete.emit(i);
+    // this.delete.emit(i);
   }
 
 }

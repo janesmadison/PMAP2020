@@ -35,7 +35,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   deleteQuestion(i: number) {
-  this.questionArr.splice(i);
+  this.questionArr.splice(i, 1);
   }
 
   isTextFieldQuestion(index) {

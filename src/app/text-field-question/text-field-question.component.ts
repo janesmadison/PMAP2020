@@ -23,6 +23,6 @@ export class TextFieldQuestionComponent implements OnInit {
  }
 
  deleteMe(i) {
-   this.delete.emit(i);
+   // this.delete.emit(i);
  }
 }
