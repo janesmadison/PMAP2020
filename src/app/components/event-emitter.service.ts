@@ -11,7 +11,7 @@ export class EventEmitterService {
 
   constructor() { }
 
-  onSurveySaveButtonClick(questionString: string) {
-    this.invokeSaveSurveyFunction.emit(questionString);
+  onSurveySaveButtonClick() {
+    this.invokeSaveSurveyFunction.emit();
   }
 }

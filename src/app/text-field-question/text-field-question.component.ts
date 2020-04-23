@@ -12,8 +12,10 @@ import { EventEmitterService } from '../components/event-emitter.service';
 })
 export class TextFieldQuestionComponent implements OnInit {
   @Input() public i: number;
+  @Input() public surveyID: string;
+  @Input() public questionArr: string[];
 
-  @Output() delete = new EventEmitter<number>();
+  question: string;
 
   textFieldForm = new FormGroup({question: new FormControl('', Validators.required), });
   isValid = this.textFieldForm.valid;
@@ -22,7 +24,7 @@ export class TextFieldQuestionComponent implements OnInit {
   ngOnInit(): void {
     if (this.eventEmitterService.subsVar==undefined) {
       this.eventEmitterService.subsVar = this.eventEmitterService.
-      invokeSaveSurveyFunction.subscribe((name:string) => {
+      invokeSaveSurveyFunction.subscribe(() => {
         this.saveSurvey();
       });
     }
@@ -31,12 +33,7 @@ export class TextFieldQuestionComponent implements OnInit {
    console.log(this.textFieldForm.valid);
  }
 
- deleteMe(i) {
-   // this.delete.emit(i);
- }
-
  saveSurvey(){
-   // this.eventEmitterService.onSurveySaveButtonClick();
-   alert( 'Hello ' + '\nWelcome to C# Corner \nFunction in First Component');
+   this.questionArr[this.i]='START' + this.surveyID + 'TEXTFIELDQUESTION' + this.question + 'END';
  }
 }

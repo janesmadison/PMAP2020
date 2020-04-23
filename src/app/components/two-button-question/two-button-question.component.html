@@ -2,12 +2,12 @@
   <form [formGroup]="twoButtonForm">
     <div class="twoButtonForm">
       <label>
-        Question: <input matInput placeholder="Enter question." formControlName="question" />
+        Question: <input matInput [(ngModel)]="question" placeholder="Enter question." formControlName="question" />
       </label>
       <br>
       <mat-radio-group formControlName="answer" aria-label="Select">
-        <mat-radio-button value="1" > <input matInput placeholder="value"> </mat-radio-button>
-        <mat-radio-button value="2"> <input matInput type="value2" placeholder="value"> </mat-radio-button>
+        <mat-radio-button value="1" > <input matInput [(ngModel)]="answerVal1" placeholder="value"> </mat-radio-button>
+        <mat-radio-button value="2"> <input matInput [(ngModel)]="answerVal2" type="value2" placeholder="value"> </mat-radio-button>
       </mat-radio-group>
       <br>
     </div>

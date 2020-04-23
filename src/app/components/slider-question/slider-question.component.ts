@@ -11,8 +11,10 @@ import { EventEmitterService } from '../event-emitter.service';
 })
 export class SliderQuestionComponent implements OnInit {
   @Input() public i: number;
+  @Input() public surveyID: string;
+  @Input() public questionArr: string[];
 
-  @Output() delete = new EventEmitter<number>();
+  question: string;
 
   constructor(private eventEmitterService: EventEmitterService) { }
 
@@ -21,19 +23,14 @@ export class SliderQuestionComponent implements OnInit {
   ngOnInit(): void {
     if (this.eventEmitterService.subsVar==undefined) {
       this.eventEmitterService.subsVar = this.eventEmitterService.
-      invokeSaveSurveyFunction.subscribe((name:string) => {
+      invokeSaveSurveyFunction.subscribe(() => {
         this.saveSurvey();
       });
     }
   }
 
-  deleteMe(i) {
-    // this.delete.emit(i);
-  }
-
   saveSurvey(){
-    // this.eventEmitterService.onSurveySaveButtonClick();
-    alert( 'Hello ' + '\nWelcome to C# Corner \nFunction in First Component');
+    this.questionArr[this.i]='START' + this.surveyID + 'SLIDERQUESTION' + this.question + 'END';
   }
 
 }

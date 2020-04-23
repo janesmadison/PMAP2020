@@ -23,7 +23,7 @@ export class CreateSurveyComponent implements OnInit {
 
   surveyForm: FormGroup;
   questionArr: string[] = [];
-  questionString: string;
+  surveyID: string;
 
 
   ngOnInit() {
@@ -32,8 +32,10 @@ export class CreateSurveyComponent implements OnInit {
     });
   }
 
-  saveSurvey(questionString: string){
-    this.eventEmitterService.onSurveySaveButtonClick(questionString);
+  saveSurvey(){
+    this.eventEmitterService.onSurveySaveButtonClick();
+    alert(this.questionArr);
+
   }
 
   // this function will push another question that the user inputs into the array

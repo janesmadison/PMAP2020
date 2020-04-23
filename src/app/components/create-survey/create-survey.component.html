@@ -2,18 +2,18 @@
   <div class="surveyForm">
     <mat-form-field>
       <label>
-        Survey Name: <input matInput formControlName="title" />
+        Survey Name: <input matInput [(ngModel)]="surveyID" formControlName="title" />
       </label>
     </mat-form-field>
   </div>
 
   <div *ngFor="let item of questionArr; let i = index" class="buttonForm">
-    <app-text-field-question *ngIf="isTextFieldQuestion(i)" [i]="i"> </app-text-field-question>
-    <app-two-button-question *ngIf="isTwoButtonQuestion(i)" [i]="i"> </app-two-button-question>
-    <app-three-button-question *ngIf="isThreeButtonQuestion(i)" [i]="i"> </app-three-button-question>
-    <app-four-button-question *ngIf="isFourButtonQuestion(i)" [i]="i"> </app-four-button-question>
-    <app-five-button-question *ngIf="isFiveButtonQuestion(i)"> </app-five-button-question>
-    <app-slider-question *ngIf="isSliderQuestion(i)" [i]="i"> </app-slider-question>
+    <app-text-field-question *ngIf="isTextFieldQuestion(i)" [i]="i" [surveyID]="surveyID"> </app-text-field-question>
+    <app-two-button-question *ngIf="isTwoButtonQuestion(i)" [i]="i" [surveyID]="surveyID"> </app-two-button-question>
+    <app-three-button-question *ngIf="isThreeButtonQuestion(i)" [i]="i" [surveyID]="surveyID"> </app-three-button-question>
+    <app-four-button-question *ngIf="isFourButtonQuestion(i)" [i]="i" [surveyID]="surveyID"> </app-four-button-question>
+    <app-five-button-question *ngIf="isFiveButtonQuestion(i)" [i]="i" [surveyID]="surveyID" [questionArr]="questionArr"> </app-five-button-question>
+    <app-slider-question *ngIf="isSliderQuestion(i)" [i]="i" [surveyID]="surveyID"> </app-slider-question>
     <button mat-raised-button color="warn" (click)="deleteQuestion(i)">Delete Question</button>
   </div>
 
@@ -27,6 +27,6 @@
     <button mat-menu-item (click)="addQuestion('sliderQuestion')"> slider question   </button>
   </mat-menu>
 
-    <button mat-raised-button color="primary" (click)="saveSurvey(' ')">Save Survey</button>
+    <button mat-raised-button color="primary" (click)="saveSurvey()">Save Survey</button>
 
 </form>

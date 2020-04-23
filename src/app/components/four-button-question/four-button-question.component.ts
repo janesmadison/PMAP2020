@@ -11,8 +11,14 @@ import { EventEmitterService } from '../event-emitter.service';
 })
 export class FourButtonQuestionComponent implements OnInit {
   @Input() public i: number;
+  @Input() public surveyID: string;
+  @Input() public questionArr: string[];
 
-  @Output() delete = new EventEmitter<number>();
+  answerVal1: string;
+  answerVal2: string;
+  answerVal3: string;
+  answerVal4: string;
+  question: string;
 
   constructor(private eventEmitterService: EventEmitterService) { }
 
@@ -20,19 +26,15 @@ export class FourButtonQuestionComponent implements OnInit {
   ngOnInit(): void {
     if (this.eventEmitterService.subsVar==undefined) {
       this.eventEmitterService.subsVar = this.eventEmitterService.
-      invokeSaveSurveyFunction.subscribe((name:string) => {
+      invokeSaveSurveyFunction.subscribe(() => {
         this.saveSurvey();
       });
     }
   }
 
-  deleteMe(i) {
-    // this.delete.emit(i);
-  }
-
   saveSurvey(){
-    // this.eventEmitterService.onSurveySaveButtonClick();
-    alert( 'Hello ' + '\nWelcome to C# Corner \nFunction in First Component');
+    this.questionArr[this.i]='START' + this.surveyID + 'FOURBUTTONQUESTION' + this.question + 'OPTIONS' + this.answerVal1 + '!!' + this.answerVal2 + '!!' + this.answerVal3
+                                                                              + '!!' + this.answerVal4 + 'END';
   }
 
 }
