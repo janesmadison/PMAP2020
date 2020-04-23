@@ -38,6 +38,7 @@ import { SliderQuestionComponent } from './components/slider-question/slider-que
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { EventEmitterService } from './components/event-emitter.service';
+import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EventEmitterService } from './components/event-emitter.service';
     FiveButtonQuestionComponent,
     SliderQuestionComponent,
     ChangePassComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ExcelParserComponent
   ],
   imports: [
     BrowserModule,
