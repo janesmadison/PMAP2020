@@ -25,7 +25,7 @@
 
         echo json_encode($type);
       }else {
-        http_response_code(404);
+        echo json_encode('Username or Password Invalid.');
       }
    }
 ?>

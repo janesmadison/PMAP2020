@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { CaughtError } from '../common.types';
+
 
 
 @Injectable({
@@ -22,12 +24,12 @@ export class LoginService {
     return this.http
     .post(`${this.baseUrl}/backend/api/login.php`, credentials).pipe(
       tap(
-        (response: any) => {
+        (response: string) => {
           // authorize then
           if (response === 'admin') {
             this.router.navigateByUrl('/home');
           } else if (response === 'standard') {
-            console.log('use student side');
+            this.router.navigateByUrl('/student-home');
           }
         }
       )

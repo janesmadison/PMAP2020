@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { LoginService } from '../../services/login.service';
+import { CaughtError } from '../../common.types';
 
 @Component({
   selector: 'app-login',
@@ -38,12 +39,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   doLogin() {
       const obj = this.loginForm.value;
       this.loginService.login(obj.username, obj.password).subscribe(
-    (err: HttpErrorResponse) => {
-      if (err) {
-      //  console.log('error:' + err.message);
-        console.log('errorrrrrrrr');
-        const error = err.error[0];
-        this.errorMessage = error ? 'Incorrect Username or Password' : 'login error unknown';
+    (str: string) => {
+      if (str !== 'admin' && str !== 'standard') {
+        this.errorMessage = str ? str : 'unknown login error';
       }
     }
   );

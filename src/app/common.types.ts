@@ -8,3 +8,12 @@ export class UserProfile {
     return rv;
   }
 }
+
+export class CaughtError {
+  message: string;
+  static fromJson(obj): CaughtError {
+    const err: CaughtError = new CaughtError();
+    err.message = obj.message;
+    return err;
+  }
+}
