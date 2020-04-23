@@ -30,8 +30,11 @@ const routes: Routes = [
     ]
   },
 
-  {path: 'student-home', component: StudentHomeComponent},
-  {path: 'student-survey', component: StudentSurveyPageComponent},
+  {path: 'student-home',
+  component: StudentHomeComponent,
+  children: [
+    {path: 'student-survey', component: StudentSurveyPageComponent},
+  ]},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
 ];
 
