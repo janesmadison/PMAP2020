@@ -8,12 +8,13 @@
   </div>
 
   <div *ngFor="let item of questionArr; let i = index" class="buttonForm">
-    <app-text-field-question *ngIf="isTextFieldQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-text-field-question>
-    <app-two-button-question *ngIf="isTwoButtonQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-two-button-question>
-    <app-three-button-question *ngIf="isThreeButtonQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-three-button-question>
-    <app-four-button-question *ngIf="isFourButtonQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-four-button-question>
-    <app-five-button-question *ngIf="isFiveButtonQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-five-button-question>
-    <app-slider-question *ngIf="isSliderQuestion(i)" [i]="i" (delete)="deleteQuestion($event)"> </app-slider-question>
+    <app-text-field-question *ngIf="isTextFieldQuestion(i)" [i]="i"> </app-text-field-question>
+    <app-two-button-question *ngIf="isTwoButtonQuestion(i)" [i]="i"> </app-two-button-question>
+    <app-three-button-question *ngIf="isThreeButtonQuestion(i)" [i]="i"> </app-three-button-question>
+    <app-four-button-question *ngIf="isFourButtonQuestion(i)" [i]="i"> </app-four-button-question>
+    <app-five-button-question *ngIf="isFiveButtonQuestion(i)" [i]="i"> </app-five-button-question>
+    <app-slider-question *ngIf="isSliderQuestion(i)" [i]="i"> </app-slider-question>
+    <button mat-raised-button color="warn" (click)="deleteQuestion(i)">Delete Question</button>
   </div>
 
 <!-- <div *ngFor="let item of questionArr; let i = index"> -->
@@ -27,5 +28,9 @@
     <button mat-menu-item (click)="addQuestion('sliderQuestion')"> slider question   </button>
   </mat-menu>
   <!-- </div> -->
+  <div *ngFor="let item of questionArr; let i = index" class="buttonForm">
+
+    <button mat-raised-button color="primary" (click)="saveSurvey(questionArr)">Save Survey</button>
+  </div>
 
 </form>

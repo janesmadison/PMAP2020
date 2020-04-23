@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Student } from './student';
 import { Survey, Question } from '../../services/survey';
-import * as XLSX from 'xlsx';
+import { EventEmitterService } from '../event-emitter.service';
+
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,7 +18,7 @@ import { Subscription } from 'rxjs';
 
 export class CreateSurveyComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute) {}
+  constructor(private fb: FormBuilder, private eventEmitterService: EventEmitterService) {}
 
   surveyForm: FormGroup;
   questionArr: string[] = [];
@@ -29,6 +30,11 @@ export class CreateSurveyComponent implements OnInit {
     });
   }
 
+  saveSurvey(questionArr: string[]){
+    // alert( 'Hello "' + questionArr + '"\nWelcome to C# Corner \nFunction in First Component');
+    this.eventEmitterService.onSurveySaveButtonClick(questionArr);
+  }
+
   // this function will push another question that the user inputs into the array
   addQuestion(questionType) {
   this.questionArr.push(questionType);
@@ -36,7 +42,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   deleteQuestion(i: number) {
-  this.questionArr.splice(i);
+  this.questionArr.splice(i, 1);
   }
 
   isTextFieldQuestion(index) {

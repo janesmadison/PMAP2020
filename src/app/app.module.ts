@@ -37,6 +37,7 @@ import { FiveButtonQuestionComponent } from './components/five-button-question/f
 import { SliderQuestionComponent } from './components/slider-question/slider-question.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { EventEmitterService } from './components/event-emitter.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatSliderModule,
     MatMenuModule
   ],
-  providers: [],
+  providers: [EventEmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export class EventEmitterModule { }
