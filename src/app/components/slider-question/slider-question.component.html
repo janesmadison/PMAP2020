@@ -1,0 +1,18 @@
+<div>
+  <form [formGroup]="sliderForm">
+    <div class="sliderForm">
+        <label>
+          Question: <input matInput type="text" placeholder="Enter question." formControlName="question" />
+        </label>
+      <br>
+
+      <mat-slider
+        tickInterval="1"
+        min="1"
+        max="100"></mat-slider>
+
+      </div>
+      <!-- <button mat-raised-button color="warn" (click)="deleteMe">Delete Question</button> -->
+
+    </form>
+</div>

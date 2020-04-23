@@ -1,19 +1,16 @@
 <mat-toolbar class="mat-toolbar-cl" color="primary" >
-  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button>
-
   <span class="mat-spacer"></span>
   <span>PMAP</span>
-  </mat-toolbar>
+</mat-toolbar>
+
+<div class="main-body">
+  <router-outlet></router-outlet>
+</div>
+
 <mat-sidenav-container class="sidenav-container">
-
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" opened="true" disableClose="true">
-    <mat-toolbar >Home</mat-toolbar>
-      <!-- [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" -->
-      <!-- [mode]="(isHandset$ | async) ? 'over' : 'side'" -->
-      <!-- [opened]="(isHandset$ | async) === false"> -->
-
+  <mat-sidenav class="sidenav" fixedInViewport="true"  [opened]="true" disableClose="true">
+    <a mat-button style="height: 0; position: absolute;"> <!-- fake button that prevents the first mat-list-item from being highlighted by default -->
+     </a>
     <mat-nav-list>
       <a mat-list-item href="home/change-pass">Change Password</a>
       <a mat-list-item href="home/my-surveys">My Surveys</a>
@@ -21,18 +18,9 @@
       <a mat-list-item href="home/survey-results">Survey Results</a>
       <a mat-list-item href="home/add-administrator">Add an Administrator</a>
 
-          <div style="position: absolute; bottom: 0px; background-color: grey; width: 193px">
-            <a mat-list-item href="sign-out">Sign out</a>
-          </div>
+      <div style="position: absolute; bottom: 0px; width: 193px">
+        <a mat-list-item href="sign-out">Sign out</a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
-
-<mat-sidenav-content>
-
-  <mat-sidenav-content>
-    <div class="main-body">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-  </mat-sidenav-content>
 </mat-sidenav-container>

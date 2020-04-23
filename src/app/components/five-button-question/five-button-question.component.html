@@ -1,0 +1,20 @@
+<div>
+  <form [formGroup]="fiveButtonForm">
+    <div class="fiveButtonForm">
+      <label>
+        Question: <input matInput placeholder="Enter question." formControlName="question" />
+      </label>
+      <br>
+      <br>
+      <mat-radio-group formControlName="answer" aria-label="Select">
+        <mat-radio-button value="1" > <input matInput placeholder="value"> </mat-radio-button>
+        <mat-radio-button value="2"> <input matInput type="value2" placeholder="value"> </mat-radio-button>
+        <mat-radio-button value="3"> <input matInput type="value3" placeholder="value"> </mat-radio-button>
+        <mat-radio-button value="4"> <input matInput type="value4" placeholder="value"> </mat-radio-button>
+        <mat-radio-button value="5"> <input matInput type="value5" placeholder="value"> </mat-radio-button>
+      </mat-radio-group>
+      <br>
+    </div>
+    <!-- <button mat-raised-button color="warn" (click)="deleteMe">Delete Question</button> -->
+  </form>
+</div>
