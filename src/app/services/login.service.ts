@@ -21,7 +21,7 @@ export class LoginService {
     const credentials = JSON.stringify({ email, password });
     console.log('usr: ', email, 'pwd: ', password);
     return this.http
-    .post(`${this.baseUrl}/api/login`, credentials).pipe(
+    .post(`${this.baseUrl}/backend/api/login.php`, credentials).pipe(
       tap(
         (response: any) => {
           // authorize then

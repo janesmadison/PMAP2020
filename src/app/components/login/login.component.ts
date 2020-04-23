@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       const obj = this.loginForm.value;
       this.loginService.login(obj.username, obj.password).subscribe(
     (res: any) => {
-
+      console.log(res);
     },
     (err: HttpErrorResponse) => {
-      console.log(err.message);
+      console.log('errrrrror component:' + err.message);
     }
   );
   }

@@ -1,14 +1,18 @@
 <?php
-
-// This is copied directly from the internet and will need edited
+//header('Content-Type: application/json');
    require 'database.php';
    session_start();
 
+echo 'here';
    if($_SERVER["REQUEST_METHOD"] == "POST") {
+     echo 'here';
       // username and password sent from form
 
       $email = mysqli_real_escape_string($db,$_POST['email']);
       $password = mysqli_real_escape_string($db,$_POST['password']);
+
+      echo $email;
+      echo $password;
 
       $sql = "SELECT email FROM users WHERE email = '$email' and password = '$password'";
       $result = mysqli_query($db,$sql);
