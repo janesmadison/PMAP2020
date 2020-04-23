@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 
 import { Survey, Question } from '../../services/survey';
+import { EventEmitterService } from '../event-emitter.service';
 
 import { Subscription } from 'rxjs';
 
@@ -16,16 +17,21 @@ import { Subscription } from 'rxjs';
 })
 export class CreateSurveyComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private eventEmitterService: EventEmitterService) {}
 
   surveyForm: FormGroup;
-  questionArr: string[][] = [];
+  questionArr: string[] = [];
 
 
   ngOnInit() {
     this.surveyForm = this.fb.group({
       title: []
     });
+  }
+
+  saveSurvey(questionArr: string[]){
+    // alert( 'Hello "' + questionArr + '"\nWelcome to C# Corner \nFunction in First Component');
+    this.eventEmitterService.onSurveySaveButtonClick(questionArr);
   }
 
   // this function will push another question that the user inputs into the array
