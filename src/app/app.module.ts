@@ -29,6 +29,14 @@ import { CreateSurveyComponent } from './components/create-survey/create-survey.
 import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
 import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
+import { StudentHomeComponent } from './components/student-home/student-home.component';
+import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
+import { UserTwoButtonQuestionComponent } from './components/user-two-button-question/user-two-button-question.component';
+import { UserThreeButtonQuestionComponent } from './components/user-three-button-question/user-three-button-question.component';
+import { UserFourButtonQuestionComponent } from './components/user-four-button-question/user-four-button-question.component';
+import { UserFiveButtonQuestionComponent } from './components/user-five-button-question/user-five-button-question.component';
+import { UserSliderQuestionComponent } from './components/user-slider-question/user-slider-question.component';
+import { UserTextFieldQuestionComponent } from './components/user-text-field-question/user-text-field-question.component';
 import { TextFieldQuestionComponent } from './text-field-question/text-field-question.component';
 import { TwoButtonQuestionComponent } from './components/two-button-question/two-button-question.component';
 import { ThreeButtonQuestionComponent } from './components/three-button-question/three-button-question.component';
@@ -48,6 +56,14 @@ import { ExcelParserComponent } from './components/excel-parser/excel-parser.com
     CreateSurveyComponent,
     AddAdministratorComponent,
     MySurveysComponent,
+    StudentHomeComponent,
+    StudentSurveyPageComponent,
+    UserTwoButtonQuestionComponent,
+    UserThreeButtonQuestionComponent,
+    UserFourButtonQuestionComponent,
+    UserFiveButtonQuestionComponent,
+    UserSliderQuestionComponent,
+    UserTextFieldQuestionComponent
     SurveyResultsComponent,
     TextFieldQuestionComponent,
     TwoButtonQuestionComponent,

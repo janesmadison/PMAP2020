@@ -6,6 +6,8 @@ import { CreateSurveyComponent } from './components/create-survey/create-survey.
 import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
 import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
+import { StudentHomeComponent } from './components/student-home/student-home.component';
+import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
@@ -27,9 +29,10 @@ const routes: Routes = [
       {path: 'change-pass', component: ChangePassComponent },
     ]
   },
-
-  {path: '', redirectTo: '/login', pathMatch: 'full'}
-  ];
+  {path: 'student-home', component: StudentHomeComponent},
+  {path: 'student-survey', component: StudentSurveyPageComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
