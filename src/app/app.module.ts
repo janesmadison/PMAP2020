@@ -26,6 +26,7 @@ import { CreateSurveyComponent } from './components/create-survey/create-survey.
 import { AddAdministratorComponent } from './components/add-administrator/add-administrator.component';
 import { MySurveysComponent } from './components/my-surveys/my-surveys.component';
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
+import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
     CreateSurveyComponent,
     AddAdministratorComponent,
     MySurveysComponent,
-    SurveyResultsComponent
+    SurveyResultsComponent,
+    ExcelParserComponent
   ],
   imports: [
     BrowserModule,
