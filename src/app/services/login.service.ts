@@ -19,13 +19,16 @@ export class LoginService {
 
   login(email: string, password: string) {
     const credentials = JSON.stringify({ email, password });
-    console.log('usr: ', email, 'pwd: ', password);
     return this.http
     .post(`${this.baseUrl}/backend/api/login.php`, credentials).pipe(
       tap(
         (response: any) => {
           // authorize then
-          this.router.navigateByUrl('/home');
+          if (response === 'admin') {
+            this.router.navigateByUrl('/home');
+          } else if (response === 'standard') {
+            console.log('use student side');
+          }
         }
       )
     );

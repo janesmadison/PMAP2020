@@ -3,33 +3,29 @@
    require 'database.php';
    session_start();
 
-echo 'here';
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-     echo 'here';
       // username and password sent from form
+      $type = '';
+      $json = file_get_contents('php://input');
+      $jsonDecoded = json_decode($json);
+      $email = $jsonDecoded->email;
+      $password = $jsonDecoded->password;
 
-      $email = mysqli_real_escape_string($db,$_POST['email']);
-      $password = mysqli_real_escape_string($db,$_POST['password']);
-
-      echo $email;
-      echo $password;
-
-      $sql = "SELECT email FROM users WHERE email = '$email' and password = '$password'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-
+      $sql = "SELECT * FROM users WHERE email = '$email' and password = '$password'";
+      $result = mysqli_query($db,$sql) or die("Error: ".mysqli_error($db));
+      $row = mysqli_fetch_array($result);
+    //  print_r($row);
       $count = mysqli_num_rows($result);
 
       // If result matched $myusername and $mypassword, table row must be 1 row
 
       if($count == 1) {
-         session_register("email");
          $_SESSION['login_user'] = $email;
+         $type = $row['type'];
 
-         header("location: login.php");
+        echo json_encode($type);
       }else {
-         $error = "Your Login Name or Password is invalid";
+        http_response_code(404);
       }
    }
 ?>
