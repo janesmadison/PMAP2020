@@ -7,7 +7,7 @@
 }
 
 .login-icon {
-  background-image: url('/assets/favicon-175x165.png');
+  background-image: url('../../../assets/favicon-175x165.png');
   background-size: cover;
 }
 

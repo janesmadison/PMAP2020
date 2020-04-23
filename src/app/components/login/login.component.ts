@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
 
   loginForm: FormGroup;
+  errorMessage: string;
 
   constructor(
     private router: Router,
@@ -35,7 +36,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   doLogin() {
-    const obj = this.loginForm.value;
-    this.loginService.login(obj.username, obj.password);
+      const obj = this.loginForm.value;
+      this.loginService.login(obj.username, obj.password).subscribe(
+    (err: HttpErrorResponse) => {
+      if (err) {
+      //  console.log('error:' + err.message);
+        console.log('errorrrrrrrr');
+        const error = err.error[0];
+        this.errorMessage = error ? 'Incorrect Username or Password' : 'login error unknown';
+      }
+    }
+  );
   }
 }
