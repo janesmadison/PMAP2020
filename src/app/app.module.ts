@@ -63,7 +63,7 @@ import { ExcelParserComponent } from './components/excel-parser/excel-parser.com
     UserFourButtonQuestionComponent,
     UserFiveButtonQuestionComponent,
     UserSliderQuestionComponent,
-    UserTextFieldQuestionComponent
+    UserTextFieldQuestionComponent,
     SurveyResultsComponent,
     TextFieldQuestionComponent,
     TwoButtonQuestionComponent,

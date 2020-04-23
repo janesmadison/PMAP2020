@@ -29,6 +29,7 @@ const routes: Routes = [
       {path: 'change-pass', component: ChangePassComponent },
     ]
   },
+
   {path: 'student-home', component: StudentHomeComponent},
   {path: 'student-survey', component: StudentSurveyPageComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
