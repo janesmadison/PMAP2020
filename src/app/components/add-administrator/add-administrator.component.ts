@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AddAdministratorComponent implements OnInit {
 
 
-  constructor() {}
+  constructor(private route: ActivatedRoute , private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
   }

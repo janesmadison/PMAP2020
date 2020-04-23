@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './create-survey.component.html',
   styleUrls: ['./create-survey.component.css']
 })
+
 export class CreateSurveyComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {}
@@ -155,8 +156,8 @@ console.log(this.nameArr);
 }
 
 ParseEmailCell() {
-var cell = this.workSheet['L1'];
-var cellData = (cell ? cell.v : undefined);
+const cell = this.workSheet['L1'];
+const cellData = (cell ? cell.v : undefined);
 this.emailArr = cellData;
 this.emailArr = this.emailArr.split(',');
 console.log(this.emailArr);
@@ -171,3 +172,5 @@ FillClassRoster() {
 
 
 }
+// =======================================================================================================
+}// end of class
