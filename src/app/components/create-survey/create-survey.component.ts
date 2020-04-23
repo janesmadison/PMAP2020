@@ -9,9 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class CreateSurveyComponent implements OnInit {
 
 // ============= DATA MEMBERS ============================================================================
-   @ViewChild('studentList') studentList: MatSelectionList;
-
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private http: HttpClient) {}// end of constructor
+  constructor() {}// end of constructor
 
   ngOnInit(): void {
   }// end of ngOnInit

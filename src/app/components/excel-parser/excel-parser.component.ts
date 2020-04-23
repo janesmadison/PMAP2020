@@ -41,8 +41,6 @@ export class ExcelParserComponent implements OnInit {
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private http: HttpClient) {}// end of constructor
 
   ngOnInit(): void {
-  this.email = 'tfleming1@students.fairmontstate.edu';
-  this.name = 'Tavarius Fleming';
   }// end of ngOnInit
 /*========================================================================================================
 ===================== ON FILE CHANGE =====================================================================
