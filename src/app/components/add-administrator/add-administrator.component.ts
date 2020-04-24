@@ -6,9 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { EmailService } from 'src/app/services/email.service';
-import { Admin } from './admin';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../../common.types';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-add-administrator',
@@ -19,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 export class AddAdministratorComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);         // Creates the form control to validate email input
-  baseUrl = 'http://localhost/backendAdminMailer.php';                          // URL of where the php script is running
+  baseUrl = 'http://localhost:8080';                          // URL of where the php script is running
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -27,9 +27,11 @@ export class AddAdministratorComponent implements OnInit {
       shareReplay()
     );
 // ============================================ CONSTRUCTOR =================================================================
-  constructor(private route: ActivatedRoute, private breakpointObserver: BreakpointObserver, private http: HttpClient) {}
-  ngOnInit(): void {
-  }
+  constructor(private route: ActivatedRoute,
+              private breakpointObserver: BreakpointObserver,
+              private http: HttpClient,
+              private emailService: EmailService) {}
+  ngOnInit(): void {}
 /*===========================================================================================================================
 ============================================= GET ERROR MESSAGE =============================================================
 ===========================================================================================================================*/
@@ -55,17 +57,20 @@ resetForm() {                                                                   
 sendAdministrationInvite() {
   console.log(this.email.value);
 
-  let postVars = {                                                              // this is created to have the email data in JSON format
-  AdminEmail : this.email.value                                                 // to be posted to the php script
+  const postVars = {                                                              // this is created to have the email data in JSON format
+   email : this.email.value,
+   name: 'Administrator',
+   type: 'Admin'                                               // to be posted to the php script
   };
 
   if (!this.email.invalid) {
-    this.http.post(this.baseUrl, postVars).subscribe((data) => {                // posts the data to the url which the php app is hosted
-      console.log('Got data from backend', data);                               // subscribing allows for data to be passed from php to this
-    }, (error) => {                                                             // gets the errors from the php app
-      console.log('Error! ', error);
+    this.emailService.sendEmail(postVars).subscribe(
+    (str: string) => {
+      if (str === 'error') {
+        console.log('email failed to send');
+      }
+      this.resetForm();
     });
-    this.resetForm();                                                           // resets the email form
-  }
+ }
   }// end of Send Administration Invite
 } // end of Add Administration

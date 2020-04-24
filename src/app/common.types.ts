@@ -1,10 +1,23 @@
-export class UserProfile {
+export class User {
   email: string;
-  fullname: string;
-  static fromJson(obj): UserProfile {
-    const rv: UserProfile = new UserProfile();
+  name: string;
+  type: string;
+  static fromJson(obj): User {
+    const rv: User = new User();
     rv.email = obj.email;
-    rv.fullname = obj.fullname;
+    rv.name = obj.name;
+    rv.type = obj.type;
+    return rv;
+  }
+}
+
+export class ClassRoster {
+  className: string;
+  students: User[];
+  static fromJson(obj): ClassRoster {
+    const rv: ClassRoster = new ClassRoster();
+    rv.className = obj.className;
+    rv.students = obj.students;
     return rv;
   }
 }

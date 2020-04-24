@@ -5,16 +5,16 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import * as XLSX from 'xlsx';
 import { MatDialog } from '@angular/material/dialog';
-import { Student } from './student';
 import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
-import { ClassRoster } from './ClassRoster';
 import { MatListOption } from '@angular/material/list';
 import { MatSelectionListChange } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSelectionList } from '@angular/material/list';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EmailService } from '../../services/email.service';
+import { User, ClassRoster } from '../../common.types';
 
 
 @Component({
@@ -31,14 +31,17 @@ export class ExcelParserComponent implements OnInit {
   classForm = this.fb.group({ classRosterName: ['', Validators.required], });
   rosters: ClassRoster[] = [];
   inputValue;
-  baseUrl = 'http://localhost/';                                                // base URL of the php script
+  baseUrl = 'http://localhost:8080';                                                // base URL of the php script
 
   email: string;
   name: string;
 // ============= DATA MEMBERS ============================================================================
    @ViewChild('studentList') studentList: MatSelectionList;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private http: HttpClient) {}// end of constructor
+  constructor(private route: ActivatedRoute,
+              private fb: FormBuilder,
+              private http: HttpClient,
+              private emailService: EmailService) {}// end of constructor
 
   ngOnInit(): void {
   }// end of ngOnInit
@@ -115,9 +118,23 @@ ParseEmailCell() {
 ========================================================================================================*/
 FillClassRoster() {
   for (const i in this.emailArr) {
-  this.students.push( (new Student(this.nameArr[i], this.emailArr[i])) );
+    if (this.nameArr[i]) {
+      this.students.push( (User.fromJson({
+        name: this.nameArr[i],
+        email: this.emailArr[i],
+        type: 'standard'}
+      ))
+    );
+    } else {
+      this.students.push( (User.fromJson({
+        name: 'Student',
+        email: this.emailArr[i],
+        type: 'standard'}
+      ))
+    );
     }
-  }// end of fill class roster
+  }
+}// end of fill class roster
 /*========================================================================================================
 ===================== GET INPUT ==========================================================================
 ========================================================================================================*/
@@ -132,15 +149,24 @@ onSubmit(options: MatListOption[]) {
 
 // sets the students array based off of the selected values in the list
   for (const i in options.map(o => o.value)) {
-  this.students.push(new Student( options.map(o => o.value.name)[i], options.map(o => o.value.email)[i] ) );
-
-  this.postClassRoster(options.map(o => o.value.name)[i], options.map(o => o.value.email)[i]);
+    if (i) {
+      this.students.push(User.fromJson({
+       name:  options.map(o => o.value.name)[i],
+       email: options.map(o => o.value.email)[i],
+       type: 'standard'
+     }));
+      this.postClassRoster(options.map(o => o.value.name)[i], options.map(o => o.value.email)[i], 'standard');
+    }
   }
                                                                                 /* NOTE: options.map(o => o.value)
                                                                                 gets the value from the selected options
                                                                                 of the mat selection list
                                                                                 */
-  this.rosters.push(new ClassRoster(this.inputValue, this.students));
+  this.rosters.push(ClassRoster.fromJson({
+    className: this.inputValue,
+    students: this.students
+  }
+  ));
 
 
   this.students = [];                                                           // resets array of students and class form
@@ -155,26 +181,28 @@ selectAll() {
 /*========================================================================================================
 ==================== POST CLASS ROSTER ===================================================================
 ========================================================================================================*/
-postClassRoster(studentEmail: string, studentName: string) {
+postClassRoster(studentEmail: string, studentName: string, accType: string) {
 
-  let postVars = {                                                              // places name and email values in JSON format for the post
+  const postVars = {                                                // places name and email values in JSON format for the post
     email : studentEmail,
-    name : studentName
+    name : studentName,
+    type : accType
   };
 
-  this.http.post(this.baseUrl + 'backendMailer.php', postVars).subscribe((data) => {
-                                                                                // posts the data to the url which the php app is hosted
-    console.log('Got some data from backend', data);
-  }, (error) => {                                                               // gets the errors from the php app
-    console.log('Error! ', error);
+  this.emailService.sendEmail(postVars).subscribe(
+  (str: string) => {
+    if (str === 'error') {
+      console.log('email failed to send');
+    }
   });
+
 }// end of post class roster
 /*========================================================================================================
 ==================== POST CLASS ROSTER ===================================================================
 ========================================================================================================*/
-readClassRoster(): Observable<Student[]> {
-  return this.http.get<Student[]>(this.baseUrl + 'backendRosterRetriever.php');
-  // calls the php app that gets and returns all of the rosters from the database
-}
+// readClassRoster(): Observable<User[]> {
+// //  return this.http.get<Student[]>(this.baseUrl + 'backendRosterRetriever.php');
+//   // calls the php app that gets and returns all of the rosters from the database
+// }
 // =======================================================================================================
 }// end of class
