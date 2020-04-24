@@ -6,10 +6,10 @@
       </label>
       <br>
       <mat-radio-group formControlName="answer" aria-label="Select">
-        <mat-radio-button value="1"> <input matInput [(ngModel)]="answerVal1" placeholder="value"> </mat-radio-button>
-        <mat-radio-button value="2"> <input matInput [(ngModel)]="answerVal2" type="value2" placeholder="value"> </mat-radio-button>
-        <mat-radio-button value="3"> <input matInput [(ngModel)]="answerVal3" type="value3" placeholder="value"> </mat-radio-button>
-        <mat-radio-button value="4"> <input matInput [(ngModel)]="answerVal4" type="value4" placeholder="value"> </mat-radio-button>
+        <mat-radio-button value="1"> <input matInput [(ngModel)]="answerVal1" placeholder="value" formControlName="answer"> </mat-radio-button>
+        <mat-radio-button value="2"> <input matInput [(ngModel)]="answerVal2" type="value2" placeholder="value" formControlName="answer"> </mat-radio-button>
+        <mat-radio-button value="3"> <input matInput [(ngModel)]="answerVal3" type="value3" placeholder="value" formControlName="answer"> </mat-radio-button>
+        <mat-radio-button value="4"> <input matInput [(ngModel)]="answerVal4" type="value4" placeholder="value" formControlName="answer"> </mat-radio-button>
       </mat-radio-group>
       <br>
     </div>
