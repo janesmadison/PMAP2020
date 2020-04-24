@@ -1,23 +1,25 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import {FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
-import { EventEmitterService } from '../event-emitter.service';
+import { EventEmitterService } from '../../services/event-emitter.service';
+import { Answer, Question } from '../../common.types';
 
 @Component({
-  selector: 'app-five-button-question',
-  templateUrl: './five-button-question.component.html',
-  styleUrls: ['./five-button-question.component.css']
+  selector: 'app-radio-question',
+  templateUrl: './radio-question.component.html',
+  styleUrls: ['./radio-question.component.css']
 })
-export class FiveButtonQuestionComponent implements OnInit {
-  @Input() public i: number;
+export class RadioQuestionComponent implements OnInit {
+  @Input() i: number; // index
+  @Input() question: Question[];
 
-  @Output() delete = new EventEmitter<number>();
+  @Output() radioQuestion: EventEmitter<Question> = new EventEmitter<Question>();
 
   constructor(private eventEmitterService: EventEmitterService) { }
 
-  fiveButtonForm = new FormGroup({question: new FormControl('', Validators.required), answer: new FormControl(''), });
+  radioQuestion = new FormGroup({ answer: new FormControl('') });
   ngOnInit(): void {
-    if (this.eventEmitterService.subsVar==undefined) {
+    if (this.eventEmitterService.subsVar === undefined) {
       this.eventEmitterService.subsVar = this.eventEmitterService.
       invokeSaveSurveyFunction.subscribe((questionArr: string[]) => {
         this.saveSurvey(questionArr);
@@ -25,11 +27,11 @@ export class FiveButtonQuestionComponent implements OnInit {
     }
   }
 
-  deleteMe(i) {
+  deleteMe(index) {
     // this.delete.emit(i);
   }
 
-  saveSurvey(questionArr: string[]){
+  saveSurvey(questionArr: string[]) {
     // this.eventEmitterService.onSurveySaveButtonClick();
     // var x = questionArr;
     // var i = +x;

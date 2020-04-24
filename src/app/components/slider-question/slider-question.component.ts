@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import {FormGroup, FormControl, Validators } from '@angular/forms';
-import { EventEmitterService } from '../event-emitter.service';
-
+import { EventEmitterService } from '../../services/event-emitter.service';
 
 
 @Component({

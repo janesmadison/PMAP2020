@@ -8,26 +8,21 @@
   </div>
 
   <div *ngFor="let item of questionArr; let i = index" class="buttonForm">
-    <app-text-field-question *ngIf="isTextFieldQuestion(i)" [i]="i"> </app-text-field-question>
-    <app-two-button-question *ngIf="isTwoButtonQuestion(i)" [i]="i"> </app-two-button-question>
-    <app-three-button-question *ngIf="isThreeButtonQuestion(i)" [i]="i"> </app-three-button-question>
-    <app-four-button-question *ngIf="isFourButtonQuestion(i)" [i]="i"> </app-four-button-question>
-    <app-five-button-question *ngIf="isFiveButtonQuestion(i)" [i]="i"> </app-five-button-question>
-    <app-slider-question *ngIf="isSliderQuestion(i)" [i]="i"> </app-slider-question>
+    <app-text-field-question *ngIf="isTextboxQuestion(i)" i="i"> </app-text-field-question>
+    <app-radio-question *ngIf="isRadioQuestion(i)" i="i" [question]="questionArr" (update)="questionChange($event, i)"> </app-radio-question>
+    <app-slider-question *ngIf="isSliderQuestion(i)" i="i"> </app-slider-question>
     <button mat-raised-button color="warn" (click)="deleteQuestion(i)">Delete Question</button>
   </div>
 
-<!-- <div *ngFor="let item of questionArr; let i = index"> -->
 <button mat-button [matMenuTriggerFor]="menu"> Add question </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="addQuestion('twoButtonQuestion')"> 2 button question </button>
-    <button mat-menu-item (click)="addQuestion('threeButtonQuestion')"> 3 button question </button>
-    <button mat-menu-item (click)="addQuestion('fourButtonQuestion')"> 4 button question </button>
-    <button mat-menu-item (click)="addQuestion('fiveButtonQuestion')"> 5 button question </button>
-    <button mat-menu-item (click)="addQuestion('textFieldQuestion')"> text box question </button>
-    <button mat-menu-item (click)="addQuestion('sliderQuestion')"> slider question   </button>
+    <button mat-menu-item (click)="addQuestion('radio', 2)"> 2 radio button</button>
+    <button mat-menu-item (click)="addQuestion('radio', 3)"> 3 radio button </button>
+    <button mat-menu-item (click)="addQuestion('radio', 4)"> 4 radio button </button>
+    <button mat-menu-item (click)="addQuestion('radio', 5)"> 5 radio button </button>
+    <button mat-menu-item (click)="addQuestion('textbox', 1)"> text box </button>
+    <button mat-menu-item (click)="addQuestion('slider', 1)"> slider </button>
   </mat-menu>
-  <!-- </div> -->
 
     <button mat-raised-button color="primary" (click)="saveSurvey(questionArr)">Save Survey</button>
 

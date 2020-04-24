@@ -1,0 +1,15 @@
+<div>
+  <form [formGroup]="radioQuestion" (ngModelChange)="radioQuestion.emit($event)>
+    <div class="radioButtonForm">
+      <label>
+        Question: <input matInput placeholder="Enter question." formControlName="question[i]"" />
+      </label>
+      <br>
+      <br>
+      <mat-radio-group formControlName="answer" aria-label="Select">
+        <mat-radio-button *ngFor="let answer of question.answers"> <input matInput placeholder= "value" formControlName= "answer"> </mat-radio-button>
+      </mat-radio-group>
+      <br>
+    </div>
+  </form>
+</div>
