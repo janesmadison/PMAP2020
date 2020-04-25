@@ -32,6 +32,7 @@ export class ExcelParserComponent implements OnInit {
   rosters: ClassRoster[] = [];
   inputValue;
   cellIndexNumber = 1;
+  groupArr = [];
   baseUrl = 'http://localhost:8080';                                                // base URL of the php script
 
   email: string;
@@ -74,10 +75,6 @@ onFileChange(ev) {
 ===================== INCREMENT CELL ROW  ================================================================
 ========================================================================================================*/
 incrementCellRow(cellIndex) {
-// increments the cellIndex by it's row value
-  /*const count = cellIndex.match(/\d*$/);                                        // finds the first numeric value in the string
-
-  cellIndex = cellIndex.substr(0, count.index) + (++count[0]);                  // incremnts new value and replaces old value */
   const cellIndexLetter = cellIndex.charAt(0);
   this.cellIndexNumber = this.cellIndexNumber + 1;
   cellIndex = cellIndexLetter + this.cellIndexNumber;
@@ -165,7 +162,7 @@ selectAll() {
 ========================================================================================================*/
 postClassRoster(studentEmail: string, studentName: string, accType: string) {
 
-  const postVars = {                                                // places name and email values in JSON format for the post
+  const postVars = {                                                            // places name and email values in JSON format for the post
     email : studentEmail,
     name : studentName,
     type : accType
@@ -197,24 +194,34 @@ parseExcelFile(cellIndex) {
 
       cell = this.workSheet[cellIndex];
       cellData = (cell ? cell.v : undefined);
-      this.emailArr.push(cellData);
+      this.emailArr.push(cellData);                                             // gets the email from the cell
 
       cellIndex = this.decrementCellColumn(cellIndex);
-      cellIndex = this.decrementCellColumn(cellIndex);
+      cellIndex = this.decrementCellColumn(cellIndex);                          // decrements to the first name column
 
       cell = this.workSheet[cellIndex];
       cellData = (cell ? cell.v : undefined);
-      name = cellData;
+      name = cellData;                                                          // name contains first name
 
-      cellIndex = this.incrementCellColumn(cellIndex);
+      cellIndex = this.incrementCellColumn(cellIndex);                          // decrements to the last name column
 
       cell = this.workSheet[cellIndex];
       cellData = (cell ? cell.v : undefined);
       name = name + ' ' + cellData;
       this.nameArr.push(name);
 
+      for (let i = 0; i < 5; i++) {                                             // moves to the column containing the groups
       cellIndex = this.incrementCellColumn(cellIndex);
-      cellIndex = this.incrementCellRow(cellIndex);
+      }
+
+      cell = this.workSheet[cellIndex];
+      cellData = (cell ? cell.v : undefined);
+      this.groupArr.push(cellData);
+
+      for (let i = 0; i < 4; i++) {                                             // resets the column position back to email column
+      cellIndex  = this.decrementCellColumn(cellIndex);
+      }
+      cellIndex = this.incrementCellRow(cellIndex);                             // moves to the next row
       }// end of else
     }// end of while(!blankSpaceEncountered)
   }// end of parse Excel file
@@ -226,11 +233,11 @@ locateEmailColumn(cellIndex) {
   let cell;
   let cellData;
   const regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-
+  // regular expression for emails
   while (!emailFound) {
     cell = this.workSheet[cellIndex];
     cellData = (cell ? cell.v : undefined);
-    if (regexp.test(cellData) ) {
+    if (regexp.test(cellData) ) {                                               // checks to see if the data in the cell is an email
       emailFound = true;
     } else {
       cellIndex = this.incrementCellColumn(cellIndex);
