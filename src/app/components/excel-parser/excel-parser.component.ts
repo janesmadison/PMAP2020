@@ -24,13 +24,14 @@ import { User, ClassRoster } from '../../common.types';
 })
 export class ExcelParserComponent implements OnInit {
 
-  emailArr = null;
+  emailArr = [];
   workSheet = null;
-  nameArr = null;
+  nameArr = [];
   students = [];
   classForm = this.fb.group({ classRosterName: ['', Validators.required], });
   rosters: ClassRoster[] = [];
   inputValue;
+  cellIndexNumber = 1;
   baseUrl = 'http://localhost:8080';                                                // base URL of the php script
 
   email: string;
@@ -49,7 +50,7 @@ export class ExcelParserComponent implements OnInit {
 ===================== ON FILE CHANGE =====================================================================
 ========================================================================================================*/
 onFileChange(ev) {
-  const cellIndex = 'C2'; // this begins at cell C2 because that is the starting row of the student name
+  const cellIndex = 'A1';
                                                                                 // the excel sheet is going to be in a desired format
   let workBook = null;
 
@@ -63,60 +64,41 @@ onFileChange(ev) {
     const firstSheetName = workBook.SheetNames[0];                              // gets the first sheets name from the workbook
     this.workSheet = workBook.Sheets[firstSheetName];                           // gets the workSheet data from the sheet studentName
 
-    this.parseNameColumn(cellIndex);
-    this.ParseEmailCell();
-    this.FillClassRoster();
-
+    this.parseExcelFile(cellIndex);
+    this.fillClassRoster();
+    this.cellIndexNumber = 1;
     }; // end of onload
   reader.readAsBinaryString(file);
   }// end of onFileChange
 /*========================================================================================================
 ===================== INCREMENT CELL ROW  ================================================================
 ========================================================================================================*/
-IncrementCellRow(cellIndex) {
+incrementCellRow(cellIndex) {
 // increments the cellIndex by it's row value
-  const count = cellIndex.match(/\d*$/);                                        // finds the first numeric value in the string
+  /*const count = cellIndex.match(/\d*$/);                                        // finds the first numeric value in the string
 
-  cellIndex = cellIndex.substr(0, count.index) + (++count[0]);                  // incremnts new value and replaces old value
+  cellIndex = cellIndex.substr(0, count.index) + (++count[0]);                  // incremnts new value and replaces old value */
+  const cellIndexLetter = cellIndex.charAt(0);
+  this.cellIndexNumber = this.cellIndexNumber + 1;
+  cellIndex = cellIndexLetter + this.cellIndexNumber;
   return cellIndex;
   }// end of Increment Cell Row
 /*========================================================================================================
-===================== PARSE NAME COLUMN ==================================================================
+===================== INCREMENT CELL COLUMN ==============================================================
 ========================================================================================================*/
-parseNameColumn(cellIndex) {
-  let numBlankSpaces = 0;
-  let nameString;
-
-  while (numBlankSpaces < 8) {                                                  // if you run into 8 or more blanks in a row
-                                                                                // then there's no more data to parse
-    if (this.workSheet[cellIndex] === undefined) {                              // checks if the cells are empty
-      numBlankSpaces++;
-    } else {
-      const cell = this.workSheet[cellIndex];
-      const cellData = (cell ? cell.v : undefined);
-
-      nameString = nameString + '*' + cellData;                                 // gives a separator for the names
-      numBlankSpaces = 0;
-    }
-    cellIndex = this.IncrementCellRow(cellIndex);
-  }
-
-  this.nameArr = nameString.split('*');                                         // splits by the separator to get an array of the names
-  this.nameArr.splice(0, 1);                                                    // removes the null element from the beginning
-} // end of parse name column
+incrementCellColumn(cellIndex) {
+  return cellIndex = (String.fromCharCode(cellIndex.charCodeAt(0) + 1) + this.cellIndexNumber);
+  }// end of Increment cell column
 /*========================================================================================================
-===================== PARSE EMAIL CELL ===================================================================
+===================================== DECREMENT CELL COLUMN ==============================================
 ========================================================================================================*/
-ParseEmailCell() {
-  const cell = this.workSheet['L1'];                                            // the cell that the emails will be placed in
-  const cellData = (cell ? cell.v : undefined);                                 // gets the text data of the cell
-  this.emailArr = cellData;
-  this.emailArr = this.emailArr.split(',');
-}// end of Parse Email Cell
+decrementCellColumn(cellIndex) {
+  return cellIndex = (String.fromCharCode(cellIndex.charCodeAt(0) - 1) + this.cellIndexNumber);
+} // end of decrement cell column
 /*========================================================================================================
 ===================== FILL CLASS ROSTER ==================================================================
 ========================================================================================================*/
-FillClassRoster() {
+fillClassRoster() {
   for (const i in this.emailArr) {
     if (this.nameArr[i]) {
       this.students.push( (User.fromJson({
@@ -134,13 +116,13 @@ FillClassRoster() {
     );
     }
   }
-}// end of fill class roster
+  }// end of fill class roster
 /*========================================================================================================
 ===================== GET INPUT ==========================================================================
 ========================================================================================================*/
 onKey(value: string) {
   this.inputValue = value;                                                      // keeps the input value of class name updated
-}
+  }
 /*========================================================================================================
 ==================== ON SUBMIT ===========================================================================
 ========================================================================================================*/
@@ -197,12 +179,64 @@ postClassRoster(studentEmail: string, studentName: string, accType: string) {
   });
 
 }// end of post class roster
+
 /*========================================================================================================
-==================== POST CLASS ROSTER ===================================================================
+==================================== PARSE ROW ===========================================================
 ========================================================================================================*/
-// readClassRoster(): Observable<User[]> {
-// //  return this.http.get<Student[]>(this.baseUrl + 'backendRosterRetriever.php');
-//   // calls the php app that gets and returns all of the rosters from the database
-// }
+parseExcelFile(cellIndex) {
+  let blankSpaceEncountered = false;
+  let name;
+  let cell;
+  let cellData;
+  cellIndex = this.locateEmailColumn(cellIndex);
+  while (!blankSpaceEncountered) {
+
+    if (this.workSheet[cellIndex] === undefined) {
+      blankSpaceEncountered = true;
+      } else {
+
+      cell = this.workSheet[cellIndex];
+      cellData = (cell ? cell.v : undefined);
+      this.emailArr.push(cellData);
+
+      cellIndex = this.decrementCellColumn(cellIndex);
+      cellIndex = this.decrementCellColumn(cellIndex);
+
+      cell = this.workSheet[cellIndex];
+      cellData = (cell ? cell.v : undefined);
+      name = cellData;
+
+      cellIndex = this.incrementCellColumn(cellIndex);
+
+      cell = this.workSheet[cellIndex];
+      cellData = (cell ? cell.v : undefined);
+      name = name + ' ' + cellData;
+      this.nameArr.push(name);
+
+      cellIndex = this.incrementCellColumn(cellIndex);
+      cellIndex = this.incrementCellRow(cellIndex);
+      }// end of else
+    }// end of while(!blankSpaceEncountered)
+  }// end of parse Excel file
+/*========================================================================================================
+================================= LOCATE EMAIL COLUMN ====================================================
+========================================================================================================*/
+locateEmailColumn(cellIndex) {
+  let emailFound = false;
+  let cell;
+  let cellData;
+  const regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+  while (!emailFound) {
+    cell = this.workSheet[cellIndex];
+    cellData = (cell ? cell.v : undefined);
+    if (regexp.test(cellData) ) {
+      emailFound = true;
+    } else {
+      cellIndex = this.incrementCellColumn(cellIndex);
+      }
+    }// end of while
+  return cellIndex;
+  } // end of Locate email column
 // =======================================================================================================
 }// end of class
