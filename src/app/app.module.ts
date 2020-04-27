@@ -1,11 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GestureConfig} from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import 'hammerjs';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,9 +34,6 @@ import { MySurveysComponent } from './components/my-surveys/my-surveys.component
 import { SurveyResultsComponent } from './components/survey-results/survey-results.component';
 import { StudentHomeComponent } from './components/student-home/student-home.component';
 import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
-import { TextFieldQuestionComponent } from './components/text-field-question/text-field-question.component';
-import { RadioQuestionComponent } from './components/radio-question/radio-question.component';
-import { SliderQuestionComponent } from './components/slider-question/slider-question.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { EventEmitterService } from './services/event-emitter.service';
@@ -50,9 +50,6 @@ import { ExcelParserComponent } from './components/excel-parser/excel-parser.com
     StudentHomeComponent,
     StudentSurveyPageComponent,
     SurveyResultsComponent,
-    TextFieldQuestionComponent,
-    RadioQuestionComponent,
-    SliderQuestionComponent,
     ChangePassComponent,
     ToolbarComponent,
     ExcelParserComponent
@@ -77,9 +74,10 @@ import { ExcelParserComponent } from './components/excel-parser/excel-parser.com
     MatInputModule,
     MatRadioModule,
     MatSliderModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ],
-  providers: [EventEmitterService],
+  providers: [EventEmitterService, { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

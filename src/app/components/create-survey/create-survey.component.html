@@ -2,29 +2,51 @@
   <div class="surveyForm">
     <mat-form-field>
       <label>
-        Survey Name: <input matInput formControlName="title" />
+        Survey Name: <input matInput formControlName="name" />
       </label>
     </mat-form-field>
   </div>
 
-  <div *ngFor="let item of questionArr; let i = index" class="buttonForm">
-    <app-text-field-question *ngIf="isTextboxQuestion(i)" i="i"> </app-text-field-question>
-    <app-radio-question *ngIf="isRadioQuestion(i)" i="i" [question]="questionArr" (update)="questionChange($event, i)"> </app-radio-question>
-    <app-slider-question *ngIf="isSliderQuestion(i)" i="i"> </app-slider-question>
-    <button mat-raised-button color="warn" (click)="deleteQuestion(i)">Delete Question</button>
-  </div>
+  <div formArrayName="questions">
+    <div class="questions" *ngFor="let question of questions.controls;
+             let questionIndex = index" [formGroupName]="questionIndex"> {{questionIndex + 1}}
+      <button type="button" mat-icon-button (click)="removeQuestion(questionIndex)"><mat-icon>delete</mat-icon></button>
+       <mat-form-field>
+         <mat-select formControlName="type" placeholder="question type">
+           <mat-option [value]="choice" *ngFor="let choice of choices">{{ choice }}</mat-option>
+         </mat-select>
+       </mat-form-field>
+      <textarea matInput placeholder="type question here" formControlName="question"></textarea>
+      <div>
+          <label>Answer: </label>
+            <div *ngIf="question.get('type').value === 'radio'">
+              <button type="button" mat-icon-button (click)="addOption(question)"><mat-icon>add_box</mat-icon></button>
+              <div formArrayName="options">
+                <label class="optionStyling" *ngFor="let option of (this.getOptions(question)).controls; let i = index" [formGroupName]="i">
+                <input
+                  class="radioStyle"
+                  type="radio"
+                  name="answer"
+                  [value]="option.get('option').value"
+                />
+                <input matInput placeholder= "value" formControlName= "option">
+              </label>
+              </div>
+            </div>
+            <div *ngIf="question.get('type').value === 'textbox'">
+              <textarea matInput placeholder="response"></textarea>
+            </div>
+            <div *ngIf="question.get('type').value === 'slider'">
+              <mat-slider thumbLabel min="0" max="100"></mat-slider>
+            </div>
+        </div>
+    </div>
+</div>
 
-<button mat-button [matMenuTriggerFor]="menu"> Add question </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="addQuestion('radio', 2)"> 2 radio button</button>
-    <button mat-menu-item (click)="addQuestion('radio', 3)"> 3 radio button </button>
-    <button mat-menu-item (click)="addQuestion('radio', 4)"> 4 radio button </button>
-    <button mat-menu-item (click)="addQuestion('radio', 5)"> 5 radio button </button>
-    <button mat-menu-item (click)="addQuestion('textbox', 1)"> text box </button>
-    <button mat-menu-item (click)="addQuestion('slider', 1)"> slider </button>
-  </mat-menu>
 
-    <button mat-raised-button color="primary" (click)="saveSurvey(questionArr)">Save Survey</button>
+
+  <button type="button" mat-button (click)="addQuestion()"> Add question </button>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Save Survey</button>
 
 </form>
 <app-excel-parser></app-excel-parser>

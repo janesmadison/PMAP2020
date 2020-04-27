@@ -20,61 +20,86 @@ export class CreateSurveyComponent implements OnInit {
   constructor(private fb: FormBuilder, private eventEmitterService: EventEmitterService) {}
 
   surveyForm: FormGroup;
-  questionArr: Question[];
 
+  choices: string[] = ['textbox', 'radio', 'slider'];
 
   ngOnInit() {
     this.surveyForm = this.fb.group({
-      title: []
+      name: '',
+      classID: '',
+      questions: this.fb.array([])
     });
   }
 
-  saveSurvey(questionArr: Question[]) {
-    // alert( 'Hello "' + questionArr + '"\nWelcome to C# Corner \nFunction in First Component');
-    this.eventEmitterService.onSurveySaveButtonClick(questionArr);
+  get questions(): FormArray {
+    return this.surveyForm.get('questions') as FormArray;
+  }
+
+  getOptions(question): FormArray {
+    return question.get('options') as FormArray;
+  }
+
+  addQuestion() {
+    const group = this.fb.group ({
+      question: '',
+      type: '',
+      options: this.fb.array([])
+    });
+    this.questions.push(group);
+  }
+
+  removeQuestion(i: number) {
+  if (this.questions.length > 0) {
+    this.questions.removeAt(i);
+  } else {
+    this.questions.reset();
+  }
+}
+
+  addOption(question) {
+    const option = this.fb.group ({
+      option: ''
+    });
+    this.getOptions(question).push(option);
+  }
+
+  onSubmit() {
+    console.log(JSON.stringify(this.surveyForm.getRawValue()));
   }
 
   // this function will push another question that the user inputs into the array
-  addQuestion(questionType: string, numOfAnswers: number) {
-  let answerArray: Answer[] = [];
-  for (let i = 0; i < numOfAnswers; i++) {
-    answerArray.push({type: questionType, answer: 'value'});
-  }
-  const question = {
-    type: questionType,
-    answers: answerArray,
-    question: 'value'
-  };
-  this.questionArr.push(question);
-  }
 
-  deleteQuestion(i: number) {
-  this.questionArr.splice(i, 1);
-  }
-
-  isTextboxQuestion(index) {
-  if (this.questionArr[index].type === 'textbox') {
-    return true;
-    } else {
-    return false;
-    }
-  }
-
-  isRadioQuestion(index) {
-  if (this.questionArr[index].type === 'radio') {
-    return true;
-    } else {
-    return false;
-    }
-  }
-
-  isSliderQuestion(index) {
-  if (this.questionArr[index].type === 'slider') {
-    return true;
-    } else {
-    return false;
-    }
-  }
+  // questionChange(event, i) {
+  //   this.questionArr[i] = event;
+  // }
+  //
+  // deleteQuestion(i: number) {
+  // this.questionArr.splice(i, 1);
+  // }
+  //
+  // isTextboxQuestion(index) {
+  // if (this.questionArr[index].type === 'textbox') {
+  //   return true;
+  //   } else {
+  //   return false;
+  //   }
+  // }
+  //
+  // isRadioQuestion(index) {
+  // if (this.questionArr[index].type === 'radio') {
+  //   return true;
+  //   } else {
+  //   return false;
+  //   }
+  // }
+  //
+  // isSliderQuestion(index) {
+  // if (this.questionArr[index].type === 'slider') {
+  //   return true;
+  //   } else {
+  //   return false;
+  //   }
+  // }
 
 // =======================================================================================================
 }// end of class

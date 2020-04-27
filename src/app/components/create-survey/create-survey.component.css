@@ -1,27 +1,16 @@
-.question-parent {
+.optionStyling {
   display: flex;
-  height: 25%;
-  justify-content: center;
-  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
 }
-.mat-form-field {
-  height: 25%;
-  width: 75%;
+.radioStyle {
+display: flex;
 }
 
-.question-form {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-  min-width: 400px;
+.inputStyle {
+  width: 1000px;
 }
 
-.question-form > mat-card-content > * {
-  width: 100%;
-}
-
-.mat-radio-button ~ .mat-radio-button {
-  margin-left: 16px;
+mat-slider {
+  width: 750px;
 }
