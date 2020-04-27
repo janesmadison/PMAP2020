@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { CaughtError } from '../common.types';
+
 
 
 @Injectable({
@@ -8,13 +13,26 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
+  baseUrl = 'http://localhost:8080';
   constructor(
     private router: Router,
+    private http: HttpClient
   ) { }
 
-  login(username: string, password: string) {
-    console.log('usr: ', username, 'pwd: ', password);
-    this.router.navigateByUrl('/home');
-    // http to backend to login
+  login(email: string, password: string) {
+    const credentials = JSON.stringify({ email, password });
+    return this.http
+    .post(`${this.baseUrl}/backend/api/login.php`, credentials).pipe(
+      tap(
+        (response: string) => {
+          // authorize then
+          if (response === 'admin') {
+            this.router.navigateByUrl('/home');
+          } else if (response === 'standard') {
+            this.router.navigateByUrl('/student-home');
+          }
+        }
+      )
+    );
   }
 }

@@ -1,0 +1,16 @@
+.optionStyling {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.radioStyle {
+display: flex;
+}
+
+.inputStyle {
+  width: 1000px;
+}
+
+mat-slider {
+  width: 750px;
+}

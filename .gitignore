@@ -6,8 +6,5 @@
 .project
 .classpath
 .settings
-themis-web/angular/dist
-themis-web/angular/npm-debug.log
-themis-web/angular/coverage
 ldap.ldif
 **/npm-debug.log

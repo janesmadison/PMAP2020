@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { LoginService } from '../../services/login.service';
+import { CaughtError } from '../../common.types';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
 
   loginForm: FormGroup;
+  errorMessage: string;
 
   constructor(
     private router: Router,
@@ -36,6 +38,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   doLogin() {
       const obj = this.loginForm.value;
-      this.loginService.login(obj.username, obj.password);
+      this.loginService.login(obj.username, obj.password).subscribe(
+    (str: string) => {
+      if (str !== 'admin' && str !== 'standard') {
+        this.errorMessage = str ? str : 'unknown login error';
+      }
+    }
+  );
   }
 }

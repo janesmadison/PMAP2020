@@ -1,72 +1,55 @@
-.sidenav-container
-  {
+.sidenav-container{
+  position: relative;
   height: 100%;
-  }
+  display: block;
+}
 
-.sidenav
-  {
+.sidenav{
   width: 200px;
-  }
+  position: fixed;
+  z-index: 17;
+  margin-top: 50px;
+}
 
-.sidenav .mat-toolbar
-  {
-  background: #5c5658;
-  }
-
-.mat-toolbar.mat-primary
-  {
+.mat-toolbar{
   background: #8a213a;
   position: sticky;
-  top: 0;
-  z-index: 1;
-  }
+  z-index: 16;
+}
 
 /*the side buttons*/
-.mat-nav-list
-  {
+.mat-nav-list{
   background-color: #8a213a;
   border-color: black;
+}
+
+.mat-sidenav{
+  background: #8a213a;
+  border-color: black;
   }
-.mat-sidenav
-  {
-    background: #8a213a;
-    border-color: black;
-  }
-.mat-list-item
-  {
+
+.mat-list-item{
   background: grey;
   border-style: outset;
   border-color: #8a213a;
-  }
-.flex-container
-  {
-  display: flex;
-  justify-content: space-between;
-  height: 20px;
-  border: 1px;
-  }
-  .left-side
-    {
-    align-self: flex-start;
-    }
-  .right-side
-    {
-    align-self: flex-end;
-    }
+}
+.main-body {
+  padding-left: 0.8rem;
+  padding-right: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-left: 200px;
+  margin-top: 80px;
+  z-index: 18;
+}
 
-  button
-    {
-    display: center;
-    align-self: center;
-    background: grey;
-    border-color: #8a213a;
-    width: 165px;
-    height: 50px;
-    }
+.mat-toolbar-cl{
+  position: fixed;
+  top: 0;
+  z-index:16;
+  height: 60px;
+}
 
-  .main-body {
-    padding-left: 0.8rem;
-    padding-right: 0;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
+.mat-spacer{
+  flex: left;
+}
