@@ -1,1 +1,15 @@
-<p>Mysurveys!</p>
+<mat-card>
+  <label> Rosters </label>
+
+  <mat-list>
+    <mat-list-item *ngFor = "let ClassRoster of rosters; let i = index">
+      {{ ClassRoster.className }}
+
+      <button mat-icon-button (click)="deleteRoster(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      
+    </mat-list-item>
+  </mat-list>
+
+</mat-card>

@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { Survey } from '../../common.types';
 
 @Component({
   selector: 'app-survey-results',
@@ -11,9 +12,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SurveyResultsComponent implements OnInit {
 
+surveys: Survey;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.getSurveyData();
   }
-
+/*==============================================================================
+======================== GET SURVEY DATA =======================================
+==============================================================================*/
+getSurveyData() {
+  }// end of get survey data
 }

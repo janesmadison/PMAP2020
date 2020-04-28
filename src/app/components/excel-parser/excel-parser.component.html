@@ -20,21 +20,17 @@
     </form>
     <button mat-raised-button (click)="selectAll()">Select All</button>
   </mat-card>
-
   <br>
-
   <div>
-
     <mat-card>
-      <label>Previous Rosters</label>
+      <label> Rosters </label>
 
-      <mat-selection-list>
-        <mat-list-option *ngFor = "let ClassRoster of rosters">
+      <mat-list>
+        <mat-list-item role = "listitem" *ngFor = "let ClassRoster of rosters">
           {{ ClassRoster.className }}
-        </mat-list-option>
-      </mat-selection-list>
+        </mat-list-item>
+      </mat-list>
     </mat-card>
 
   </div>
-
 </mat-card>

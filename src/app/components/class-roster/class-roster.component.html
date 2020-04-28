@@ -1,0 +1,13 @@
+<!--> -------------------------------------------------------------------- <!-->
+<!--> Create Survey page's roster<!-->
+<mat-card>
+  <label> Rosters </label>
+
+  <mat-selection-list>
+    <mat-list-option *ngFor = "let ClassRoster of rosters">
+      <button mat-button > {{ ClassRoster.className }} </button>
+
+    </mat-list-option>
+  </mat-selection-list>
+
+</mat-card>

@@ -38,6 +38,8 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { EventEmitterService } from './services/event-emitter.service';
 import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
+import { MyClassesComponent } from './components/my-classes/my-classes.component';
+import { ClassRosterComponent } from './components/class-roster/class-roster.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { ExcelParserComponent } from './components/excel-parser/excel-parser.com
     SurveyResultsComponent,
     ChangePassComponent,
     ToolbarComponent,
-    ExcelParserComponent
+    ExcelParserComponent,
+    MyClassesComponent,
+    ClassRosterComponent
   ],
   imports: [
     BrowserModule,
