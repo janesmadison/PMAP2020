@@ -67,39 +67,4 @@ export class CreateSurveyComponent implements OnInit {
     console.log(JSON.stringify(this.surveyForm.getRawValue()));
   }
 
-  // this function will push another question that the user inputs into the array
-
-  // questionChange(event, i) {
-  //   this.questionArr[i] = event;
-  // }
-  //
-  // deleteQuestion(i: number) {
-  // this.questionArr.splice(i, 1);
-  // }
-  //
-  // isTextboxQuestion(index) {
-  // if (this.questionArr[index].type === 'textbox') {
-  //   return true;
-  //   } else {
-  //   return false;
-  //   }
-  // }
-  //
-  // isRadioQuestion(index) {
-  // if (this.questionArr[index].type === 'radio') {
-  //   return true;
-  //   } else {
-  //   return false;
-  //   }
-  // }
-  //
-  // isSliderQuestion(index) {
-  // if (this.questionArr[index].type === 'slider') {
-  //   return true;
-  //   } else {
-  //   return false;
-  //   }
-  // }
-
-// =======================================================================================================
 }// end of class

@@ -37,6 +37,7 @@ const routes: Routes = [
     {path: 'student-survey', component: StudentSurveyPageComponent},
   ]},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '*', redirectTo: '/login', pathMatch: 'full'},
 ];
 
 @NgModule({
