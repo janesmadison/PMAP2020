@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import { Observable, throwError } from 'rxjs';
 import {ErrorStateMatcher} from '@angular/material/core';
-
+import { Injectable } from '@angular/core';
+import { tap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -46,6 +47,8 @@ export class ChangePassComponent {
         }
 
         changePass() {
-          // database stuff and error handling
+          const credentials = JSON.stringify({ email, this.oldPass, this.newPass });
+          this.http.post('http://localhost:8080/backend/api/changepassword.php/', credentials);
         }
+
       }
