@@ -1,1 +1,20 @@
-<p>Mysurveys!</p>
+<label> Previous Surveys </label>
+<mat-card>
+
+  <mat-radio-group [(ngModel)]="selectedRoster">
+    <mat-radio-button *ngFor="let item of surveyIds; let i = index" value="{{surveyIds[i]}}">{{surveyIds[i]}} </mat-radio-button> <!--> ngFor goes here for survey id's <!-->
+  </mat-radio-group>
+  <br><br>
+
+  <mat-form-field>
+    <mat-label> Select a roster</mat-label>
+      <mat-select [(ngModel)]="selectedValue">
+          <mat-option *ngFor="let item of rosters; let j = index" value="{{rosters[j]}}">
+            {{rosters[j]}}
+          </mat-option>
+      </mat-select>
+  </mat-form-field>
+  <br>
+
+  <button mat-raised-button (click)="sendSurveys()"> Send surveys </button>
+</mat-card>
