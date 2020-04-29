@@ -1,11 +1,13 @@
 export class User {
   email: string;
   name: string;
+  group: string;
   type: string;
   static fromJson(obj): User {
     const rv: User = new User();
     rv.email = obj.email;
     rv.name = obj.name;
+    rv.group = obj.group;
     rv.type = obj.type;
     return rv;
   }
