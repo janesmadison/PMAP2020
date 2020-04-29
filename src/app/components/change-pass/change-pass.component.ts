@@ -47,8 +47,8 @@ export class ChangePassComponent {
         }
 
         changePass() {
-          const credentials = JSON.stringify({ email, this.oldPass, this.newPass });
-          this.http.post('http://localhost:8080/backend/api/changepassword.php/', credentials);
+          // const credentials = JSON.stringify({ email, this.oldPass, this.newPass });
+          // this.http.post('http://localhost:8080/backend/api/changepassword.php/', credentials);
         }
 
       }
