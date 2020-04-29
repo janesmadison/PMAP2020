@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ClassRoster } from '../../common.types';
 
 @Component({
   selector: 'app-my-surveys',
@@ -16,15 +17,11 @@ rosters = [];
 selectedValue: string;
 selectedRoster: string;
 
-// ========================== DATA MEMBERS =====================================
-  constructor(private http: HttpClient) {
-  this.surveyIds.push('TestSurveyID');
-  this.surveyIds.push('TestSurveyID2');
-
-  this.rosters.push('TestRoster');
- }
+rosters: ClassRoster[] = [];
+  constructor() { }
 
   ngOnInit(): void {
+    this.getClassRosters();
   }
 /*==============================================================================
 =========================== GET SURVEY NAMES ===================================
@@ -44,3 +41,21 @@ sendSurveys() {
   console.log(this.selectedRoster);
   }// end of send surveys
 }// end of component
+=======
+====================== GET CLASS ROSTERS =======================================
+==============================================================================*/
+getClassRosters() {
+  this.rosters.push(ClassRoster.fromJson({
+    className: 'test name',
+    students: ['name', 'name2', 'name3']
+  }
+  ));
+  }// end of get class rosters
+/*==============================================================================
+====================== DELETE ROSTER ===========================================
+==============================================================================*/
+deleteRoster(index) {
+  console.log('DELETE');
+  this.rosters.splice(index, 1);
+  }// end of delete roster
+}

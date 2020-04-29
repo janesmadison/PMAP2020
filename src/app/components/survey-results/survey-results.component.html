@@ -1,1 +1,39 @@
-<p>SurveyResults!</p>
+<label>
+  Survey Results
+</label>
+
+<mat-card>
+  <label>
+    Surveys:
+  </label>
+
+  <mat-card *ngFor="let Survey of surveys">
+    <label>
+      {{surveys.classID}}
+    </label>
+
+    <!--> *ngFor for the groups <!-->
+    <mat-card >
+      <label>
+        Groups:
+      </label>
+      <!--> *ngFor for the members of the group <!-->
+      <mat-card>
+        <label>
+        Group members:
+        <!--> group member label<!-->
+        </label>
+        <mat-list>
+          <!--> *ngFor for the questions and average response<!-->
+          <mat-list-item >
+            <!--> question string here <!-->
+            <br>
+            Average response:
+
+          </mat-list-item>
+        </mat-list>
+
+      </mat-card>
+    </mat-card>
+  </mat-card>
+</mat-card>

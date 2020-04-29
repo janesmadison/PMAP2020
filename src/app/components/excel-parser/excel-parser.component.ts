@@ -51,6 +51,12 @@ export class ExcelParserComponent implements OnInit {
 ===================== ON FILE CHANGE =====================================================================
 ========================================================================================================*/
 onFileChange(ev) {
+  this.emailArr = [];
+  this.workSheet = null;
+  this.nameArr = [];
+  this.students = [];
+  this.rosters = [];
+  this.groupArr = [];                                                           // resets the data structures for new submission
   const cellIndex = 'A1';
                                                                                 // the excel sheet is going to be in a desired format
   let workBook = null;
@@ -101,6 +107,7 @@ fillClassRoster() {
       this.students.push( (User.fromJson({
         name: this.nameArr[i],
         email: this.emailArr[i],
+        group: this.groupArr[i],
         type: 'standard'}
       ))
     );
@@ -132,9 +139,14 @@ onSubmit(options: MatListOption[]) {
       this.students.push(User.fromJson({
        name:  options.map(o => o.value.name)[i],
        email: options.map(o => o.value.email)[i],
+       group: options.map(o => o.value.group)[i],
        type: 'standard'
      }));
-      this.postClassRoster(options.map(o => o.value.name)[i], options.map(o => o.value.email)[i], 'standard');
+      this.postClassRoster(
+      options.map(o => o.value.name)[i],
+      options.map(o => o.value.email)[i],
+      options.map(o => o.value.group)[i],
+      'standard');
     }
   }
                                                                                 /* NOTE: options.map(o => o.value)
@@ -143,7 +155,7 @@ onSubmit(options: MatListOption[]) {
                                                                                 */
   this.rosters.push(ClassRoster.fromJson({
     className: this.inputValue,
-    students: this.students
+    students: this.students,
   }
   ));
 
@@ -160,11 +172,12 @@ selectAll() {
 /*========================================================================================================
 ==================== POST CLASS ROSTER ===================================================================
 ========================================================================================================*/
-postClassRoster(studentEmail: string, studentName: string, accType: string) {
+postClassRoster(studentEmail: string, studentName: string, groupName: string, accType: string) {
 
   const postVars = {                                                            // places name and email values in JSON format for the post
     email : studentEmail,
     name : studentName,
+    group: groupName,
     type : accType
   };
 
