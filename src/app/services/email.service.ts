@@ -33,4 +33,12 @@ sendEmail(data) {
   }));                                                          // resets the email form
 }
 
+addRoster(data) {
+  return this.http.post(`${this.baseUrl}/backend/api/backendRosterMailer.php`, data).pipe(
+    tap(                                            // posts the data to the url which the php app is hosted
+    (response) => {                                                             // gets the errors from the php app
+    console.log(response);
+  }));
+}
+
 }// end of email service
