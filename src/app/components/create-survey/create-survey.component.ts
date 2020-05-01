@@ -17,7 +17,8 @@ import { Subscription } from 'rxjs';
 
 export class CreateSurveyComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private eventEmitterService: EventEmitterService) {}
+  constructor(private fb: FormBuilder,
+              private eventEmitterService: EventEmitterService) {}
 
   surveyForm: FormGroup;
 

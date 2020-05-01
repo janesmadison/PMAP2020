@@ -1,7 +1,31 @@
 <mat-card>
-  <label> Rosters </label>
+  <label> Surveys </label>
+  <button mat-button (click)="setValid()">survey1
+  </button>
 
-  <mat-list>
+  <div *ngIf="valid">
+    <div class="surveyForm">
+      <mat-form-field>
+        <label>
+          Survey Name: survey1
+        </label>
+      </mat-form-field>
+    </div>
+
+    <label>1. Question: How cute is your dog?</label>
+    <br>
+            <label>Answer: </label>
+                <textarea matInput placeholder="response"></textarea>
+    <label>1. Question: What percent good boy is he?</label>
+    <br>
+            <label>Answer: </label>
+                <mat-slider thumbLabel min="0" max="100"></mat-slider>
+
+    <button mat-raised-button color="primary" >Send Survey</button>
+
+  </div>
+
+  <!-- <mat-list>
     <mat-list-item *ngFor = "let ClassRoster of rosters; let i = index">
       {{ ClassRoster.className }}
 
@@ -10,6 +34,6 @@
       </button>
 
     </mat-list-item>
-  </mat-list>
+  </mat-list> -->
 
 </mat-card>

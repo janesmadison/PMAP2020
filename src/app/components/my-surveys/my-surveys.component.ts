@@ -15,6 +15,7 @@ export class MySurveysComponent implements OnInit {
 surveyIds = [];
 selectedValue: string;
 selectedRoster: string;
+valid = false;
 
 rosters: ClassRoster[] = [];
   constructor() { }
@@ -35,6 +36,10 @@ getClassRosters() {
   }
   ));
   }// end of get class rosters
+
+  setValid() {
+    this.valid = true;
+  }
 /*==============================================================================
 ====================== DELETE ROSTER ===========================================
 ==============================================================================*/
