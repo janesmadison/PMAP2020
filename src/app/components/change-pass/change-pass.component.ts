@@ -62,12 +62,14 @@ export class ChangePassComponent implements OnDestroy {
             this.snackBar.open('Password Changed', 'Okay', {
               duration: 3000
             });
-          } else if (str === 'fail') {
+          } else if (str !== 'success') {
             this.snackBar.open('Password Change Failed', 'Okay', {
               duration: 3000
             });
           }
         }
       );
+          this.changePassForm.reset();
         }
+
       }
