@@ -1,20 +1,35 @@
-<label class="welcome">
-Welcome!
-</label>
-<br><br>
-
-<mat-card class="surveyCard">
-  <label>
-    Pending surveys
+<div *ngIf="isDisplayingSurvey">
+  <label class="welcome">
+  Welcome!
   </label>
   <br><br>
-  <mat-card class= "listCard">
-    <mat-list>
-      <mat-list-item >
-        <button mat-button routerLink="/student-home/student-survey"> Test Survey </button>
-        <!--> parameters will be index <!-->
-      </mat-list-item>
 
-    </mat-list>
+  <mat-card class="surveyCard">
+    <label>
+      Pending surveys
+    </label>
+    <br><br>
+    <mat-card class= "listCard">
+      <mat-list>
+
+        <mat-list-item *ngFor="let Survey of surveys; let i = index">
+          <button mat-button (click)="displaySurvey(i)"> {{Survey.name}} </button>
+        </mat-list-item>
+
+      </mat-list>
+    </mat-card>
   </mat-card>
-</mat-card>
+</div>
+
+<!-->----------------------------------------------------------------------<!-->
+
+<div *ngIf="!isDisplayingSurvey">
+
+  <mat-card>
+    <label>{{currentlyDisplayedSurvey.name}}</label>
+    <br>
+  </mat-card>
+
+  <button mat-button (click) = "cancelSurvey()"> Cancel </button>
+  <button mat-button (click)="submitSurvey()"> Submit Survey </button>
+</div>

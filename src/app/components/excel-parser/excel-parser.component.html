@@ -3,6 +3,7 @@
     <form [formGroup]="classForm" (ngSubmit)="onSubmit(studentList.selectedOptions.selected)">
       <!-->  on file submission the onSubmit function is called<!-->
       <input type="file" (change)="onFileChange($event)" id="file"/>
+      <!--> onFileChange is called whenever a new file is selected from file explorer <!-->
 
       <br>
       <br>
@@ -20,11 +21,13 @@
     </form>
     <button mat-raised-button (click)="selectAll()">Select All</button>
   </mat-card>
+
   <br>
+
   <div>
+
     <mat-card>
       <label> Rosters </label>
-
       <mat-list>
         <mat-list-item role = "listitem" *ngFor = "let ClassRoster of rosters">
           {{ ClassRoster.className }}

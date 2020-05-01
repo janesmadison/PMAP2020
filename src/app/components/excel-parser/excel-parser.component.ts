@@ -28,7 +28,7 @@ export class ExcelParserComponent implements OnInit {
   workSheet = null;
   nameArr = [];
   students = [];
-  classForm = this.fb.group({ classRosterName: ['', Validators.required], });
+  classForm = this.fb.group({ classRosterName: ['', Validators.required], });   // form to validate if there's a class name
   rosters: ClassRoster[] = [];
   inputValue;
   cellIndexNumber = 1;
@@ -81,7 +81,7 @@ onFileChange(ev) {
 ===================== INCREMENT CELL ROW  ================================================================
 ========================================================================================================*/
 incrementCellRow(cellIndex) {
-  const cellIndexLetter = cellIndex.charAt(0);
+  const cellIndexLetter = cellIndex.charAt(0);                                  // first letter of the index string
   this.cellIndexNumber = this.cellIndexNumber + 1;
   cellIndex = cellIndexLetter + this.cellIndexNumber;
   return cellIndex;
@@ -198,6 +198,7 @@ parseExcelFile(cellIndex) {
   let name;
   let cell;
   let cellData;
+
   cellIndex = this.locateEmailColumn(cellIndex);
   while (!blankSpaceEncountered) {
 

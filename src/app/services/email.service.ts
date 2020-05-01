@@ -27,10 +27,10 @@ private handleError(error: HttpErrorResponse) {
 ==============================================================================*/
 sendEmail(data) {
   return this.http.post(`${this.baseUrl}/backend/api/backendMailer.php`, data).pipe(
-    tap(                                            // posts the data to the url which the php app is hosted
+    tap(                                                                        // posts the data to the url which the php app is hosted
     (response) => {                                                             // gets the errors from the php app
     console.log(response);
-  }));                                                          // resets the email form
+  }));
 }
 
 }// end of email service

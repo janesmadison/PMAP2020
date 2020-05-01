@@ -6,6 +6,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Enter administrators email</mat-label>
       <input matInput [formControl]="email" ng-model="newAdminEmail" required>
+      <!--> the email input field to be validated <!-->
       <mat-error *ngIf="email.invalid"> {{getErrorMessage()}} </mat-error>
       <!--> displays error message givven by getErrorMessage() if the email is invalid <!-->
     </mat-form-field>
