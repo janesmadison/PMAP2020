@@ -11,7 +11,7 @@
         <!--> updates values stored in typescript on key press <!-->
       <mat-selection-list #studentList>
         <mat-list-option selected *ngFor="let student of students" [value]="student">
-        {{ student.name + ' : ' + student.email }}
+        {{ student.name + ' : ' + student.email + '   ' + student.group}}
         </mat-list-option>
       </mat-selection-list>
 

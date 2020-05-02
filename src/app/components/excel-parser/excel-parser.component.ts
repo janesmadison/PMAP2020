@@ -104,19 +104,18 @@ decrementCellColumn(cellIndex) {
 fillClassRoster() {
   for (const i in this.emailArr) {
     if (this.nameArr[i]) {
-      this.students.push( (User.fromJson({
+      this.students.push( {
         name: this.nameArr[i],
         email: this.emailArr[i],
         group: this.groupArr[i],
         type: 'standard'}
-      ))
     );
     } else {
-      this.students.push( (User.fromJson({
+      this.students.push({
         name: 'Student',
         email: this.emailArr[i],
+        group: this.groupArr[i],
         type: 'standard'}
-      ))
     );
     }
   }
@@ -136,12 +135,12 @@ onSubmit(options: MatListOption[]) {
 // sets the students array based off of the selected values in the list
   for (const i in options.map(o => o.value)) {
     if (i) {
-      this.students.push(User.fromJson({
+      this.students.push({
        name:  options.map(o => o.value.name)[i],
        email: options.map(o => o.value.email)[i],
        group: options.map(o => o.value.group)[i],
        type: 'standard'
-     }));
+     });
   }}
 
   const roster = ClassRoster.fromJson({
