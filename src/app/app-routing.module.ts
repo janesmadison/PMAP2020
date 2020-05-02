@@ -28,7 +28,8 @@ const routes: Routes = [
       {path: 'survey-results', component: SurveyResultsComponent },
       {path: 'my-surveys', component: MySurveysComponent },
       {path: 'change-pass', component: ChangePassComponent },
-      {path: 'my-classes', component: MyClassesComponent}
+      {path: 'my-classes', component: MyClassesComponent},
+      {path: '*', redirectTo: '/login', pathMatch: 'full'}
     ]
   },
 
@@ -37,9 +38,10 @@ const routes: Routes = [
   children: [
     {path: 'student-welcome', component: StudentHomeComponent},
     {path: 'student-survey', component: StudentSurveyPageComponent},
+    {path: '*', redirectTo: '/login', pathMatch: 'full'}
   ]},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: '*', redirectTo: '/login', pathMatch: 'full'},
+  {path: '*', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({
