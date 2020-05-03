@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
-import { ClassRoster } from '../common.types';
+import { ClassRoster, Survey } from '../common.types';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +17,10 @@ export class SurveyService {
       (response) => {                                                             // gets the errors from the php app
       console.log(response);
     }));                                                          // resets the email form
+  }
+
+  getSurveys(): Observable<Survey[]> {
+    return this.http.get(`${this.baseUrl}/backend/api/getSurveys.php`).pipe(
+      map((res: any[]) => res.map(s => Survey.fromJson(s))));
   }
 }

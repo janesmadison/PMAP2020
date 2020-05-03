@@ -34,12 +34,12 @@ export class CaughtError {
 }
 
 export class Survey {
-      classID: string;
+      surveyID: string;
       name: string;
       questions: Question[];
     static fromJson(obj): Survey {
       const survey: Survey = new Survey();
-      survey.classID = obj.classID;
+      survey.surveyID = obj.surveyID;
       survey.name = obj.name;
       survey.questions = obj.questions;
       return survey;
