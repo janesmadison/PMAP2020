@@ -26,9 +26,14 @@
       <label> Rosters </label>
 
       <mat-list>
-        <mat-list-item role = "listitem" *ngFor = "let ClassRoster of rosters">
-          {{ ClassRoster.className }}
-        </mat-list-item>
+        <ng-container *ngFor = "let roster of rosters">
+          <mat-list-item>{{ roster.className }}</mat-list-item>
+          <mat-list style="margin-left:30px;">
+            <div *ngFor="let student of roster.students">
+                <mat-list-item>{{ student.name}} : {{ student.email}}    {{ student.group}}</mat-list-item>
+            </div>
+        </mat-list>
+        </ng-container>
       </mat-list>
     </mat-card>
 

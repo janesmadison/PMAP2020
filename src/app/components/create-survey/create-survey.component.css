@@ -11,6 +11,14 @@ display: flex;
   width: 1000px;
 }
 
+.mat-select-style {
+  width: 350px;
+}
+
+.button-style {
+  margin-left: 10px;
+}
+
 mat-slider {
   width: 750px;
 }

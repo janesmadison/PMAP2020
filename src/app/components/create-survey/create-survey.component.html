@@ -43,11 +43,24 @@
     </div>
 </div>
 
-
-
   <button type="button" mat-button (click)="addQuestion()"> Add question </button>
-  <button mat-raised-button color="primary" (click)="onSubmit()">Save Survey</button>
+  <br><br>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+    <button mat-raised-button class="button-style" color="primary" (click)="onSend()" [disabled]="!className">Send and Save</button>
+
+
+<br><br><br><br>
+
+  <ng-container>
+ <mat-label>Class to Send Survey to: </mat-label>
+ <br>
+ <mat-form-field>
+  <mat-select formControlName="classID" >
+    <mat-option *ngFor="let roster of rosters" [value]="roster.className">
+      {{roster.className}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+  </ng-container>
 
 </form>
-<br><br>
-<app-class-roster></app-class-roster>

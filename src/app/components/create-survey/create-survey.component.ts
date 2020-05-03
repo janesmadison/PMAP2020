@@ -4,8 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
-import { Survey, Question, Answer } from '../../common.types';
+import { Survey, Question, Answer, ClassRoster } from '../../common.types';
 import { EventEmitterService } from '../../services/event-emitter.service';
+import { EmailService } from '../../services/email.service';
 
 import { Subscription } from 'rxjs';
 
@@ -18,10 +19,11 @@ import { Subscription } from 'rxjs';
 export class CreateSurveyComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-              private eventEmitterService: EventEmitterService) {}
+              private eventEmitterService: EventEmitterService,
+              private emailService: EmailService) {}
 
   surveyForm: FormGroup;
-
+  rosters: ClassRoster[];
   choices: string[] = ['textbox', 'radio', 'slider'];
 
   ngOnInit() {
@@ -30,6 +32,17 @@ export class CreateSurveyComponent implements OnInit {
       classID: '',
       questions: this.fb.array([])
     });
+
+    this.emailService.getRosters().subscribe(
+      rosters => {
+      if (rosters) {
+        this.rosters = rosters;
+      }
+    });
+  }
+
+  get className(): string {
+    return this.surveyForm.get('classID').value;
   }
 
   get questions(): FormArray {
@@ -66,6 +79,10 @@ export class CreateSurveyComponent implements OnInit {
 
   onSubmit() {
     console.log(JSON.stringify(this.surveyForm.getRawValue()));
+  }
+
+  onSend() {
+
   }
 
 }// end of class

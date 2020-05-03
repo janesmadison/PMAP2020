@@ -41,7 +41,6 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { EventEmitterService } from './services/event-emitter.service';
 import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
 import { MyClassesComponent } from './components/my-classes/my-classes.component';
-import { ClassRosterComponent } from './components/class-roster/class-roster.component';
 
 @NgModule({
   declarations: [
@@ -57,8 +56,7 @@ import { ClassRosterComponent } from './components/class-roster/class-roster.com
     ChangePassComponent,
     ToolbarComponent,
     ExcelParserComponent,
-    MyClassesComponent,
-    ClassRosterComponent
+    MyClassesComponent
   ],
   imports: [
     BrowserModule,

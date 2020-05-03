@@ -29,7 +29,7 @@ export class ExcelParserComponent implements OnInit {
   nameArr = [];
   students = [];
   classForm = this.fb.group({ classRosterName: ['', Validators.required], });
-  rosters: ClassRoster[] = [];
+  rosters: ClassRoster[];
   inputValue;
   cellIndexNumber = 1;
   groupArr = [];
@@ -46,6 +46,12 @@ export class ExcelParserComponent implements OnInit {
               private emailService: EmailService) {}// end of constructor
 
   ngOnInit(): void {
+    this.emailService.getRosters().subscribe(
+      rosters => {
+      if (rosters) {
+        this.rosters = rosters;
+      }
+    });
   }// end of ngOnInit
 /*========================================================================================================
 ===================== ON FILE CHANGE =====================================================================
