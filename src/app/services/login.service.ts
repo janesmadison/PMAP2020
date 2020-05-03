@@ -45,7 +45,6 @@ export class LoginService {
   }
 
   changePass(newPassword: string, oldPassword: string) {
-    console.log('loginService');
     const e = this.email;
     const credentials = JSON.stringify({ e, oldPassword, newPassword });
     return this.http

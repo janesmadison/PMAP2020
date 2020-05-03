@@ -3,10 +3,12 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Survey, Question, Answer, ClassRoster } from '../../common.types';
 import { EventEmitterService } from '../../services/event-emitter.service';
 import { EmailService } from '../../services/email.service';
+import { SurveyService } from '../../services/survey.service';
 
 import { Subscription } from 'rxjs';
 
@@ -20,7 +22,9 @@ export class CreateSurveyComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private eventEmitterService: EventEmitterService,
-              private emailService: EmailService) {}
+              private emailService: EmailService,
+              private surveyService: SurveyService,
+              private snackBar: MatSnackBar) {}
 
   surveyForm: FormGroup;
   rosters: ClassRoster[];
@@ -39,10 +43,6 @@ export class CreateSurveyComponent implements OnInit {
         this.rosters = rosters;
       }
     });
-  }
-
-  get className(): string {
-    return this.surveyForm.get('classID').value;
   }
 
   get questions(): FormArray {
@@ -79,10 +79,20 @@ export class CreateSurveyComponent implements OnInit {
 
   onSubmit() {
     console.log(JSON.stringify(this.surveyForm.getRawValue()));
+    this.surveyService.sendSurvey(this.surveyForm.getRawValue()).subscribe(
+  (str: string) => {
+    if (str === 'success') {
+      this.snackBar.open('Survey Saved', 'Okay', {
+        duration: 3000
+      });
+      this.surveyForm.reset();
+    } else if (str !== 'success') {
+      this.snackBar.open('Survey Failed To Save', 'Okay', {
+        duration: 3000
+      });
+    }
   }
-
-  onSend() {
-
+);
   }
 
 }// end of class
