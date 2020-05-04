@@ -1,39 +1,26 @@
 <mat-card *ngIf="loaded">
-<form [formGroup]="resultForm">
   <mat-card-title class="surveyForm" *ngIf="survey.name">
         Survey Name: {{survey.name}}
   </mat-card-title>
 
-     <div formArrayName="answers">
-    <div class="questions" *ngFor="let question of survey.questions; let i = index;" formGroupName="{{i}}">
+    <div class="questions" *ngFor="let question of survey.questions; let i = index;">
       <h4>{{i+1}}     {{question.question}}</h4>
           <label>Answer: </label>
             <div *ngIf="question.type === 'radio'">
-              {{this.addAnswer(question.questionID)}}
-              <!-- <input id="questionId" name="questionID" type="hidden" [ngModel]="question.questionID" formControlName="questionID"/> -->
-                <label class="optionStyling" *ngFor="let option of question.options">
-                <input
-                  class="radioStyle"
-                  formControlName="answerText"
-                  type="radio"
-                  name="answerText"
-                  [value]="option.option"
-                />
-                <label>{{option.option}}</label>
-              </label>
+                <mat-radio-group>
+                  <!-- [(ngModel)]="favoriteSeason"> -->
+                  <mat-radio-button *ngFor="let option of question.options" [value]="option.option">
+                      {{option.option}}
+                  </mat-radio-button>
+                </mat-radio-group>
             </div>
             <div *ngIf="question.type === 'textbox'">
-              {{addAnswer(question.questionID)}}
-              <!-- <input id="questionId" name="questionID" type="hidden" [ngModel]="question.questionID" formControlName="questionID"/> -->
-              <textarea matInput formControlName="answerText" placeholder="response"></textarea>
+              <textarea matInput placeholder="response"></textarea>
             </div>
             <div *ngIf="question.type === 'slider'">
-              {{addAnswer(question.questionID)}}
-              <!-- <input id="questionId" name="questionID" type="hidden" [ngModel]="question.questionID" formControlName="questionID"/> -->
-              <mat-slider thumbLabel formControlName="answerText" min="0" max="100"></mat-slider>
+              <mat-slider thumbLabel min="0" max="100"></mat-slider>
             </div>
     </div>
-    </div>
+    <br><br><br>
     <button mat-raised-button color="primary"  (click)="onSubmit()">Submit</button>
-</form>
 </mat-card>

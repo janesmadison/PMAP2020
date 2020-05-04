@@ -16,10 +16,13 @@ surveyID: string;
 survey: Survey;
 loaded = false;
 count = 0;
-resultForm: FormGroup;
+results = {surveyID: this.surveyID,
+           answers: [{
+             questionText: '',
+             answerText: ''}]
+           };
 
-  constructor(private fb: FormBuilder,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private surveyService: SurveyService) { }
 
   ngOnInit(): void {
@@ -34,38 +37,18 @@ resultForm: FormGroup;
         }
       });
     });
-
-    this.resultForm = this.fb.group({
-      answers: this.fb.array([this.createAnswer()]),
-      surveyID: this.surveyID
-    });
-
   }
 
-  get answers(): FormArray {
-    return this.resultForm.get('answers') as FormArray;
-  }
-
-  createAnswer(): FormGroup {
-    return this.fb.group ({
-      questionID: '',
-      answerText: ''
-    });
-  }
-
-  addAnswer(id) {
-    const temp = this.fb.group ({
-      questionID: id,
-      answerText: ''
-    });
-    if (this.count < this.survey.questions.length - 1) {
-      this.answers.push(this.createAnswer());
-      this.count++;
-    }
+  addAnswer(qText, aText) {
+    const temp = {
+      questionText: qText,
+      answerText: aText
+    };
+    this.results.answers.push(temp);
   }
 
   onSubmit() {
-    console.log(this.resultForm.getRawValue());
+    console.log(this.results);
   }
 
 }
