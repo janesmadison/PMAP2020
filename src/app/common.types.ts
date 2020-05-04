@@ -45,6 +45,26 @@ export class Survey {
       return survey;
     }
   }
+  
+export class Results {
+	question_text: string;
+	studentResults: Result[];
+     static fromJson(obj): Results {
+     	const results: Results = new Results();
+     	results.question_text = obj.question_text;
+     	results.studentResults = obj.studentResults;
+     	return results;
+     	}
+  }
+  
+export class Result {
+	answer:string;
+      static fromJson(obj): Result {
+	const result: Result = new Result();
+	result.answer = obj.nswer;
+   	return result;
+   	}
+  }
 
 export class Question {
    question: string;

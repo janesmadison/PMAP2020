@@ -1,9 +1,10 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map, shareReplay } from 'rxjs/operators';
+import { tap, map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Survey } from '../../common.types';
 import { ClassRoster } from '../../common.types';
 import { User } from '../../common.types';
+import { Results } from '../../common.types';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -36,10 +37,6 @@ modifiedText: string;
   ngOnInit(): void {
   }
 
-  getRosters(): Observable<ClassRoster[]> {
-    return this.http.get(`${this.baseUrl}/backend/api/getRoster.php`).pipe(
-    map((res: any[]) => res.map(c => ClassRoster.fromJson(c))));
-  }
 
   onStudentSelected(val:any){
     this.onSubmit(val);
@@ -48,23 +45,12 @@ modifiedText: string;
   onSubmit(val:any){
     this.modifiedText=val;
     console.log(JSON.stringify(this.modifiedText));
+    return this.http.post(`${this.baseUrl}/backend/api/getResults.php`, this.modifiedText).pipe(tap((response) => {console.log(response);}));
   }
 
+  getResults(): Observable<Results[]> {
+    return this.http.get(`${this.baseUrl}/backend/api/getResults.php`).pipe(
+      map((res: any[]) => res.map(s => Results.fromJson(s))));
+  }
 
-  // onSubmit() {
-  //   console.log(JSON.stringify(this.surveyForm.getRawValue()));
-  //   this.surveyService.sendSurvey(this.surveyForm.getRawValue()).subscribe(
-  // (str: string) => {
-  //   if (str === 'success') {
-  //     this.snackBar.open('Survey Saved', 'Okay', {
-  //       duration: 3000
-  //     });
-  //     this.surveyForm.reset();
-  //   } else if (str !== 'success') {
-  //     this.snackBar.open('Survey Failed To Save', 'Okay', {
-  //       duration: 3000
-  //     });
-  //   }
-  // }
-  // );
    }

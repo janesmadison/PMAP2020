@@ -14,3 +14,12 @@
   </mat-select>
   </mat-form-field>
 </div>
+
+<mat-card>
+  <mat-nav-list>
+  <mat-list-item *ngFor="let result of results">
+     <a matLine >{{ result.question_text }}</a>
+     <a matLine >{{ result.studentResults }}</a>
+  </mat-list-item>
+</mat-nav-list>
+</mat-card>
