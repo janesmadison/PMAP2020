@@ -8,8 +8,8 @@
   <label>Select the student you would like to see results for: </label>
   <mat-form-field>
   <mat-select [(ngModel)]="selectedStudent" id="student" name="student">
-    <mat-option *ngFor="let stud of class" [value]="stud.email" (ngModelChange)='onStudentSelected($event)'>
-      {{stud.name}}
+    <mat-option *ngFor="let class of students" [value]="class.email" (ngModelChange)='onStudentSelected($event)'>
+      {{class.name}}
     </mat-option>
   </mat-select>
   </mat-form-field>
