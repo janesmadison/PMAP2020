@@ -36,7 +36,7 @@ export class SurveyResultsComponent implements OnInit {
     });
   }
 
-  onStudentSelected(val:any){
+  onStudentSelected(val: any) {
     this.ResultsserviceService.submitStudent(val);
   }
  }

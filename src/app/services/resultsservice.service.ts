@@ -10,13 +10,14 @@ import { ClassRoster, Survey , User, Results} from '../common.types';
 export class ResultsserviceService {
   baseUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
-  modifiedText:string;
+  modifiedText: string;
 
 
-  submitStudent(val:any){
-    this.modifiedText=val;
+  submitStudent(val: any) {
+    this.modifiedText = val;
     console.log(JSON.stringify(this.modifiedText));
-    return this.http.post(`${this.baseUrl}/backend/api/getResults.php`, this.modifiedText).pipe(tap((response) => {console.log(response);}));
+    return this.http.post(`${this.baseUrl}/backend/api/getResults.php`, this.modifiedText)
+    .pipe(tap((response) => {console.log(response); }));
   }
 
   getRosters(): Observable<ClassRoster[]> {
