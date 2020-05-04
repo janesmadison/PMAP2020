@@ -13,6 +13,7 @@ import 'hammerjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,6 +24,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,9 +37,10 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
 import { StudentHomeComponent } from './components/student-home/student-home.component';
 import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { EventEmitterService } from './services/event-emitter.service';
 import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
+import { MyClassesComponent } from './components/my-classes/my-classes.component';
+import { SurveyComponent } from './components/survey/survey.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +54,9 @@ import { ExcelParserComponent } from './components/excel-parser/excel-parser.com
     StudentSurveyPageComponent,
     SurveyResultsComponent,
     ChangePassComponent,
-    ToolbarComponent,
-    ExcelParserComponent
+    ExcelParserComponent,
+    MyClassesComponent,
+    SurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,7 @@ import { ExcelParserComponent } from './components/excel-parser/excel-parser.com
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
+    MatDialogModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
@@ -75,7 +80,8 @@ import { ExcelParserComponent } from './components/excel-parser/excel-parser.com
     MatRadioModule,
     MatSliderModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [EventEmitterService, { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }],
   bootstrap: [AppComponent]

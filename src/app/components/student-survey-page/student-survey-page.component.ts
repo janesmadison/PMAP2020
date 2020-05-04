@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SurveyService } from '../../services/survey.service';
+import { Survey } from '../../common.types';
 
 @Component({
   selector: 'app-student-survey-page',
@@ -8,17 +11,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./student-survey-page.component.css']
 })
 export class StudentSurveyPageComponent implements OnInit {
-baseUrl = 'http://localhost/';
-surveyArray: Observable<any>;
-// ============================= DATA MEMBERS ==================================
-  constructor(private http: HttpClient) { } // end of constructor
-// =============================================================================
+  selectedName: string;
+  surveys: Survey[];
+  constructor(private router: Router,
+              private surveyService: SurveyService) { }
+
   ngOnInit(): void {
-  } // end of On Init
-/*==============================================================================
-============================= GET SURVEY =======================================
-==============================================================================*/
-getSurvey() {
-  this.surveyArray = this.http.get(this.baseUrl + 'getSurvey.php'); // gets survey questions from database
-  } // end of get survey
+    this.surveyService.getSurveyNames().subscribe(
+      names => {
+      if (names) {
+        this.surveys = names;
+      }
+    });
+  }
+
+  openSurvey(id) {
+    this.router.navigateByUrl(`/student-home/survey/${id}`);
+  }
+
 }// end of component

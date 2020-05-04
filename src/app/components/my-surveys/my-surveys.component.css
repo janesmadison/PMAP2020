@@ -1,65 +1,10 @@
-.sidenav-container
-  {
-  height: 100%;
-  }
+mat-icon {
+  font-size: 20px;
+  width: 20px;
+  size: 20px;
+}
 
-.sidenav
-  {
-  width: 200px;
-  }
-
-.sidenav .mat-toolbar
-  {
-  background: #5c5658;
-  }
-
-.mat-toolbar.mat-primary
-  {
-  background: #8a213a;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  }
-
-/*the side buttons*/
-.mat-nav-list
-  {
-  background-color: #8a213a;
-  border-color: black;
-  }
-.mat-sidenav
-  {
-    background: #8a213a;
-    border-color: black;
-  }
-.mat-list-item
-  {
-  background: grey;
-  border-style: outset;
-  border-color: #8a213a;
-  }
-.flex-container
-  {
+#HASH {
   display: flex;
   justify-content: space-between;
-  height: 20px;
-  border: 1px;
-  }
-  .left-side
-    {
-    align-self: flex-start;
-    }
-  .right-side
-    {
-    align-self: flex-end;
-    }
-
-  button
-    {
-    display: center;
-    align-self: center;
-    background: grey;
-    border-color: #8a213a;
-    width: 165px;
-    height: 50px;
-    }
+}

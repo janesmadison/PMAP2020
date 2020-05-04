@@ -3,9 +3,12 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
-import { Survey, Question, Answer } from '../../common.types';
+import { Survey, Question, Answer, ClassRoster } from '../../common.types';
 import { EventEmitterService } from '../../services/event-emitter.service';
+import { EmailService } from '../../services/email.service';
+import { SurveyService } from '../../services/survey.service';
 
 import { Subscription } from 'rxjs';
 
@@ -17,10 +20,14 @@ import { Subscription } from 'rxjs';
 
 export class CreateSurveyComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private eventEmitterService: EventEmitterService) {}
+  constructor(private fb: FormBuilder,
+              private eventEmitterService: EventEmitterService,
+              private emailService: EmailService,
+              private surveyService: SurveyService,
+              private snackBar: MatSnackBar) {}
 
   surveyForm: FormGroup;
-
+  rosters: ClassRoster[];
   choices: string[] = ['textbox', 'radio', 'slider'];
 
   ngOnInit() {
@@ -28,6 +35,13 @@ export class CreateSurveyComponent implements OnInit {
       name: '',
       classID: '',
       questions: this.fb.array([])
+    });
+
+    this.emailService.getRosters().subscribe(
+      rosters => {
+      if (rosters) {
+        this.rosters = rosters;
+      }
     });
   }
 
@@ -65,41 +79,20 @@ export class CreateSurveyComponent implements OnInit {
 
   onSubmit() {
     console.log(JSON.stringify(this.surveyForm.getRawValue()));
+    this.surveyService.sendSurvey(this.surveyForm.getRawValue()).subscribe(
+  (str: string) => {
+    if (str === 'success') {
+      this.snackBar.open('Survey Saved', 'Okay', {
+        duration: 3000
+      });
+      this.surveyForm.reset();
+    } else if (str !== 'success') {
+      this.snackBar.open('Survey Failed To Save', 'Okay', {
+        duration: 3000
+      });
+    }
+  }
+);
   }
 
-  // this function will push another question that the user inputs into the array
-
-  // questionChange(event, i) {
-  //   this.questionArr[i] = event;
-  // }
-  //
-  // deleteQuestion(i: number) {
-  // this.questionArr.splice(i, 1);
-  // }
-  //
-  // isTextboxQuestion(index) {
-  // if (this.questionArr[index].type === 'textbox') {
-  //   return true;
-  //   } else {
-  //   return false;
-  //   }
-  // }
-  //
-  // isRadioQuestion(index) {
-  // if (this.questionArr[index].type === 'radio') {
-  //   return true;
-  //   } else {
-  //   return false;
-  //   }
-  // }
-  //
-  // isSliderQuestion(index) {
-  // if (this.questionArr[index].type === 'slider') {
-  //   return true;
-  //   } else {
-  //   return false;
-  //   }
-  // }
-
-// =======================================================================================================
 }// end of class

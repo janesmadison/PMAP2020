@@ -29,7 +29,7 @@ export class ExcelParserComponent implements OnInit {
   nameArr = [];
   students = [];
   classForm = this.fb.group({ classRosterName: ['', Validators.required], });
-  rosters: ClassRoster[] = [];
+  rosters: ClassRoster[];
   inputValue;
   cellIndexNumber = 1;
   groupArr = [];
@@ -46,11 +46,23 @@ export class ExcelParserComponent implements OnInit {
               private emailService: EmailService) {}// end of constructor
 
   ngOnInit(): void {
+    this.emailService.getRosters().subscribe(
+      rosters => {
+      if (rosters) {
+        this.rosters = rosters;
+      }
+    });
   }// end of ngOnInit
 /*========================================================================================================
 ===================== ON FILE CHANGE =====================================================================
 ========================================================================================================*/
 onFileChange(ev) {
+  this.emailArr = [];
+  this.workSheet = null;
+  this.nameArr = [];
+  this.students = [];
+  this.rosters = [];
+  this.groupArr = [];                                                           // resets the data structures for new submission
   const cellIndex = 'A1';
                                                                                 // the excel sheet is going to be in a desired format
   let workBook = null;
@@ -98,18 +110,18 @@ decrementCellColumn(cellIndex) {
 fillClassRoster() {
   for (const i in this.emailArr) {
     if (this.nameArr[i]) {
-      this.students.push( (User.fromJson({
+      this.students.push( {
         name: this.nameArr[i],
         email: this.emailArr[i],
+        group: this.groupArr[i],
         type: 'standard'}
-      ))
     );
     } else {
-      this.students.push( (User.fromJson({
+      this.students.push({
         name: 'Student',
         email: this.emailArr[i],
+        group: this.groupArr[i],
         type: 'standard'}
-      ))
     );
     }
   }
@@ -129,23 +141,30 @@ onSubmit(options: MatListOption[]) {
 // sets the students array based off of the selected values in the list
   for (const i in options.map(o => o.value)) {
     if (i) {
-      this.students.push(User.fromJson({
+      this.students.push({
        name:  options.map(o => o.value.name)[i],
        email: options.map(o => o.value.email)[i],
+       group: options.map(o => o.value.group)[i],
        type: 'standard'
-     }));
-      this.postClassRoster(options.map(o => o.value.name)[i], options.map(o => o.value.email)[i], 'standard');
-    }
-  }
+     });
+  }}
+
+  const roster = ClassRoster.fromJson({
+    className: this.inputValue,
+    students: this.students,
+  });
                                                                                 /* NOTE: options.map(o => o.value)
                                                                                 gets the value from the selected options
-                                                                                of the mat selection list
-                                                                                */
-  this.rosters.push(ClassRoster.fromJson({
-    className: this.inputValue,
-    students: this.students
-  }
-  ));
+                                                                             of the mat selection list                  */
+  this.rosters.push(roster);
+
+  console.log(roster);
+  this.emailService.sendRoster(roster).subscribe(
+  (str: string) => {
+    if (str === 'error') {
+      console.log('email failed to send');
+    }
+  });
 
 
   this.students = [];                                                           // resets array of students and class form
@@ -159,23 +178,6 @@ selectAll() {
 }// end of select all
 /*========================================================================================================
 ==================== POST CLASS ROSTER ===================================================================
-========================================================================================================*/
-postClassRoster(studentEmail: string, studentName: string, accType: string) {
-
-  const postVars = {                                                            // places name and email values in JSON format for the post
-    email : studentEmail,
-    name : studentName,
-    type : accType
-  };
-
-  this.emailService.sendEmail(postVars).subscribe(
-  (str: string) => {
-    if (str === 'error') {
-      console.log('email failed to send');
-    }
-  });
-
-}// end of post class roster
 
 /*========================================================================================================
 ==================================== PARSE ROW ===========================================================

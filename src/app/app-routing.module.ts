@@ -9,8 +9,8 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
 import { StudentHomeComponent } from './components/student-home/student-home.component';
 import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-
+import { MyClassesComponent } from './components/my-classes/my-classes.component';
+import { SurveyComponent } from './components/survey/survey.component';
 
 
 const routes: Routes = [
@@ -27,16 +27,22 @@ const routes: Routes = [
       {path: 'survey-results', component: SurveyResultsComponent },
       {path: 'my-surveys', component: MySurveysComponent },
       {path: 'change-pass', component: ChangePassComponent },
+      {path: 'my-classes', component: MyClassesComponent},
+      {path: '*', redirectTo: '/login', pathMatch: 'full'}
     ]
   },
 
-  {path: 'student-home',
-  component: ToolbarComponent,
+  {
+  path: 'student-home',
+  component: StudentHomeComponent,
   children: [
-    {path: 'student-welcome', component: StudentHomeComponent},
     {path: 'student-survey', component: StudentSurveyPageComponent},
+    {path: 'survey/:id', component: SurveyComponent},
+    {path: 'change-pass', component: ChangePassComponent },
+    {path: '*', redirectTo: '/login', pathMatch: 'full'}
   ]},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '*', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({
