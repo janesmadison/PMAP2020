@@ -1,39 +1,25 @@
-<label>
+<h1>
   Survey Results
-</label>
+</h1>
+
+<!-- use get roster to retrieve the students information -->
+
+<div class="form-group">
+  <label>Select the student you would like to see results for: </label>
+  <mat-form-field>
+  <mat-select [(ngModel)]="selectedStudent" id="student" name="student">
+    <mat-option *ngFor="let class of students" [value]="class.email" (ngModelChange)='onStudentSelected($event)'>
+      {{class.name}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+</div>
 
 <mat-card>
-  <label>
-    Surveys:
-  </label>
-
-  <mat-card *ngFor="let Survey of surveys">
-    <label>
-      {{surveys.classID}}
-    </label>
-
-    <!--> *ngFor for the groups <!-->
-    <mat-card >
-      <label>
-        Groups:
-      </label>
-      <!--> *ngFor for the members of the group <!-->
-      <mat-card>
-        <label>
-        Group members:
-        <!--> group member label<!-->
-        </label>
-        <mat-list>
-          <!--> *ngFor for the questions and average response<!-->
-          <mat-list-item >
-            <!--> question string here <!-->
-            <br>
-            Average response:
-
-          </mat-list-item>
-        </mat-list>
-
-      </mat-card>
-    </mat-card>
-  </mat-card>
+  <mat-nav-list>
+  <mat-list-item *ngFor="let result of results">
+     <a matLine >{{ result.question_text }}</a>
+     <a matLine >{{ result.studentResults }}</a>
+  </mat-list-item>
+</mat-nav-list>
 </mat-card>
