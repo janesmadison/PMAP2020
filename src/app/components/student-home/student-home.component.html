@@ -1,20 +1,20 @@
-<label class="welcome">
-Welcome!
-</label>
-<br><br>
+<mat-sidenav-container class="sidenav-container">
+<mat-toolbar class="mat-toolbar-cl" color="primary" >
+  <mat-toolbar-row>
 
-<mat-card class="surveyCard">
-  <label>
-    Pending surveys
-  </label>
-  <br><br>
-  <mat-card class= "listCard">
-    <mat-list>
-      <mat-list-item >
-        <button mat-button routerLink="/student-home/student-survey"> Test Survey </button>
-        <!--> parameters will be index <!-->
-      </mat-list-item>
+    <h1>PMAP</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button routerLink="/student-home/change-pass"> Change Password </a>
+      <a mat-button routerLink="/student-home/student-survey">My Surveys</a>
+      <a mat-button routerLink="/login">Log Out</a>
+    </div>
 
-    </mat-list>
-  </mat-card>
-</mat-card>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="main-body">
+  <router-outlet></router-outlet>
+</div>
+
+</mat-sidenav-container>

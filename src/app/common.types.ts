@@ -35,11 +35,13 @@ export class CaughtError {
 
 export class Survey {
       surveyID: string;
+      classID: string;
       name: string;
       questions: Question[];
     static fromJson(obj): Survey {
       const survey: Survey = new Survey();
       survey.surveyID = obj.surveyID;
+      survey.classID = obj.classID;
       survey.name = obj.name;
       survey.questions = obj.questions;
       return survey;
@@ -48,11 +50,13 @@ export class Survey {
 
 export class Question {
    question: string;
+   questionID: string;
    type: string;
    answers: Answer[];
    static fromJson(obj): Question {
      const question: Question = new Question();
      question.question = obj.question;
+     question.questionID = obj.questionID;
      question.type = obj.type;
      question.answers = obj.answers;
      return question;
@@ -61,11 +65,11 @@ export class Question {
 
 export class Answer {
    answer: string;
-   type: string;
+   answerID: string;
    static fromJson(obj): Answer {
      const answer: Answer = new Answer();
      answer.answer = obj.answer;
-     answer.type = obj.type;
+     answer.answerID = obj.answer;
      return answer;
    }
 }

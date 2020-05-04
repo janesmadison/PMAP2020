@@ -37,10 +37,10 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
 import { StudentHomeComponent } from './components/student-home/student-home.component';
 import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { EventEmitterService } from './services/event-emitter.service';
 import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
 import { MyClassesComponent } from './components/my-classes/my-classes.component';
+import { SurveyComponent } from './components/survey/survey.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +54,9 @@ import { MyClassesComponent } from './components/my-classes/my-classes.component
     StudentSurveyPageComponent,
     SurveyResultsComponent,
     ChangePassComponent,
-    ToolbarComponent,
     ExcelParserComponent,
-    MyClassesComponent
+    MyClassesComponent,
+    SurveyComponent
   ],
   imports: [
     BrowserModule,
