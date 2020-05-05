@@ -50,6 +50,11 @@ export class ExcelParserComponent implements OnInit {
 /*========================================================================================================
 ===================== ON FILE CHANGE =====================================================================
 ========================================================================================================*/
+/* input: Takes in an excel file as an event from the input tag in the html file
+ * runtime: gets the workSheet from the workBook from the file and parses the file calling methods to fill the following data structures:
+          rosters, students
+ * output: an array of students and a new class roster
+ */
 onFileChange(ev) {
   this.emailArr = [];
   this.workSheet = null;
@@ -80,6 +85,10 @@ onFileChange(ev) {
 /*========================================================================================================
 ===================== INCREMENT CELL ROW  ================================================================
 ========================================================================================================*/
+/* input: takes in the cellIndex
+ * runtime: increments the tracker variable cellIndex number and places it behind the cellIndex letter
+ * output: the new row incremented cellIndex
+*/
 incrementCellRow(cellIndex) {
   const cellIndexLetter = cellIndex.charAt(0);                                  // first letter of the index string
   this.cellIndexNumber = this.cellIndexNumber + 1;
@@ -89,18 +98,30 @@ incrementCellRow(cellIndex) {
 /*========================================================================================================
 ===================== INCREMENT CELL COLUMN ==============================================================
 ========================================================================================================*/
+/* input: takes in the cellIndex
+ * runtime: increments the aphabetic character in the first position of the index
+ * output: the new column incremented cellIndex
+*/
 incrementCellColumn(cellIndex) {
   return cellIndex = (String.fromCharCode(cellIndex.charCodeAt(0) + 1) + this.cellIndexNumber);
   }// end of Increment cell column
 /*========================================================================================================
 ===================================== DECREMENT CELL COLUMN ==============================================
 ========================================================================================================*/
+/* input: takes in the cellIndex
+ * runtime: decrements the aphabetic character in the first position of the index
+ * output: the new column decremented cellIndex
+*/
 decrementCellColumn(cellIndex) {
   return cellIndex = (String.fromCharCode(cellIndex.charCodeAt(0) - 1) + this.cellIndexNumber);
 } // end of decrement cell column
 /*========================================================================================================
 ===================== FILL CLASS ROSTER ==================================================================
 ========================================================================================================*/
+/* input: takes in the array of names, emails, and groups
+ * runtime: places the names, emails, and groups of the students into a student class
+ * output: the student class
+*/
 fillClassRoster() {
   for (const i in this.emailArr) {
     if (this.nameArr[i]) {
@@ -124,12 +145,20 @@ fillClassRoster() {
 /*========================================================================================================
 ===================== GET INPUT ==========================================================================
 ========================================================================================================*/
+/* input: takes in the input value from the roster name input field in the html
+ * runtime: updates the roster name input from the html
+ * output: updated roster inputValue
+*/
 onKey(value: string) {
   this.inputValue = value;                                                      // keeps the input value of class name updated
   }
 /*========================================================================================================
 ==================== ON SUBMIT ===========================================================================
 ========================================================================================================*/
+/* input: the list of selected options in the mat list from the html file
+ * runtime: gets the names, emails, and groups from the selected values and places them in to a rosters structure
+ * output: submits all of the users into the data base, creates a Class roster and places it in an array
+*/
 onSubmit(options: MatListOption[]) {
   this.students = [];
 
@@ -166,12 +195,20 @@ onSubmit(options: MatListOption[]) {
 /*========================================================================================================
 ==================== SELECT ALL ==========================================================================
 ========================================================================================================*/
+/* input:
+ * runtime: selects all of the options in the mat selection list in the html
+ * output:
+*/
 selectAll() {
   this.studentList.selectAll();                                                 // sets all options in the mat selection list to selected
 }// end of select all
 /*========================================================================================================
 ==================== POST CLASS ROSTER ===================================================================
 ========================================================================================================*/
+/* input: account information
+ * runtime: places the student account information into a JSON format to post to the database
+ * output: the student account to the database
+*/
 postClassRoster(studentEmail: string, studentName: string, groupName: string, accType: string) {
 
   const postVars = {                                                            // places name and email values in JSON format for the post
@@ -193,6 +230,10 @@ postClassRoster(studentEmail: string, studentName: string, groupName: string, ac
 /*========================================================================================================
 ==================================== PARSE ROW ===========================================================
 ========================================================================================================*/
+/* input: cellIndex string and the excel workSheet
+ * runtime: starting from the email column the function increments and decrements to get the firstname, lastname and group name
+ * output: emailArr, nameArr, and groupArr
+*/
 parseExcelFile(cellIndex) {
   let blankSpaceEncountered = false;
   let name;
@@ -242,6 +283,10 @@ parseExcelFile(cellIndex) {
 /*========================================================================================================
 ================================= LOCATE EMAIL COLUMN ====================================================
 ========================================================================================================*/
+/* input: the excel work sheet and the cellIndex
+ * runtime: increments the column of the cell index and uses a regex to find the column containing emails
+ * output: the cell index of the first row of the column containing emails
+*/
 locateEmailColumn(cellIndex) {
   let emailFound = false;
   let cell;
