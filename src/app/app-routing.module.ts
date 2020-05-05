@@ -9,8 +9,8 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
 import { StudentHomeComponent } from './components/student-home/student-home.component';
 import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
-import { MyClassesComponent } from './components/my-classes/my-classes.component';
 import { SurveyComponent } from './components/survey/survey.component';
+import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
 
 
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
       {path: 'survey-results', component: SurveyResultsComponent },
       {path: 'my-surveys', component: MySurveysComponent },
       {path: 'change-pass', component: ChangePassComponent },
-      {path: 'my-classes', component: MyClassesComponent},
+      {path: 'my-classes', component: ExcelParserComponent},
       {path: '*', redirectTo: '/login', pathMatch: 'full'}
     ]
   },

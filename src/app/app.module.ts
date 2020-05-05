@@ -24,7 +24,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +39,6 @@ import { StudentSurveyPageComponent } from './components/student-survey-page/stu
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { EventEmitterService } from './services/event-emitter.service';
 import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
-import { MyClassesComponent } from './components/my-classes/my-classes.component';
 import { SurveyComponent } from './components/survey/survey.component';
 
 @NgModule({
@@ -55,7 +54,6 @@ import { SurveyComponent } from './components/survey/survey.component';
     SurveyResultsComponent,
     ChangePassComponent,
     ExcelParserComponent,
-    MyClassesComponent,
     SurveyComponent
   ],
   imports: [
