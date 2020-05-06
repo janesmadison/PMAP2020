@@ -1,3 +1,6 @@
+// Faith Hough
+// This file contains different classes that are used to define variables throughout the project.
+// User defines the student Array in ClassRoster. It contains all essential data that has been gathered from the User table in the database
 export class User {
   email: string;
   name: string;
@@ -13,6 +16,7 @@ export class User {
   }
 }
 
+// ClassRoster is used in email.service when a class is saved to the database
 export class ClassRoster {
   className: string;
   students: User[];
@@ -24,6 +28,7 @@ export class ClassRoster {
   }
 }
 
+// CaughtError is used to display error messages throughout the project
 export class CaughtError {
   message: string;
   static fromJson(obj): CaughtError {
@@ -33,6 +38,7 @@ export class CaughtError {
   }
 }
 
+// Survey contains all essential information that a survey must hold from the database
 export class Survey {
       surveyID: string;
       classID: string;
@@ -47,7 +53,9 @@ export class Survey {
       return survey;
     }
   }
-  
+
+// Results is used to display all results for a student is survey-results.component once it is loaded from the php code. it holds all questions for a student, and all results for that
+// question is a Result array
 export class Results {
 	question_text: string;
 	studentResults: Result[];
@@ -58,7 +66,8 @@ export class Results {
      	return results;
      	}
   }
-  
+
+// Result formats all results for one question in the Results Class
 export class Result {
 	answer:string;
       static fromJson(obj): Result {
@@ -68,6 +77,7 @@ export class Result {
    	}
   }
 
+// Question is used to hold all information about questions in the database to be used when creating or loading a survey
 export class Question {
    question: string;
    questionID: string;
@@ -83,6 +93,8 @@ export class Question {
    }
 }
 
+// Answer holds all necessary information about answers that must be stored when gathering from or loading to the database. It is used in class Question because there will
+// usually be more than one answer for one question
 export class Answer {
    answer: string;
    answerID: string;

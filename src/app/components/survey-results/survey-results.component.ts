@@ -1,3 +1,6 @@
+// Faith Hough
+// This component contains an array to hold students and an array to hold results. modifiedText is used to hold the email value of the student once they are selected, then sends them
+// to the results service
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { tap, map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
@@ -26,7 +29,7 @@ export class SurveyResultsComponent implements OnInit {
 
   modifiedText: string;
 
-
+// When this component is first started it will call the getRosters() method in resultsservice which will retrieve all the students for the admin signed in
   ngOnInit(): void {
     this.ResultsserviceService.getRosters().subscribe(
       students => {
@@ -36,6 +39,7 @@ export class SurveyResultsComponent implements OnInit {
     });
   }
 
+// Once the student has been selected from the list their email will be sent to submit student in resultsService which will retrieve their results
   onStudentSelected(val: any) {
     this.ResultsserviceService.submitStudent(val);
   }

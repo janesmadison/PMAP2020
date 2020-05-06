@@ -1,9 +1,11 @@
+/* Faith Hough */
 .sidenav-container{
   position: relative;
   height: 100%;
   display: block;
 }
 
+/* this forces the sidenav to fit perfectly under the toolbar so they look like one unit */
 .sidenav{
   width: 200px;
   position: fixed;
@@ -43,6 +45,7 @@
   z-index: 18;
 }
 
+/* fixes the position of the toolbar so that it will always take up 60 pixels  */
 .mat-toolbar-cl{
   position: fixed;
   top: 0;
