@@ -1,4 +1,4 @@
-![PMAP LOGO](/src/assets/logo.png)
+<div align="center">![PMAP LOGO](/src/assets/logo.png)</div>
 
 # PMAP2020
 
