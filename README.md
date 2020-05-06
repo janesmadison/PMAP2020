@@ -1,6 +1,6 @@
 # PMAP2020
 
-![PMAP LOGO](/src/assets/logo.png)
+![PMAP LOGO](/src/assets/logo.png =250x)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
