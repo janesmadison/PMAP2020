@@ -1,4 +1,12 @@
-<mat-card *ngIf="loaded">
+<!--
+Author: Madison Janes
+
+Description:
+In a similar layout to create-survey for admins,
+this displays a survey. This was intended to eventually be a form
+which would then capture all of the answer values as they changed.  -->
+
+<mat-card *ngIf="surveyLoaded">
   <mat-card-title class="surveyForm" *ngIf="survey.name">
         Survey Name: {{survey.name}}
   </mat-card-title>
@@ -8,7 +16,6 @@
           <label>Answer: </label>
             <div *ngIf="question.type === 'radio'">
                 <mat-radio-group>
-                  <!-- [(ngModel)]="favoriteSeason"> -->
                   <mat-radio-button *ngFor="let option of question.options" [value]="option.option">
                       {{option.option}}
                   </mat-radio-button>

@@ -1,9 +1,9 @@
 .login-parent {
-  display: flex;
   align-items: center;
+  display: flex;
+  height: 100%;
   justify-content: center;
   width: 100%;
-  height: 100%;
 }
 
 .login-icon {
@@ -12,10 +12,10 @@
 }
 
 .login-form {
-  min-width: 400px;
-  margin: auto;
   display: flex;
   flex-direction: column;
+  margin: auto;
+  min-width: 400px;
 }
 
 .login-form > mat-card-content > * {

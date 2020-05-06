@@ -1,3 +1,14 @@
+<!--
+Author:
+Madison Janes
+
+Description:
+This php code accepts a POST request from EmailService sendEmail().
+It reads the contents of the attached JSON object and decodes them.
+The SQL checks if the requested email already exists in the DB,
+and if it doesn't, it sends the email an invitation with a generated
+random password. The file saves this new user to the DB.
+ -->
 <?php
 
     require 'database.php';
@@ -12,11 +23,13 @@
         $type = $params->type;
         $password = uniqid();
 
+        /* checks if a user exists in DB */
         $sql = "SELECT * FROM `users` WHERE `email` = '$email'";
         $result = mysqli_query($db,$sql);
         $row = mysqli_fetch_array($result);
         $count = mysqli_num_rows($result);
 
+        /* if the query returned no results */
         if($count == 0) {
           $subject = 'Survey Invitation';
           $headers = "From: falconpmap@gmail.com";

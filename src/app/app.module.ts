@@ -37,7 +37,6 @@ import { SurveyResultsComponent } from './components/survey-results/survey-resul
 import { StudentHomeComponent } from './components/student-home/student-home.component';
 import { StudentSurveyPageComponent } from './components/student-survey-page/student-survey-page.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
-import { EventEmitterService } from './services/event-emitter.service';
 import { ExcelParserComponent } from './components/excel-parser/excel-parser.component';
 import { SurveyComponent } from './components/survey/survey.component';
 
@@ -81,8 +80,7 @@ import { SurveyComponent } from './components/survey/survey.component';
     MatSelectModule,
     MatSnackBarModule
   ],
-  providers: [EventEmitterService, { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }],
+  providers: [{ provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export class EventEmitterModule { }
