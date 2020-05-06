@@ -1,3 +1,6 @@
+// Faith Hough
+// This file holds all global imports that will be used throughout the entire front-end. Every component must also be imported and declared in this file to compile
+// in the program
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
