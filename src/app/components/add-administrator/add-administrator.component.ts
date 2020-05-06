@@ -1,6 +1,6 @@
 /*
  * This component holds the functionality that the admin user adds enters in an email to add in another administrator
- *
+ * Documentation author: Tavarius Fleming
  */
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';

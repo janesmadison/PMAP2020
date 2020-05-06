@@ -1,6 +1,7 @@
 /*
  * This is a services file used to connect the php to the angular files contaiing
  * functions that either get or place surveys from/to the database
+ * Documentation author: Tavarius Fleming
  */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';

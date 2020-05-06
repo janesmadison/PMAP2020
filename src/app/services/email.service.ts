@@ -1,6 +1,7 @@
 /*
  * This is a services file used to connect the php to the angular containing functions that
  * email users for surveys or gets classes from the database
+ * Documentation author: Tavarius Fleming
  */
 
 import { Injectable } from '@angular/core';

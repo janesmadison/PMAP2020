@@ -1,6 +1,6 @@
 /* NOTE: this component is intended to have an editable, clickable list in the html which will display the list
  * This component retreives and displays the surveys from the database in a mat list in the html
- *
+ * Documentation author: Tavarius Fleming
  */
 
 import { Component, OnInit } from '@angular/core';

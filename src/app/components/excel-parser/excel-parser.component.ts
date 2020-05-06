@@ -2,6 +2,7 @@
  * This component is the my classes page. The component parses an excel file in the explained format
  * and gets the names emails and groups from the excel file and creates accounts for the users in the database as well as
  * places a new class roster containing those students with an ID given by the class name.
+ * Documentation author: Tavarius Fleming
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';

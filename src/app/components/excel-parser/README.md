@@ -1,4 +1,5 @@
 # As an admin how to format the excel file for correct parsing
+###### Author: Tavarius Fleming
 
 1. Using the teachers blackboard page for a specific class the administrators copy and paste the class
    roster into the excel spreadsheet.
