@@ -9,7 +9,7 @@ The project was created by Madison Janes, Tavarius Fleming, and Faith Hough.
 This backend is a PHP RESTful backend which accepts POST, GET, DELETE, and PUT
 requests from frontend services. It then uses PHP's echo function to send http responses back to frontend.
 
-## Development server
+## Development
 
 Run `ng build --prod` to generate the build artifacts in the `dist/` directory. Then to run with PHP and database, we used XAMPP which required
 the dist/ directory as well as the backend/ directory to be copied into XAMPP's htdocs/ directory.
