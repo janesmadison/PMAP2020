@@ -7,7 +7,7 @@ The project was created by Madison Janes, Tavarius Fleming, and Faith Hough.
 ## Description
 
 This backend is a PHP RESTful backend which accepts POST, GET, DELETE, and PUT
-requests from frontend services. It then uses PHP's echo function to send http responses back to frontend. The database tables to get set up in [Database Tables](/pmap_database.sql)
+requests from frontend services. It then uses PHP's echo function to send http responses back to frontend. The database tables to get set up are in [Database Tables](/pmap_database.sql)
 
 ## Development
 

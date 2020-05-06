@@ -12,6 +12,7 @@ requests from frontend services. The project's intention is to be a clean
 and user friendly survey service, allowing administrators to send out surveys
 to student users. The database is written in MySQL.
 
+The database tables to get set up are in [Database Tables](/pmap_database.sql)
 
 ## Development server
 
