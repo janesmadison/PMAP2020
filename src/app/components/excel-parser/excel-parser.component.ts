@@ -1,3 +1,8 @@
+/**
+ * This component is the my classes page. The component parses an excel file in the explained format
+ * and gets the names emails and groups from the excel file and creates accounts for the users in the database as well as
+ * places a new class roster containing those students with an ID given by the class name.
+ */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -23,20 +28,46 @@ import { User, ClassRoster } from '../../common.types';
   styleUrls: ['./excel-parser.component.css']
 })
 export class ExcelParserComponent implements OnInit {
-
+  /**
+   * the string array that temporarily holds the emails of the students
+   */
   emailArr = [];
+  /**
+   * the JSON type that holds the excel workSheet
+   */
   workSheet = null;
+  /**
+   * string array that temporarily holds the names of the students
+   */
   nameArr = [];
+  /**
+   * array that holds the Student type data
+   */
   students = [];
+  /**
+   * form group with the opton classRosterName which is held in the html file to validate if there is inout in the field
+   */
   classForm = this.fb.group({ classRosterName: ['', Validators.required], });
+  /**
+   * an array that holds the Roster data type
+   */
   rosters: ClassRoster[];
+  /**
+   * string that holds the input of the class roster name to keep track of the value
+   */
   inputValue;
+  /**
+   * integer that is used to increment the number value of the excel cell index
+   */
   cellIndexNumber = 1;
+  /**
+   * string array that holds the group names of the students
+   */
   groupArr = [];
+  /**
+   * beginning of the url that the php scripts will be running on
+   */
   baseUrl = 'http://localhost:8080';                                                // base URL of the php script
-
-  email: string;
-  name: string;
 // ============= DATA MEMBERS ============================================================================
    @ViewChild('studentList') studentList: MatSelectionList;
 
@@ -56,6 +87,11 @@ export class ExcelParserComponent implements OnInit {
 /*========================================================================================================
 ===================== ON FILE CHANGE =====================================================================
 ========================================================================================================*/
+/* input: Takes in an excel file as an event from the input tag in the html file
+ * runtime: gets the workSheet from the workBook from the file and parses the file calling methods to fill the following data structures:
+          rosters, students
+ * output: an array of students and a new class roster
+ */
 onFileChange(ev) {
   this.emailArr = [];
   this.workSheet = null;
@@ -86,6 +122,10 @@ onFileChange(ev) {
 /*========================================================================================================
 ===================== INCREMENT CELL ROW  ================================================================
 ========================================================================================================*/
+/* input: takes in the cellIndex
+ * runtime: increments the tracker variable cellIndex number and places it behind the cellIndex letter
+ * output: the new row incremented cellIndex
+*/
 incrementCellRow(cellIndex) {
   const cellIndexLetter = cellIndex.charAt(0);
   this.cellIndexNumber = this.cellIndexNumber + 1;
@@ -95,18 +135,30 @@ incrementCellRow(cellIndex) {
 /*========================================================================================================
 ===================== INCREMENT CELL COLUMN ==============================================================
 ========================================================================================================*/
+/* input: takes in the cellIndex
+ * runtime: increments the aphabetic character in the first position of the index
+ * output: the new column incremented cellIndex
+*/
 incrementCellColumn(cellIndex) {
   return cellIndex = (String.fromCharCode(cellIndex.charCodeAt(0) + 1) + this.cellIndexNumber);
   }// end of Increment cell column
 /*========================================================================================================
 ===================================== DECREMENT CELL COLUMN ==============================================
 ========================================================================================================*/
+/* input: takes in the cellIndex
+ * runtime: decrements the aphabetic character in the first position of the index
+ * output: the new column decremented cellIndex
+*/
 decrementCellColumn(cellIndex) {
   return cellIndex = (String.fromCharCode(cellIndex.charCodeAt(0) - 1) + this.cellIndexNumber);
 } // end of decrement cell column
 /*========================================================================================================
 ===================== FILL CLASS ROSTER ==================================================================
 ========================================================================================================*/
+/* input: takes in the array of names, emails, and groups
+ * runtime: places the names, emails, and groups of the students into a student class
+ * output: the student class
+*/
 fillClassRoster() {
   for (const i in this.emailArr) {
     if (this.nameArr[i]) {
@@ -129,12 +181,20 @@ fillClassRoster() {
 /*========================================================================================================
 ===================== GET INPUT ==========================================================================
 ========================================================================================================*/
+/* input: takes in the input value from the roster name input field in the html
+ * runtime: updates the roster name input from the html
+ * output: updated roster inputValue
+*/
 onKey(value: string) {
   this.inputValue = value;                                                      // keeps the input value of class name updated
   }
 /*========================================================================================================
 ==================== ON SUBMIT ===========================================================================
 ========================================================================================================*/
+/* input: the list of selected options in the mat list from the html file
+ * runtime: gets the names, emails, and groups from the selected values and places them in to a rosters structure
+ * output: submits all of the users into the data base, creates a Class roster and places it in an array
+*/
 onSubmit(options: MatListOption[]) {
   this.students = [];
 
@@ -173,6 +233,10 @@ onSubmit(options: MatListOption[]) {
 /*========================================================================================================
 ==================== SELECT ALL ==========================================================================
 ========================================================================================================*/
+/* input:
+ * runtime: selects all of the options in the mat selection list in the html
+ * output:
+*/
 selectAll() {
   this.studentList.selectAll();                                                 // sets all options in the mat selection list to selected
 }// end of select all
@@ -180,8 +244,12 @@ selectAll() {
 ==================== POST CLASS ROSTER ===================================================================
 
 /*========================================================================================================
-==================================== PARSE ROW ===========================================================
+==================================== PARSE EXCEL FILE ====================================================
 ========================================================================================================*/
+/* input: cellIndex string and the excel workSheet
+ * runtime: starting from the email column the function increments and decrements to get the firstname, lastname and group name
+ * output: emailArr, nameArr, and groupArr
+*/
 parseExcelFile(cellIndex) {
   let blankSpaceEncountered = false;
   let name;
@@ -230,6 +298,10 @@ parseExcelFile(cellIndex) {
 /*========================================================================================================
 ================================= LOCATE EMAIL COLUMN ====================================================
 ========================================================================================================*/
+/* input: the excel work sheet and the cellIndex
+ * runtime: increments the column of the cell index and uses a regex to find the column containing emails
+ * output: the cell index of the first row of the column containing emails
+*/
 locateEmailColumn(cellIndex) {
   let emailFound = false;
   let cell;

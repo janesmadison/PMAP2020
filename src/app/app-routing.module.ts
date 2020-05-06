@@ -33,16 +33,16 @@ const routes: Routes = [
   },
 
   {
-  path: 'student-home',
-  component: StudentHomeComponent,
-  children: [
-    {path: 'student-survey', component: StudentSurveyPageComponent},
-    {path: 'survey/:id', component: SurveyComponent},
-    {path: 'change-pass', component: ChangePassComponent },
+    path: 'student-home',
+    component: StudentHomeComponent,
+    children: [
+      {path: 'student-survey', component: StudentSurveyPageComponent},
+      {path: 'survey/:id', component: SurveyComponent},
+      {path: 'change-pass', component: ChangePassComponent },
+      {path: '*', redirectTo: '/login', pathMatch: 'full'}
+    ]},
+    {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: '*', redirectTo: '/login', pathMatch: 'full'}
-  ]},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: '*', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({
