@@ -1,5 +1,7 @@
 # PMAP2020
 
+![PMAP LOGO](/src/assets/logo.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
 The project was created by Madison Janes, Tavarius Fleming, and Faith Hough.
