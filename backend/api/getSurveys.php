@@ -1,3 +1,11 @@
+<!--
+Author:
+Madison Janes
+
+Description:
+This file returns all surveys belonging to admin. This includes
+questions and options associated with each question.
+ -->
 <?php
 require 'database.php';
  session_start();
@@ -5,13 +13,14 @@ require 'database.php';
 $surveys = [];
 $questions = [];
 $options = [];
-
+/* Finds which email was set as logged in, when the session was set in login.php */
 $admin = $_SESSION['login_user'];
-$sql = "SELECT * FROM `survey` WHERE `admin_email` = '$admin'";
 
+$sql = "SELECT * FROM `survey` WHERE `admin_email` = '$admin'";
  if($result = mysqli_query($db,$sql))
  {
    $i = 0;
+   /* for each survey owned by admin */
    while($row = mysqli_fetch_assoc($result))
    {
       $surveys[$i]['name'] = $row['survey_name'];
@@ -23,6 +32,7 @@ $sql = "SELECT * FROM `survey` WHERE `admin_email` = '$admin'";
             if($result1 = mysqli_query($db,$sql1))
             {
               $j = 0;
+              /*For each question in each survey */
               while($row1 = mysqli_fetch_assoc($result1))
               {
                 $questions[$j]['question'] = $row1['question_text'];
@@ -32,6 +42,7 @@ $sql = "SELECT * FROM `survey` WHERE `admin_email` = '$admin'";
                 $sql2 = "SELECT o.option_text
                         FROM question q, option o
                         WHERE o.questionID = q.questionID";
+                /* For each option in each question */
                 if($result2 = mysqli_query($db,$sql2))
                 {
                   $k = 0;
@@ -50,6 +61,7 @@ $sql = "SELECT * FROM `survey` WHERE `admin_email` = '$admin'";
       $i++;
       $questions = [];
    }
+   /* return JSON object */
    echo json_encode($surveys);
 } else {
   http_response_code(404);

@@ -1,3 +1,11 @@
+/*
+Author:
+Madison Janes
+
+Description:
+This component displays a clickable list of survey names available
+to the user. On click, the survey is opened through the SurveyComponent.
+*/
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -10,9 +18,12 @@ import { Survey } from '../../common.types';
   templateUrl: './student-survey-page.component.html',
   styleUrls: ['./student-survey-page.component.css']
 })
+
 export class StudentSurveyPageComponent implements OnInit {
   selectedName: string;
+  /* stores an array of surveys that are available to the non-admin user */
   surveys: Survey[];
+
   constructor(private router: Router,
               private surveyService: SurveyService) { }
 
@@ -25,6 +36,8 @@ export class StudentSurveyPageComponent implements OnInit {
     });
   }
 
+/* navigates to survey page and sends the ID of the clicked survey
+through the URL */
   openSurvey(id) {
     this.router.navigateByUrl(`/student-home/survey/${id}`);
   }

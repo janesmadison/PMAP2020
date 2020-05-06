@@ -1,3 +1,4 @@
+<!-- This component is form with username and password as FormControls -->
 <div class="login-parent">
   <form *ngIf="loginForm" novalidate [formGroup]="loginForm" (ngSubmit)="doLogin()">
     <mat-card class="login-form">
@@ -22,7 +23,6 @@
         <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" name="login">
           <span>login</span>
         </button>
-        <!-- Temporary change until backend is set up -->
       </mat-card-actions>
 
     </mat-card>

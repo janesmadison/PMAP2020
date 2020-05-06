@@ -1,21 +1,22 @@
+/*
+Author: Madison Janes and Faith Hough
+Description:
+This component uses Login Service to check if email and password
+exists in DB.
+*/
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { Subscription } from 'rxjs';
-
 import { LoginService } from '../../services/login.service';
-import { CaughtError } from '../../common.types';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
-
-  private subscription = new Subscription();
+export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   errorMessage: string;
@@ -32,10 +33,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   });
 }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
+/* Calls login service to check if that email and password is
+registered in the system. If the service returns an error, the error is
+displayed in html. */
   doLogin() {
       const obj = this.loginForm.value;
       this.loginService.login(obj.username, obj.password).subscribe(

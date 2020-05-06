@@ -1,3 +1,13 @@
+<!--
+Author:
+Madison Janes
+
+Description:
+This is the most important file in the api folder. All other php files
+must import this file in order to connect to DB. This file will need
+to change when a new DB is created. This uses the RESTful Service
+methods PUT, GET, POST, and DELETE to communicate http requests.
+ -->
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");

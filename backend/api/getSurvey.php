@@ -1,7 +1,20 @@
+<!--
+Author:
+Madison Janes
+
+Description:
+This file is meant to return a specific survey based on a given surveyID.
+
+Warning: currently this file doesn't return the correct values. It isn't returning the
+questionIDs like it is supposed to. I think I read something about PHP not being able
+to handle numbers bigger than a certain side. It is possible that the BIG INT value IDs
+in the DB are too big to be handled by the DB. This issue could be solved by changing the
+data types in the tables. 
+ -->
   <?php
     require 'database.php';
      session_start();
-
+/* Finds which email was set as logged in, when the session was set in login.php */
     $email = $_SESSION['login_user'];
     $questions = [];
     $options = [];

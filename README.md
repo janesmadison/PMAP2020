@@ -1,6 +1,18 @@
+![PMAP LOGO](/src/assets/logo.png)
 # PMAP2020
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+
+The project was created by Madison Janes, Tavarius Fleming, and Faith Hough.
+
+## Description
+
+The backend is a PHP RESTful backend which accepts POST, GET, DELETE, and PUT
+requests from frontend services. The project's intention is to be a clean
+and user friendly survey service, allowing administrators to send out surveys
+to student users. The database is written in MySQL.
+
+The database tables to get set up are in pmap_database.sql located in database folder.
 
 ## Development server
 
@@ -24,4 +36,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
+*How do I get started?*
+   Check out [GettingStarted](/GettingStarted.md)
+
+*How do I use angular?*
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+*How do I use PHP?*
+[PHP Tutorial](https://www.w3schools.com/php/)
+
+This README.md was edited by Madison Janes on 5/6/2020.

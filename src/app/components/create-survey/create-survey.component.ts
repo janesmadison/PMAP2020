@@ -1,16 +1,23 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import {MatRadioModule} from '@angular/material/radio';
-import { ActivatedRoute } from '@angular/router';
+/*
+Author:
+Madison Janes
+
+Description:
+This component is a form which allows an admin to create a
+survey. The survey allows you to add and delete questions,
+edit question text and answers when applicable (radio buttons).
+It then saves the survey object to the backend. Survey contains
+questions and questions contain options.
+*/
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Survey, Question, Answer, ClassRoster } from '../../common.types';
-import { EventEmitterService } from '../../services/event-emitter.service';
 import { EmailService } from '../../services/email.service';
 import { SurveyService } from '../../services/survey.service';
-
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-survey',
@@ -21,16 +28,22 @@ import { Subscription } from 'rxjs';
 export class CreateSurveyComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-              private eventEmitterService: EventEmitterService,
               private emailService: EmailService,
               private surveyService: SurveyService,
               private snackBar: MatSnackBar) {}
 
   surveyForm: FormGroup;
   rosters: ClassRoster[];
+  /* Types of questions */
   choices: string[] = ['textbox', 'radio', 'slider'];
 
+/*
+Automatically called, method sets up Form and gets a list
+of classes the admin can send the survey to.
+*/
   ngOnInit() {
+    /* surveyForm contains the name of the survey, questions,
+    and the class (not required) that the survey is to be sent to. */
     this.surveyForm = this.fb.group({
       name: '',
       classID: '',
@@ -45,14 +58,23 @@ export class CreateSurveyComponent implements OnInit {
     });
   }
 
+/*
+"get" methods allow the component to reference a data member directly
+without calling the legitimate function.
+ex. question.get('options') will look at this function to return
+the survey form's questions array since we don't otherwise have access to it.
+*/
   get questions(): FormArray {
     return this.surveyForm.get('questions') as FormArray;
   }
 
+/* gets options for a particular question */
   getOptions(question): FormArray {
     return question.get('options') as FormArray;
   }
 
+/* adds an empty question form group containing the text for
+the question, the type, and options (for radio buttons) */
   addQuestion() {
     const group = this.fb.group ({
       question: '',
@@ -62,6 +84,7 @@ export class CreateSurveyComponent implements OnInit {
     this.questions.push(group);
   }
 
+/* Allows an admin to delete a question during creation */
   removeQuestion(i: number) {
   if (this.questions.length > 0) {
     this.questions.removeAt(i);
@@ -69,7 +92,11 @@ export class CreateSurveyComponent implements OnInit {
     this.questions.reset();
   }
 }
-
+/* adds an empty option to the question... Questions aren't
+required to have options. Right now only radio button questions have options.
+Options may be for example:
+[ "not usually", "somewhat frequently", "frequently",
+"most of the time", "always" ]*/
   addOption(question) {
     const option = this.fb.group ({
       option: ''
@@ -77,8 +104,10 @@ export class CreateSurveyComponent implements OnInit {
     this.getOptions(question).push(option);
   }
 
+/* On submit takes the values of surveyForm and saves to back end.
+If success or fail, prints either at bottom of screen with a
+MatSnackBar alert */
   onSubmit() {
-    console.log(JSON.stringify(this.surveyForm.getRawValue()));
     this.surveyService.sendSurvey(this.surveyForm.getRawValue()).subscribe(
   (str: string) => {
     if (str === 'success') {

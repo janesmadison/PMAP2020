@@ -6,9 +6,6 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CaughtError } from '../common.types';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +13,11 @@ import { CaughtError } from '../common.types';
 export class LoginService {
 
   private email: string;
-
   baseUrl = 'http://localhost:8080';
-  constructor(
-    private router: Router,
-    private http: HttpClient
-  ) { }
+
+
+  constructor( private router: Router,
+               private http: HttpClient) { }
 
   // This method is used to retrieve the email of the user that is currently logged in
   getEmail(): string {
