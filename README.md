@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 The project was created by Madison Janes, Tavarius Fleming, and Faith Hough.
 
-##Description
+## Description
 
 The backend is a PHP RESTful backend which accepts POST, GET, DELETE, and PUT
 requests from frontend services. The project's intention is to be a clean
