@@ -3,7 +3,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
-The project was created by Madison Janes, Tavarius Fleming, and Faith Hough.
+PMAP was created by Madison Janes, Tavarius Fleming, and Faith Hough, and was never intended to be maintained after capstone class, Software Engineering.
+For this reason, the project is archived. 
 
 ## Description
 
